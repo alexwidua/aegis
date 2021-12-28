@@ -1,0 +1,46 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+:root {
+	--color-font-primary: #fff;
+	--color-font-secondary: rgba(255, 255, 255, 0.6);
+	--color-background: #1d2124;
+	--color-button: #292b30;
+	--color-button-light: #3c3f46;
+	--color-button-dark: #1a1b1f;
+
+	--color-green: #24a16d;
+	--color-green-light: #8ddd7a;
+	--color-green-dimmed: #1e8b5e;
+	--color-green-dark: #083522;
+
+	--sans-serif-font: 'Inter var', -apple-system, BlinkMacSystemFont,
+		sans-serif;
+	--mono-font: 'IBM Plex Mono', monospace;
+
+	--layout-max-width: 600px;
+
+	--vertical-gap: 1rem;
+	--horizontal-gap: 2rem;
+
+	--border-radius: 0.5rem;
+	--border-radius-sm: 0.25rem;
+	--border-radius-lg: 0.75rem;
+
+	--size-font-xs: 0.75rem;
+	--size-font-sm: 0.875rem;
+}
+
+body {
+	margin: 0;
+	background: var(--color-background);
+	color: var(--color-font-primary);
+	font-family: var(--sans-serif-font);
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+button {
+	font-family: var(--sans-serif-font);
+}

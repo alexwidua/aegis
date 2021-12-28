@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+
+	& h2 {
+		margin: 0 0 2rem 0;
+	}
+}
+
+.options {
+	height: 100%;
+	padding: 3rem;
+}
+
+.preview {
+	padding: 4rem;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.item {
+	margin-bottom: 1rem;
+}
+
+.label {
+	margin-bottom: 0.75rem;
+	font-size: 0.875rem;
+	opacity: 0.5;
+}

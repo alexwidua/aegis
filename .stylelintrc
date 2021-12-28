@@ -1,0 +1,9 @@
+{
+	"extends": ["stylelint-config-yuanqing"],
+	"overrides": [
+		{
+			"files": ["**/*.scss"],
+			"customSyntax": "postcss-scss"
+		}
+	]
+}

@@ -1,0 +1,34 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	:global(.debug) & {
+		border: 1px solid orange;
+	}
+
+	& h2 {
+		max-width: 75%;
+		padding: var(--horizontal-gap) 0;
+		font-size: 1.25rem;
+		font-weight: 500;
+		line-height: 1.5;
+		text-align: center;
+
+		:global(.debug) & {
+			border: 1px solid orange;
+		}
+	}
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+	background: #000;
+	border-radius: 100%;
+
+	:global(.debug) & {
+		border: 1px solid orange;
+	}
+}

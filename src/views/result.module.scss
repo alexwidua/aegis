@@ -1,0 +1,33 @@
+.result-row {
+	display: flex;
+	margin-bottom: calc(var(--horizontal-gap) * 2);
+
+	& div:not(:last-child) {
+		margin-right: var(--vertical-gap);
+	}
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 3rem;
+	background: var(--color-button);
+	border-radius: var(--border-radius-lg);
+
+	& span:first-child {
+		margin-bottom: 1rem;
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	& span:last-child {
+		font-size: 0.875rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		opacity: 0.4;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+}
