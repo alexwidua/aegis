@@ -16,13 +16,15 @@
 	background: var(--color-background);
 	border-radius: var(--border-radius-lg);
 
-	& span:first-child {
+	& h2 {
+		margin: 0;
 		margin-bottom: 1rem;
+		color: var(--color-primary);
 		font-size: 2rem;
 		font-weight: 700;
 	}
 
-	& span:last-child {
+	& span {
 		font-size: var(--size-font-sm);
 		font-weight: 600;
 		letter-spacing: 0.02em;

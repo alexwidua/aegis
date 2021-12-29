@@ -15,10 +15,10 @@ const ResultView = () => {
 			<div className={styles['result-row']}>
 				{endResult.map((result, i) => (
 					<div className={styles.item} key={i}>
-						<span>
+						<h2>
 							{roundToTwoDecimals(result.value)}
 							{result.type === 'accuracy' && '%'}
-						</span>
+						</h2>
 						<span>{result.type}</span>
 					</div>
 				))}
