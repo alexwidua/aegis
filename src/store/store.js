@@ -26,7 +26,6 @@ const useStore = create((set) => ({
 	isPlaying: false,
 	gameState: '0/2',
 	recipe: null,
-	recipeIndex: 0,
 	score: 0,
 	startTime: 0,
 	handleSetStartTime: () =>
@@ -36,7 +35,7 @@ const useStore = create((set) => ({
 	/**
 	 * Game settings
 	 */
-	scoreLimit: 3,
+	scoreLimit: 25,
 	handleSetScoreLimit: (value) => set(() => ({ scoreLimit: value })),
 	buildingFilter: {
 		types: { economic: true, military: true, fort: true, research: true },
@@ -64,7 +63,7 @@ const useStore = create((set) => ({
 	handleResetKeyInput: () => set(() => ({ gameState: '0/2' })),
 	handleAfterPlayerScored: () =>
 		set((state) => {
-			return { gameState: '0/2', recipeIndex: state.recipeIndex + 1 }
+			return { gameState: '0/2' }
 		}),
 
 	/**
@@ -75,13 +74,11 @@ const useStore = create((set) => ({
 			const filtered = filterBuildings(buildings, state.buildingFilter)
 			const recipe = randArrayFrom(filtered, state.scoreLimit)
 			console.log(recipe)
-			console.log(state.recipeIndex)
 			console.log(state.score)
 			return {
 				gameState: '0/2',
 				score: 0,
 				startTime: 0,
-				recipeIndex: 0,
 				isPlaying: true,
 				recipe
 			}
