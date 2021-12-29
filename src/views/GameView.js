@@ -124,7 +124,7 @@ const Keys = ({ firstKey, secondKey, playerKeyIncorrect }) => {
 					className={`
 					${styles.key} ${gameState[0] >= i + 1 ? styles.correct : null} 
 					${keyLabels}
-					${keyPressed && gameState[0] == i + 1 ? styles.down : null}`}
+					${keyPressed && parseInt(gameState[0]) === i + 1 ? styles.down : null}`}
 					key={i + score.toFixed()}>
 					{key}
 				</div>
