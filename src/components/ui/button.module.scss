@@ -21,8 +21,7 @@
 	}
 
 	&.tertiary {
-		border: 1px solid transparent;
-		background: var(--color-foreground);
+		border: 2px solid var(--color-foreground);
 		border-radius: 96rem;
 		color: var(--color-font-secondary);
 		font-weight: 600;
