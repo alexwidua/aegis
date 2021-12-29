@@ -1,5 +1,5 @@
 {
-	"extends": ["stylelint-config-yuanqing"],
+	"extends": ["stylelint-config-idiomatic-order"],
 	"overrides": [
 		{
 			"files": ["**/*.scss"],

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/base.css'
+import './styles/base.scss'
 import './styles/animation.css'
 import App from './App'
 

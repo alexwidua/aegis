@@ -1,22 +1,16 @@
 /**
- * Main
+ * @file App, collects all views
  */
-import useStore from './store/store'
 import { useState, useEffect } from 'react'
-import useGameLogic from './game/useGameLogic'
-import GameView from './views/GameView'
-import ResultView from './views/ResultView'
-
-import Button from './components/ui/Button'
-
-import InitialView from './views/InitialView'
-import OptionsView from './views/OptionsView'
-
 import styles from './app.module.scss'
 
-import Modal from 'react-modal'
-
+import useStore from './store/store'
+import useGameLogic from './game/useGameLogic'
 import useGameState from './hooks/useGameState'
+
+import { InitialView, GameView, ResultView, OptionsView } from './views'
+import Modal from 'react-modal'
+import Button from './components/ui/Button'
 
 Modal.setAppElement('#root')
 
@@ -25,12 +19,15 @@ const App = () => {
 	 * Game-related states
 	 */
 	useGameLogic()
-	const { isPlaying, endResult, handleGameStart } = useStore((state) => ({
-		isPlaying: state.isPlaying,
-		endResult: state.endResult,
-		handleGameStart: state.handleGameStart
-	}))
-	const { playerSecondKeyCorrect } = useGameState()
+	const { isPlaying, endResult, handleGameStart, handleGameEnd } = useStore(
+		(state) => ({
+			isPlaying: state.isPlaying,
+			endResult: state.endResult,
+			handleGameStart: state.handleGameStart,
+			handleGameEnd: state.handleGameEnd
+		})
+	)
+	const { gameEnded, playerSecondKeyCorrect } = useGameState()
 
 	/**
 	 * UI states
@@ -40,14 +37,15 @@ const App = () => {
 
 	const showInitialView = initial && !isPlaying
 	const showGameView = isPlaying
-	const showResultView = !isPlaying && !initial
+	const showResultView = gameEnded
 	const showButtonMenu = !isPlaying
 
+	// Show startup screen only initially
 	useEffect(() => {
 		if (isPlaying && initial) {
 			setInitial(false)
 		}
-	}, [isPlaying])
+	}, [isPlaying, initial])
 
 	return (
 		<div
@@ -55,20 +53,27 @@ const App = () => {
 				playerSecondKeyCorrect ? styles.scored : null
 			}`}>
 			<div className={styles.container}>
-				{/* Show initial startup screen */}
 				{showInitialView && <InitialView />}
-
-				{/* Show game view */}
 				{showGameView && <GameView />}
-
-				{/* Show result view once game finishes */}
 				{showResultView && <ResultView />}
-
 				{showButtonMenu && (
 					<div className={styles['button-row']}>
-						<Button onClick={handleGameStart}>Play</Button>
+						<Button
+							onClick={handleGameStart}
+							style={{ minWidth: '12rem' }}
+							primary>
+							{endResult ? 'Play again' : 'Play'}
+						</Button>
 						<Button onClick={() => setModal(true)}>Options</Button>
 					</div>
+				)}
+				{isPlaying && (
+					<Button
+						onClick={handleGameEnd}
+						style={{ position: 'absolute', bottom: '4rem' }}
+						flat>
+						End game
+					</Button>
 				)}
 			</div>
 			<OptionsModal
@@ -79,6 +84,9 @@ const App = () => {
 	)
 }
 
+/**
+ * Options modal window
+ */
 const OptionsModal = ({ isOpen, onRequestClose }) => {
 	return (
 		<Modal

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
-import styles from './segmented-input.module.css'
+import styles from './segmented-input.module.scss'
 
-const ITEM_ID_DATA_ATTRIBUTE_NAME = 'data-segmented-control-item-id'
+const ITEM_ID_DATA_ATTRIBUTE_NAME = 'data-segmented-input-item-id'
 
 const SegmentedControls = ({
 	name,
@@ -19,7 +19,7 @@ const SegmentedControls = ({
 			const newValue = options[parseInt(id, 10)].value
 			onValueChange(newValue, name)
 		},
-		[[name, onValueChange, options]]
+		[name, onValueChange, options]
 	)
 
 	const handleKeyDown = useCallback(
@@ -54,7 +54,7 @@ const SegmentedControls = ({
 								onChange={handleChange}
 								onKeyDown={handleKeyDown}
 								tabIndex={0}
-								type='radio'
+								type="radio"
 								value={`${option.value}`}
 								{...{
 									[ITEM_ID_DATA_ATTRIBUTE_NAME]: `${i}`

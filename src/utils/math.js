@@ -11,4 +11,16 @@ const returnRandomIndex = (arr) => {
 	return arr[Math.floor(Math.random() * arr.length)]
 }
 
-export { calcActionsPerMinute, calcKeyAccuracy, returnRandomIndex }
+const randArrayFrom = (arr, length) => {
+	if (!arr.length) return undefined
+	return [...Array(length)].map(
+		(_) => arr[Math.floor(Math.random() * arr.length)]
+	)
+}
+
+export {
+	calcActionsPerMinute,
+	calcKeyAccuracy,
+	returnRandomIndex,
+	randArrayFrom
+}

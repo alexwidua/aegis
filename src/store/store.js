@@ -1,3 +1,7 @@
+/**
+ * @file Contains game states and some global UI states
+ */
+
 import create from 'zustand'
 import buildings from '../assets/buildings'
 import { currentTimeInSeconds } from '../utils/time'
@@ -5,43 +9,49 @@ import { currentTimeInSeconds } from '../utils/time'
 import {
 	calcActionsPerMinute,
 	calcKeyAccuracy,
-	returnRandomIndex
+	randArrayFrom
 } from '../utils/math'
-
-const defaultBuildingPrompt = buildings[0]
+import { filterBuildings } from '../utils/game'
 
 const useStore = create((set) => ({
+	/**
+	 * Global UI states
+	 */
 	keyPressed: false,
 	handleKeyPressed: (value) => set(() => ({ keyPressed: value })),
+
+	/**
+	 * Interactive game states
+	 */
 	isPlaying: false,
-	/**
-	 * Game user state
-	 */
-	score: 0,
-	scoreLimit: 25,
-	startTime: 0,
-	incorrectInputs: 0,
-	showKeyLabels: 'FADE_IN',
-	/**
-	 * Game internal state
-	 */
 	gameState: '0/2',
-	gameCurrentBuildingPrompt: defaultBuildingPrompt,
-	// Misc
-	endResult: [
-		{ type: 'Buildings', value: 25 },
-		{ type: 'Buildings / Minute', value: 64.4444 },
-		{ type: 'Accuracy', value: 66.6666 }
-	],
+	recipe: null,
+	recipeIndex: 0,
+	score: 0,
+	startTime: 0,
 	handleSetStartTime: () =>
 		set(() => ({ startTime: currentTimeInSeconds() })),
+	incorrectInputs: 0,
+
 	/**
-	 * Handle option change
+	 * Game settings
 	 */
-	handleScoreLimitChange: (value) => set(() => ({ scoreLimit: value })),
-	handleShowKeyLabels: (value) => set(() => ({ showKeyLabels: value })),
+	scoreLimit: 3,
+	handleSetScoreLimit: (value) => set(() => ({ scoreLimit: value })),
+	buildingFilter: {
+		types: { economic: true, military: true, fort: true, research: true },
+		ages: { I: true, II: true, III: true, IV: true },
+		civSpecific: true
+	},
+	handleSetBuildingFilter: (value) =>
+		set((state) => ({ buildingFilter: value })),
+	showKeyLabels: 'SHOW',
+	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
+	keyboardLayout: 'qwertz',
+	handleSetKeyboardLayout: (value) => set(() => ({ keyboardLayout: value })),
+
 	/**
-	 * Handle hotkey events
+	 * Key events that occur during play
 	 */
 	handleFirstKeyCorrect: () => set(() => ({ gameState: '1/2' })),
 	handleSecondKeyCorrect: () =>
@@ -53,21 +63,33 @@ const useStore = create((set) => ({
 		})),
 	handleResetKeyInput: () => set(() => ({ gameState: '0/2' })),
 	handleAfterPlayerScored: () =>
-		set((state) => ({
-			gameState: '0/2',
-			gameCurrentBuildingPrompt: returnRandomIndex(buildings)
-		})),
+		set((state) => {
+			return { gameState: '0/2', recipeIndex: state.recipeIndex + 1 }
+		}),
+
 	/**
-	 * Handle game states
+	 * Game cycle
 	 */
 	handleGameStart: () =>
-		set(() => ({
-			isPlaying: true
-		})),
+		set((state) => {
+			const filtered = filterBuildings(buildings, state.buildingFilter)
+			const recipe = randArrayFrom(filtered, state.scoreLimit)
+			console.log(recipe)
+			console.log(state.recipeIndex)
+			console.log(state.score)
+			return {
+				gameState: '0/2',
+				score: 0,
+				startTime: 0,
+				recipeIndex: 0,
+				isPlaying: true,
+				recipe
+			}
+		}),
 	handleGameEnd: () =>
 		set((state) => {
 			const finishTime = currentTimeInSeconds()
-			const numBuildings = state.scoreLimit
+			const numBuildings = state.score
 			const apm =
 				Math.round(
 					calcActionsPerMinute(
@@ -82,12 +104,21 @@ const useStore = create((set) => ({
 				correctInputs
 			)
 			const endResult = [
-				{ type: 'Buildings', value: numBuildings },
-				{ type: 'Buidlings / Minute', value: apm },
-				{ type: 'Accuracy', value: accuracy }
+				{ type: 'buildings', value: numBuildings },
+				{ type: 'buildings / minute', value: apm },
+				{ type: 'accuracy', value: accuracy }
 			]
-			return { score: 0, isPlaying: false, endResult }
-		})
+			return {
+				gameState: 'GAME_END',
+				isPlaying: false,
+				endResult
+			}
+		}),
+
+	/**
+	 * Misc
+	 */
+	endResult: null
 }))
 
 export default useStore

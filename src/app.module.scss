@@ -4,10 +4,10 @@
 	min-height: 100vh;
 	align-items: center;
 	justify-content: center;
-	transition: background 0.2s;
+	transition: background-color 0.2s;
 
 	&.scored {
-		background: var(--color-green);
+		background-color: var(--color-green);
 	}
 }
 
@@ -28,7 +28,7 @@
 	display: flex;
 
 	& button:first-child {
-		margin-right: var(--vertical-gap);
+		margin-right: var(--horizontal-gap);
 	}
 }
 
@@ -64,7 +64,7 @@
 		align-items: center;
 		justify-content: center;
 		border: none;
-		background: var(--color-button);
+		background: var(--color-foreground);
 		border-radius: 100%;
 		color: var(--color-font-secondary);
 		cursor: pointer;

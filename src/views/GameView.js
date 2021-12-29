@@ -5,76 +5,93 @@
 import useStore from '../store/store'
 import styles from './game.module.scss'
 import useGameState from '../hooks/useGameState'
-import useKeyPress from '../hooks/useKeyPress'
 
 /**
  * Default game view. Props take presedence, this is used to display the game preview in the OptionsView component.
  */
-const GameView = ({ name, icon, hotkeys }) => {
+const GameView = () => {
+	const recipe = useStore((state) => state.recipe)
 	const { playerSecondKeyCorrect } = useGameState()
-	return (
+
+	return recipe ? (
 		<div
 			className={`${styles.container} ${
 				playerSecondKeyCorrect ? 'scored' : null
 			}`}>
-			{!name && !icon && !hotkeys && <Score />}
-			<Prompt name={name} icon={icon} />
-			<Keys hotkeys={hotkeys} />
+			<Score />
+			<Prompt />
+			<Keys />
 		</div>
+	) : (
+		<div> nothin here mate</div>
 	)
 }
 
+/**
+ * Displays the current score and scorelimit (-> indicate how many buildings are left)
+ */
 const Score = () => {
 	const { score, scoreLimit } = useStore((state) => ({
 		score: state.score,
 		scoreLimit: state.scoreLimit
 	}))
 
+	const gridColumns = scoreLimit === 25 ? 5 : scoreLimit === 50 ? 10 : 20
+
 	return (
-		<div className={styles.score}>
-			<span
-				className={styles['score-primary']}
-				dangerouslySetInnerHTML={{ __html: score }}
-			/>
-			<span dangerouslySetInnerHTML={{ __html: '&nbsp;/&nbsp;' }} />
-			<span dangerouslySetInnerHTML={{ __html: scoreLimit }} />
+		<div
+			className={styles.score}
+			style={{ gridTemplateColumns: `repeat(${gridColumns}, 1fr)` }}>
+			{[...Array(scoreLimit)].map((_, i) => (
+				<span
+					className={`${styles['score-item']} ${
+						score >= i + 1 ? styles.cleared : null
+					}`}
+					key={i}
+				/>
+			))}
 		</div>
 	)
 }
 
+/**
+ * Displays the current building prompt
+ */
 const Prompt = (props) => {
-	const { _name, _icon } = useStore((state) => ({
-		_name: state.gameCurrentBuildingPrompt.name,
-		_icon: state.gameCurrentBuildingPrompt.icon
-	}))
+	const { currentBuilding } = useGameState()
+	const { type } = currentBuilding || ''
 
-	const name = props.name || _name
-	const icon = props.icon || _icon
+	const name = props.name || currentBuilding.name
+	const icon = props.icon || currentBuilding.icon
 
 	return (
 		<div className={styles['building-column']}>
 			<div
 				className={`
 				${styles['icon-container']}
+				${styles[type]}
 				`}>
-				<img className={styles.icon} src={icon} />
+				<img className={styles.icon} src={icon} alt={name + ' icon'} />
 			</div>
 			<div className={styles.name}>{name}</div>
 		</div>
 	)
 }
 
+/**
+ * Displays the key indicators
+ */
 const Keys = (props) => {
-	const { keyPressed, score, gameState, _hotkeys, showKeyLabels } = useStore(
+	const { keyPressed, score, gameState, showKeyLabels } = useStore(
 		(state) => ({
 			keyPressed: state.keyPressed,
 			score: state.score,
 			gameState: state.gameState,
-			_hotkeys: state.gameCurrentBuildingPrompt.hotkeys,
 			showKeyLabels: state.showKeyLabels
 		})
 	)
-	const { playerKeyIncorrect } = useGameState()
+	const { firstKey, secondKey, playerKeyIncorrect } = useGameState()
+	const hotkeys = props.hotkeys || [firstKey, secondKey]
 
 	const keyLabels =
 		showKeyLabels === 'SHOW'
@@ -82,8 +99,6 @@ const Keys = (props) => {
 			: showKeyLabels === 'FADE_IN'
 			? 'fade-in'
 			: null
-
-	const hotkeys = props.hotkeys || _hotkeys
 
 	return (
 		<div

@@ -1,9 +1,9 @@
 .result-row {
 	display: flex;
-	margin-bottom: calc(var(--horizontal-gap) * 2);
+	margin-bottom: calc(var(--vertical-gap) * 2);
 
 	& div:not(:last-child) {
-		margin-right: var(--vertical-gap);
+		margin-right: var(--horizontal-gap);
 	}
 }
 
@@ -13,7 +13,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 2rem 3rem;
-	background: var(--color-button);
+	background: var(--color-background);
 	border-radius: var(--border-radius-lg);
 
 	& span:first-child {
@@ -23,7 +23,7 @@
 	}
 
 	& span:last-child {
-		font-size: 0.875rem;
+		font-size: var(--size-font-sm);
 		font-weight: 600;
 		letter-spacing: 0.02em;
 		opacity: 0.4;

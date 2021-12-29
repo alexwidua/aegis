@@ -1,3 +1,7 @@
+/**
+ * @file Core game logic
+ */
+
 import { useEffect } from 'react'
 import useStore from '../store/store'
 import useKeyPress from '../hooks/useKeyPress'
@@ -7,15 +11,12 @@ const useGameLogic = () => {
 	/**
 	 * Game internal state & handlers
 	 */
-	const { isPlaying, score, scoreLimit, startTime, firstKey, secondKey } =
-		useStore((state) => ({
-			isPlaying: state.isPlaying,
-			score: state.score,
-			scoreLimit: state.scoreLimit,
-			startTime: state.startTime,
-			firstKey: state.gameCurrentBuildingPrompt.hotkeys[0],
-			secondKey: state.gameCurrentBuildingPrompt.hotkeys[1]
-		}))
+	const { isPlaying, score, scoreLimit, startTime } = useStore((state) => ({
+		isPlaying: state.isPlaying,
+		score: state.score,
+		scoreLimit: state.scoreLimit,
+		startTime: state.startTime
+	}))
 
 	const {
 		handleSetStartTime,
@@ -38,6 +39,8 @@ const useGameLogic = () => {
 	}))
 
 	const {
+		firstKey,
+		secondKey,
 		gameAwaitingInput,
 		playerFirstKeyCorrect,
 		playerSecondKeyCorrect,
@@ -68,6 +71,7 @@ const useGameLogic = () => {
 		}
 	})
 
+	// Update global ui state when key pressed
 	useEffect(() => {
 		handleKeyPressed(_keyPressed)
 	}, [_keyPressed])
@@ -77,14 +81,24 @@ const useGameLogic = () => {
 	 */
 	useEffect(() => {
 		let interval
+		const interval_duration = 300
 		if (playerKeyIncorrect) {
-			interval = setInterval(() => handleResetKeyInput(), 1000)
+			interval = setInterval(
+				() => handleResetKeyInput(),
+				interval_duration
+			)
 		} else if (playerSecondKeyCorrect) {
-			interval = setInterval(() => handleAfterPlayerScored(), 1000)
+			interval = setInterval(
+				() => handleAfterPlayerScored(),
+				interval_duration
+			)
 		}
 		return () => clearInterval(interval)
 	}, [playerKeyIncorrect, playerSecondKeyCorrect])
 
+	/**
+	 * Check if game ends
+	 */
 	useEffect(() => {
 		if (score === scoreLimit) {
 			handleGameEnd()

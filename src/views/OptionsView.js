@@ -1,63 +1,114 @@
 import styles from './options.module.scss'
-import SegmentedInput from '../components/ui/SegmentedInput'
 import useStore from '../store/store'
 
-import GameView from './GameView'
-import buildings from '../assets/buildings'
-
-import Modal from 'react-modal'
-
-Modal.setAppElement('#root')
+import SegmentedInput from '../components/ui/SegmentedInput'
+import Checkbox from '../components/ui/Checkbox'
 
 const OptionsView = () => {
 	const {
+		keyboardLayout,
+		handleSetKeyboardLayout,
 		scoreLimit,
-		handleScoreLimitChange,
+		handleSetScoreLimit,
 		showKeyLabels,
-		handleShowKeyLabels
+		handleSetShowKey,
+		buildingFilter,
+		handleSetBuildingFilter
 	} = useStore((state) => ({
+		keyboardLayout: state.keyboardLayout,
+		handleSetKeyboardLayout: state.handleSetKeyboardLayout,
 		scoreLimit: state.scoreLimit,
-		handleScoreLimitChange: state.handleScoreLimitChange,
+		handleSetScoreLimit: state.handleSetScoreLimit,
 		showKeyLabels: state.showKeyLabels,
-		handleShowKeyLabels: state.handleShowKeyLabels
+		handleSetShowKey: state.handleSetShowKey,
+		buildingFilter: state.buildingFilter,
+		handleSetBuildingFilter: state.handleSetBuildingFilter
 	}))
+
+	/**
+	 * TODO: Refactor and split up filter into several objects
+	 */
+	const handleFilter = (category, key) => {
+		const obj = buildingFilter
+		obj[category][key] = !obj[category][key]
+		handleSetBuildingFilter(obj)
+	}
+	const filterTypes = Object.keys(buildingFilter.types).map((el, i) => (
+		<Checkbox
+			value={buildingFilter.types[el]}
+			onChange={() => handleFilter('types', el)}
+			key={i}>
+			{el}
+		</Checkbox>
+	))
+	const filterAges = Object.keys(buildingFilter.ages).map((el, i) => (
+		<Checkbox
+			value={buildingFilter.ages[el]}
+			onChange={() => handleFilter('ages', el)}
+			key={i}
+			style={{ textTransform: 'uppercase' }}>
+			{el}
+		</Checkbox>
+	))
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.options}>
 				<h2>Options</h2>
-				<OptionItem
+				<h3>Buildings</h3>
+				<ItemSegmentedInput
 					name={`buildings`}
 					label={`Number of buildings`}
 					value={scoreLimit}
-					onValueChange={(value) => handleScoreLimitChange(value)}
-					options={[{ value: 3 }, { value: 50 }, { value: 100 }]}
+					onValueChange={(value) => handleSetScoreLimit(value)}
+					options={[{ value: 25 }, { value: 50 }, { value: 100 }]}
+					style={{ marginBottom: '1.25rem' }}
 				/>
-				<OptionItem
+				<ItemCheckbox
+					label={`Building ages`}
+					style={{ marginBottom: '1.25rem' }}>
+					{filterAges}
+				</ItemCheckbox>
+				<ItemCheckbox label={`Building types`}>
+					{filterTypes}
+				</ItemCheckbox>
+				<h3>Display</h3>
+				<ItemSegmentedInput
 					name={`showLabels`}
 					label={`Show key labels`}
 					value={showKeyLabels}
-					onValueChange={(value) => handleShowKeyLabels(value)}
+					onValueChange={(value) => handleSetShowKey(value)}
 					options={[
 						{ children: 'Show', value: 'SHOW' },
-						{ children: 'Fade in', value: 'FADE_IN' },
 						{ children: 'Hide', value: 'HIDE' }
 					]}
 				/>
-			</div>
-			<div className={styles.preview}>
-				<GameView
-					name={'Preview'}
-					icon={buildings[0].icon}
-					hotkeys={buildings[0].hotkeys}
+				<ItemSegmentedInput
+					name={`keyboardLayout`}
+					label={`Keyboard layout`}
+					value={keyboardLayout}
+					onValueChange={(value) => handleSetKeyboardLayout(value)}
+					options={[
+						{ children: 'QWERTY', value: 'qwerty' },
+						{ children: 'QWERTZ', value: 'qwertz' },
+						{ children: 'AZERTY', value: 'azerty' }
+					]}
 				/>
 			</div>
 		</div>
 	)
 }
 
-const OptionItem = ({ name, label, value, onValueChange, options }) => {
+const ItemSegmentedInput = ({
+	name,
+	label,
+	value,
+	onValueChange,
+	options,
+	...rest
+}) => {
 	return (
-		<div className={styles.item}>
+		<div className={styles.item} {...rest}>
 			<div className={styles.label}>{label}</div>
 			<SegmentedInput
 				name={name}
@@ -65,6 +116,15 @@ const OptionItem = ({ name, label, value, onValueChange, options }) => {
 				onValueChange={onValueChange}
 				options={options}
 			/>
+		</div>
+	)
+}
+
+const ItemCheckbox = ({ label, children, ...rest }) => {
+	return (
+		<div className={styles.item} {...rest}>
+			<div className={styles.label}>{label}</div>
+			<div className={styles.children}>{children}</div>
 		</div>
 	)
 }

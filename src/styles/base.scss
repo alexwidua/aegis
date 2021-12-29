@@ -1,0 +1,73 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+:root {
+	/*
+	 * Typo
+	 */
+	--sans-serif-font: 'Inter var', -apple-system, BlinkMacSystemFont,
+		sans-serif;
+	--key-font: 'Lato', apple-system, BlinkMacSystemFont, sans-serif;
+
+	--size-font-sm: var(--size-font-sm);
+
+	/*
+	 * Colors
+	 */
+	--color-font-primary: rgba(255, 255, 255, 1);
+	--color-font-secondary: rgba(255, 255, 255, 0.6);
+	--color-font-tertiary: rgba(255, 255, 255, 0.1);
+
+	--color-body: rgb(30, 34, 37); //#141723
+	--color-background: rgb(41, 43, 48); //#1c2634
+	--color-foreground: rgb(60, 63, 70); //#35465e
+
+	--color-primary: rgb(248, 224, 176);
+	--color-green: rgb(36, 161, 109);
+	--color-lightgreen: rgb(141, 221, 122);
+
+	// Building icons
+	--color-building-economic: radial-gradient(
+		100% 100% at 50.51% 0%,
+		var(--color-foreground) 0%,
+		var(--color-background) 100%
+	);
+	--color-building-military: radial-gradient(
+		100% 100% at 50.51% 0%,
+		#96644a 0%,
+		#734126 100%
+	);
+	--color-building-fort: var(--color-building-economic);
+	--color-building-research: radial-gradient(
+		100% 100% at 50.51% 0%,
+		#53c2ac 0%,
+		#2b7865 100%
+	);
+
+	/*
+	 * Layout
+	 */
+
+	--layout-max-width: 600px;
+
+	--horizontal-gap: 1rem;
+	--vertical-gap: 2rem;
+
+	--border-radius: 0.5rem;
+	--border-radius-sm: 0.25rem;
+	--border-radius-lg: 0.75rem;
+}
+
+body {
+	margin: 0;
+	background: var(--color-body);
+	color: var(--color-font-primary);
+	font-family: var(--sans-serif-font);
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+button {
+	font-family: var(--sans-serif-font);
+}

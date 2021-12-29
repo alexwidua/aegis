@@ -11,17 +11,17 @@
 	padding: 3rem;
 }
 
-.preview {
-	padding: 4rem;
-	background: rgba(0, 0, 0, 0.1);
-}
-
 .item {
-	margin-bottom: 1rem;
+	margin-bottom: var(--vertical-gap);
 }
 
 .label {
 	margin-bottom: 0.75rem;
-	font-size: 0.875rem;
+	font-size: var(--size-font-sm);
+	font-weight: 300;
 	opacity: 0.5;
+}
+
+.children {
+	display: flex;
 }
