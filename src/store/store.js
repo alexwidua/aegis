@@ -11,6 +11,7 @@ import {
 	calcPercentageRemainder,
 	randArrayFrom
 } from '../utils/math'
+
 import { filterBuildings } from '../utils/game'
 
 const useStore = create((set) => ({
@@ -26,6 +27,7 @@ const useStore = create((set) => ({
 	isPlaying: false,
 	gameState: '0/2',
 	recipe: null,
+	tick: 0,
 	score: 0,
 	startTime: 0,
 	handleSetStartTime: () =>
@@ -35,11 +37,17 @@ const useStore = create((set) => ({
 	/**
 	 * Game settings
 	 */
-	scoreLimit: 3,
+	updateGameSettingsFromLocalStorage: (value) => set(() => value),
+	scoreLimit: 25,
 	handleSetScoreLimit: (value) => set(() => ({ scoreLimit: value })),
 	buildingFilter: {
-		types: { economic: true, military: true, fort: true, research: true },
-		ages: { I: true, II: true, III: true, IV: true },
+		types: {
+			economic: true,
+			military: false,
+			fort: false,
+			research: false
+		},
+		ages: { I: true, II: false, III: false, IV: false },
 		civSpecific: true
 	},
 	handleSetBuildingFilter: (value) =>
@@ -62,8 +70,8 @@ const useStore = create((set) => ({
 		})),
 	handleResetKeyInput: () => set(() => ({ gameState: '0/2' })),
 	handleAfterPlayerScored: () =>
-		set(() => {
-			return { gameState: '0/2' }
+		set((state) => {
+			return { gameState: '0/2', tick: state.tick + 1 }
 		}),
 
 	/**
@@ -75,6 +83,7 @@ const useStore = create((set) => ({
 			const recipe = randArrayFrom(filtered, state.scoreLimit)
 			return {
 				gameState: '0/2',
+				tick: 0,
 				score: 0,
 				startTime: 0,
 				isPlaying: true,
