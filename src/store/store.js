@@ -8,7 +8,7 @@ import { currentTimeInSeconds } from '../utils/time'
 
 import {
 	calcActionsPerMinute,
-	calcKeyAccuracy,
+	calcPercentageRemainder,
 	randArrayFrom
 } from '../utils/math'
 import { filterBuildings } from '../utils/game'
@@ -35,7 +35,7 @@ const useStore = create((set) => ({
 	/**
 	 * Game settings
 	 */
-	scoreLimit: 25,
+	scoreLimit: 3,
 	handleSetScoreLimit: (value) => set(() => ({ scoreLimit: value })),
 	buildingFilter: {
 		types: { economic: true, military: true, fort: true, research: true },
@@ -62,7 +62,7 @@ const useStore = create((set) => ({
 		})),
 	handleResetKeyInput: () => set(() => ({ gameState: '0/2' })),
 	handleAfterPlayerScored: () =>
-		set((state) => {
+		set(() => {
 			return { gameState: '0/2' }
 		}),
 
@@ -73,8 +73,6 @@ const useStore = create((set) => ({
 		set((state) => {
 			const filtered = filterBuildings(buildings, state.buildingFilter)
 			const recipe = randArrayFrom(filtered, state.scoreLimit)
-			console.log(recipe)
-			console.log(state.score)
 			return {
 				gameState: '0/2',
 				score: 0,
@@ -96,7 +94,7 @@ const useStore = create((set) => ({
 				) / 100
 
 			const correctInputs = state.scoreLimit * 2 // scoreLimit === num of buildings á 2 keys
-			const accuracy = calcKeyAccuracy(
+			const accuracy = calcPercentageRemainder(
 				state.incorrectInputs,
 				correctInputs
 			)
@@ -106,7 +104,6 @@ const useStore = create((set) => ({
 				{ type: 'accuracy', value: accuracy }
 			]
 			return {
-				gameState: 'GAME_END',
 				isPlaying: false,
 				endResult
 			}

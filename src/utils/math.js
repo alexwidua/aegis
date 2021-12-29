@@ -3,7 +3,11 @@ const calcActionsPerMinute = (seconds, actions) => {
 	return aps * 60
 }
 
-const calcKeyAccuracy = (a, b) => {
+const calcPercentage = (a, b) => {
+	return (100 * a) / b
+}
+
+const calcPercentageRemainder = (a, b) => {
 	return 100 - (100 * a) / b
 }
 
@@ -20,7 +24,8 @@ const randArrayFrom = (arr, length) => {
 
 export {
 	calcActionsPerMinute,
-	calcKeyAccuracy,
+	calcPercentage,
+	calcPercentageRemainder,
 	returnRandomIndex,
 	randArrayFrom
 }
