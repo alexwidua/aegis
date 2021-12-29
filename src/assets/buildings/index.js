@@ -100,7 +100,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Wooden Wall',
+		name: 'Palisade',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'x'],
 		icon: WoodenWall,
 		type: 'fort',
@@ -108,7 +108,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Wooden Gate',
+		name: 'Gate',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'c'],
 		icon: WoodenGate,
 		type: 'fort',
@@ -147,7 +147,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Archery Range',
+		name: 'AR',
 		hotkeys: [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'a', qwertz: 'a', azerty: 'q' }
@@ -166,7 +166,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Stone Tower',
+		name: 'Tower',
 		hotkeys: [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
@@ -177,7 +177,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Stone Wall',
+		name: 'Wall',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'x'],
 		icon: StoneWall,
 		type: 'fort',
@@ -185,7 +185,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Stone Gate',
+		name: 'Gate',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'c'],
 		icon: StoneGate,
 		type: 'fort',
@@ -202,7 +202,7 @@ const buildings = [
 		civSpecific: false
 	},
 	{
-		name: 'Siege Workshop',
+		name: 'Siege',
 		hotkeys: ['e', { qwerty: 'a', qwertz: 'a', azerty: 'q' }],
 		icon: SiegeWorkshop,
 		type: 'military',
