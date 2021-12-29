@@ -23,7 +23,6 @@
 	}
 
 	&.checked {
-		border: 1px solid rgba(255, 255, 255, 0.1);
 		background: var(--color-foreground);
 		color: var(--color-font-primary);
 		& input[type='checkbox'] {

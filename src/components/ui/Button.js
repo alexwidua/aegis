@@ -1,10 +1,10 @@
 import styles from './button.module.scss'
 
-const Button = ({ primary, flat, children, ...rest }) => {
+const Button = ({ primary, tertiary, children, ...rest }) => {
 	return (
 		<button
 			className={`${styles.button} ${primary ? styles.primary : null} ${
-				flat ? styles.flat : null
+				tertiary ? styles.tertiary : null
 			}`}
 			{...rest}>
 			{children}
