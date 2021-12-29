@@ -75,11 +75,12 @@ const OptionsView = () => {
 				<h3>Display</h3>
 				<ItemSegmentedInput
 					name={`showLabels`}
-					label={`Show key labels`}
+					label={`Key labels`}
 					value={showKeyLabels}
 					onValueChange={(value) => handleSetShowKey(value)}
 					options={[
 						{ children: 'Show', value: 'SHOW' },
+						{ children: 'Fade in after 1s', value: 'FADE_IN' },
 						{ children: 'Hide', value: 'HIDE' }
 					]}
 				/>
