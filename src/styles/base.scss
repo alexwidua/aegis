@@ -9,7 +9,7 @@
 		sans-serif;
 	--key-font: 'DM Sans', apple-system, BlinkMacSystemFont, sans-serif;
 
-	--size-font-sm: var(--size-font-sm);
+	--size-font-sm: 0.875rem;
 
 	/*
 	 * Colors
@@ -17,6 +17,9 @@
 	--color-font-primary: rgb(238, 245, 255);
 	--color-font-secondary: rgba(238, 245, 255, 0.6);
 	--color-font-tertiary: rgba(238, 245, 255, 0.2);
+
+	--color-font-link: rgba(238, 245, 255, 0.4);
+	--color-font-link-hover: rgba(238, 245, 255, 0.8);
 
 	--color-body: rgb(32, 34, 37); //
 	--color-background: rgb(41, 43, 47); //
@@ -59,6 +62,7 @@
 }
 
 body {
+	overflow: hidden;
 	margin: 0;
 	background: var(--color-body);
 	color: var(--color-font-primary);
@@ -70,4 +74,50 @@ body {
 
 button {
 	font-family: var(--sans-serif-font);
+}
+
+a {
+	color: var(--color-font-link);
+
+	&:hover {
+		color: var(--color-font-link-hover);
+	}
+}
+
+ul {
+	display: flex;
+	list-style: none;
+
+	& li:not(:last-child) {
+		margin-right: calc(var(--horizontal-gap) / 2);
+
+		&::after {
+			margin-left: calc(var(--horizontal-gap) / 2);
+			content: '•';
+			font-size: 0.75rem;
+			opacity: 0.25;
+		}
+	}
+}
+
+footer {
+	font-size: var(--size-font-sm);
+
+	& img {
+		height: 0.75rem;
+		margin: 0 0.25rem -0.125rem 0.25rem;
+	}
+}
+
+.footer {
+	position: fixed;
+	bottom: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	& span:first-child {
+		margin-bottom: calc(var(--vertical-gap) / 1.5);
+	}
 }
