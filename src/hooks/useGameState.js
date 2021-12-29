@@ -5,12 +5,16 @@ import useStore from '../store/store'
 
 const useGameState = () => {
 	const {
+		score,
+		scoreLimit,
 		keyboardLayout,
 		currentBuilding,
 		gameState,
 		_firstKey,
 		_secondKey
 	} = useStore((state) => ({
+		score: state.score,
+		scoreLimit: state.scoreLimit,
 		keyboardLayout: state.keyboardLayout,
 		gameState: state.gameState,
 		currentBuilding: state.recipe ? state.recipe[state.score] : null,
@@ -28,7 +32,7 @@ const useGameState = () => {
 			: _secondKey || null
 
 	const gameAwaitingInput = gameState === '0/2'
-	const gameEnded = gameState === 'GAME_END'
+	const gameEnded = score === scoreLimit
 	const playerFirstKeyCorrect = gameState === '1/2'
 	const playerSecondKeyCorrect = gameState === '2/2'
 	const playerKeyIncorrect = gameState === 'INCORRECT_INPUT'
