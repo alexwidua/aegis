@@ -69,10 +69,13 @@ const App = () => {
 			updateGameSettingsFromLocalStorage(localStorageOptions)
 		}
 		console.log(localStorageOptions)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+
 	// Sync data to local storage on modal close
 	useEffect(() => {
 		if (!modal) setLocalStorageOptions(gameOptions)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [modal])
 
 	return (
@@ -100,7 +103,7 @@ const App = () => {
 					</div>
 				)}
 			</div>
-			<Footer />
+			{/* {!isPlaying && <Footer />} */}
 			<OptionsModal
 				isOpen={modal}
 				onRequestClose={() => setModal(false)}

@@ -74,6 +74,7 @@ const useGameLogic = () => {
 	// Update global ui state when key pressed
 	useEffect(() => {
 		handleKeyPressed(_keyPressed)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [_keyPressed])
 
 	/**
@@ -94,6 +95,7 @@ const useGameLogic = () => {
 			)
 		}
 		return () => clearInterval(interval)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [playerKeyIncorrect, playerSecondKeyCorrect])
 
 	/**
@@ -103,6 +105,7 @@ const useGameLogic = () => {
 		if (score === scoreLimit) {
 			handleGameEnd()
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [score, scoreLimit])
 
 	return null
