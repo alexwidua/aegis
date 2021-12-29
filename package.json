@@ -1,11 +1,8 @@
 {
 	"name": "aoe",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"private": true,
 	"dependencies": {
-		"@testing-library/jest-dom": "^5.16.1",
-		"@testing-library/react": "^12.1.2",
-		"@testing-library/user-event": "^13.5.0",
 		"node-sass": "^7.0.1",
 		"postcss-scss": "^4.0.2",
 		"react": "^17.0.2",
@@ -13,11 +10,8 @@
 		"react-modal": "^3.14.4",
 		"react-scripts": "5.0.0",
 		"react-transition-group": "^4.4.2",
-		"styled-components": "^5.3.3",
 		"stylelint": "^14.2.0",
 		"stylelint-config-idiomatic-order": "^8.1.0",
-		"stylelint-config-yuanqing": "^0.0.3",
-		"web-vitals": "^2.1.2",
 		"zustand": "^3.6.8"
 	},
 	"scripts": {
