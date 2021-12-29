@@ -13,8 +13,8 @@ import { InitialView, GameView, ResultView, OptionsView } from './views'
 import Modal from 'react-modal'
 import Button from './components/ui/Button'
 
-import HRE from './assets/images/hre.png'
-import Wood from './assets/images/wood.png'
+// import HRE from './assets/images/hre.png'
+// import Wood from './assets/images/wood.png'
 
 Modal.setAppElement('#root')
 
@@ -133,27 +133,27 @@ const OptionsModal = ({ isOpen, onRequestClose, ...rest }) => {
 	)
 }
 
-const Footer = () => {
-	return (
-		<footer className={`footer`}>
-			<ul>
-				<li>
-					Created with <img src={Wood} alt={`Wood`} /> in{' '}
-					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
-				</li>
-				<li>
-					<a href="https://github.com/alexwidua/aoe-shortcuts">
-						View on GitHub
-					</a>
-				</li>
-				<li>
-					<a href="https://www.buymeacoffee.com/alexwidua">
-						Buy me a coffee
-					</a>
-				</li>
-			</ul>
-		</footer>
-	)
-}
+// const Footer = () => {
+// 	return (
+// 		<footer className={`footer`}>
+// 			<ul>
+// 				<li>
+// 					Created with <img src={Wood} alt={`Wood`} /> in{' '}
+// 					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
+// 				</li>
+// 				<li>
+// 					<a href="https://github.com/alexwidua/aoe-shortcuts">
+// 						View on GitHub
+// 					</a>
+// 				</li>
+// 				<li>
+// 					<a href="https://www.buymeacoffee.com/alexwidua">
+// 						Buy me a coffee
+// 					</a>
+// 				</li>
+// 			</ul>
+// 		</footer>
+// 	)
+// }
 
 export default App
