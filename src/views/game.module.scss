@@ -1,10 +1,11 @@
 .container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	& div:not(:last-child) {
-		margin-bottom: calc(var(--vertical-gap) * 1.25);
+		margin-bottom: var(--vertical-gap);
 	}
 
 	.debug & {
@@ -22,19 +23,23 @@
 	&-item {
 		width: 6px;
 		height: 6px;
-		background: rgba(255, 255, 255, 0.015);
+		background: rgba(255, 255, 255, 0.05);
 		border-radius: 2px;
 
 		&.cleared {
-			background: rgba(255, 255, 255, 0.2);
+			background: rgba(255, 255, 255, 0.3);
 		}
 	}
 }
 
 .building-column {
+	position: absolute;
+	top: -100%;
+	left: 50%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	transform: translateX(-50%);
 
 	& div:first-child {
 		margin-bottom: calc(var(--vertical-gap) / 2);
@@ -75,6 +80,7 @@
 	color: rgba(255, 255, 255, 0.2);
 	font-size: 1.25rem;
 	font-weight: 400;
+	white-space: nowrap;
 }
 
 .keys {
@@ -131,4 +137,10 @@
 	&.labeled {
 		color: rgba(255, 255, 255, 1) !important;
 	}
+}
+
+.recipes {
+	position: absolute;
+	top: 30%;
+	display: flex;
 }

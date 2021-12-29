@@ -40,3 +40,25 @@
 		transform: translate3d(4px, 0, 0);
 	}
 }
+
+.fade-enter {
+	opacity: 0;
+	transform: translateX(0%) !important;
+}
+
+.fade-enter-active {
+	opacity: 1;
+	transform: translateX(-50%) !important;
+}
+.fade-exit {
+	opacity: 1;
+	transform: translateX(-50%) !important;
+}
+.fade-exit-active {
+	opacity: 0;
+	transform: translateX(-50%) !important;
+}
+.fade-enter-active,
+.fade-exit-active {
+	transition: opacity 0.3s, transform 0.3s;
+}
