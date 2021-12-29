@@ -40,6 +40,24 @@
 		width: 100%;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.25);
+		opacity: 0;
+
+		transition: opacity 0.2s, transform 0.2s;
+
+		&:global(.ReactModal__Overlay--after-open) {
+			opacity: 1;
+
+			& .modal-content {
+				transform: translate3d(-50%, -50%, 0);
+			}
+		}
+		&:global(.ReactModal__Overlay--before-close) {
+			opacity: 0;
+
+			& .modal-content {
+				transform: translate3d(-50%, 50%, 0);
+			}
+		}
 	}
 
 	&-content {
@@ -48,10 +66,10 @@
 		right: auto;
 		bottom: auto;
 		left: 50%;
-		//max-width: var(--layout-max-width);
 		background: var(--color-background);
 		border-radius: 0.5rem;
-		transform: translate3d(-50%, -50%, 0);
+		transform: translate3d(-50%, 50%, 0);
+		transition: opacity 0.2s, transform 0.2s;
 	}
 
 	&-btn-close {
