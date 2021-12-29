@@ -32,20 +32,7 @@ const App = () => {
 	/**
 	 * UI states
 	 */
-	const [initial, setInitial] = useState(true)
 	const [modal, setModal] = useState(false)
-
-	const showInitialView = initial && !isPlaying
-	const showGameView = isPlaying
-	const showResultView = gameEnded
-	const showButtonMenu = !isPlaying
-
-	// Show startup screen only initially
-	useEffect(() => {
-		if (isPlaying && initial) {
-			setInitial(false)
-		}
-	}, [isPlaying, initial])
 
 	return (
 		<div
@@ -53,10 +40,14 @@ const App = () => {
 				playerSecondKeyCorrect ? styles.scored : null
 			}`}>
 			<div className={styles.container}>
-				{showInitialView && <InitialView />}
-				{showGameView && <GameView />}
-				{showResultView && <ResultView />}
-				{showButtonMenu && (
+				{isPlaying && !gameEnded ? (
+					<GameView />
+				) : !isPlaying && gameEnded ? (
+					<ResultView />
+				) : (
+					<InitialView />
+				)}
+				{!isPlaying && (
 					<div className={styles['button-row']}>
 						<Button
 							onClick={handleGameStart}
@@ -66,14 +57,6 @@ const App = () => {
 						</Button>
 						<Button onClick={() => setModal(true)}>Options</Button>
 					</div>
-				)}
-				{isPlaying && (
-					<Button
-						onClick={handleGameEnd}
-						style={{ position: 'absolute', bottom: '4rem' }}
-						flat>
-						End game
-					</Button>
 				)}
 			</div>
 			<OptionsModal
