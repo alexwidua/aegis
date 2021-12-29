@@ -1,7 +1,6 @@
 # Aegis
 
 A tiny game to practice [Age of Empires IV](https://www.ageofempires.com/games/age-of-empires-iv/) building shortcuts.
-
 Created using ⚛️ [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html) and 🐻 [Zustand](https://github.com/pmndrs/zustand).
 
 # Disclaimer
