@@ -33,16 +33,16 @@ const GameView = () => {
 				playerSecondKeyCorrect ? 'scored' : null
 			}`}>
 			<Prompt
-				name={currentBuilding.name}
-				icon={currentBuilding.icon}
-				type={currentBuilding.type}
+				name={currentBuilding?.name || ''}
+				icon={currentBuilding?.icon || ''}
+				type={currentBuilding?.type || ''}
 			/>
 			<Keys
 				firstKey={firstKey}
 				secondKey={secondKey}
 				playerKeyIncorrect={playerKeyIncorrect}
 			/>
-			<div className={styles.bottom}>
+			<div className={'footer'}>
 				<Score score={score} scoreLimit={scoreLimit} />
 				<Button onClick={handleGameEnd} tertiary>
 					End game
@@ -75,7 +75,7 @@ const Prompt = ({ name, icon, type }) => {
 	return (
 		<>
 			<TransitionGroup>
-				<CSSTransition key={score} timeout={500} classNames="fade">
+				<CSSTransition key={score} timeout={300} classNames="slide">
 					<div
 						className={`
 				${styles['icon-container']}
