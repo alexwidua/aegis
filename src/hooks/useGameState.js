@@ -13,13 +13,9 @@ const useGameState = () => {
 	} = useStore((state) => ({
 		keyboardLayout: state.keyboardLayout,
 		gameState: state.gameState,
-		currentBuilding: state.recipe ? state.recipe[state.recipeIndex] : null,
-		_firstKey: state.recipe
-			? state.recipe[state.recipeIndex]?.hotkeys[0]
-			: null,
-		_secondKey: state.recipe
-			? state.recipe[state.recipeIndex]?.hotkeys[1]
-			: null
+		currentBuilding: state.recipe ? state.recipe[state.score] : null,
+		_firstKey: state.recipe ? state.recipe[state.score]?.hotkeys[0] : null,
+		_secondKey: state.recipe ? state.recipe[state.score]?.hotkeys[1] : null
 	}))
 
 	const firstKey =
