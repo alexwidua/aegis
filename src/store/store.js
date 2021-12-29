@@ -52,7 +52,7 @@ const useStore = create((set) => ({
 	},
 	handleSetBuildingFilter: (value) =>
 		set((state) => ({ buildingFilter: value })),
-	showKeyLabels: 'SHOW',
+	showKeyLabels: 'FADE_IN',
 	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
 	keyboardLayout: 'qwertz',
 	handleSetKeyboardLayout: (value) => set(() => ({ keyboardLayout: value })),
