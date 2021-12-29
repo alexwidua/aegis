@@ -18,8 +18,8 @@ const useGameState = () => {
 		keyboardLayout: state.keyboardLayout,
 		gameState: state.gameState,
 		currentBuilding: state.recipe ? state.recipe[state.score] : null,
-		_firstKey: state.recipe ? state.recipe[state.score]?.hotkeys[0] : null,
-		_secondKey: state.recipe ? state.recipe[state.score]?.hotkeys[1] : null
+		_firstKey: state.recipe ? state.recipe[state.tick]?.hotkeys[0] : null,
+		_secondKey: state.recipe ? state.recipe[state.tick]?.hotkeys[1] : null
 	}))
 
 	const firstKey =
