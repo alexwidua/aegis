@@ -1,5 +1,5 @@
 @import url('https://rsms.me/inter/inter.css');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 
 :root {
 	/*
@@ -7,20 +7,20 @@
 	 */
 	--sans-serif-font: 'Inter var', -apple-system, BlinkMacSystemFont,
 		sans-serif;
-	--key-font: 'Lato', apple-system, BlinkMacSystemFont, sans-serif;
+	--key-font: 'DM Sans', apple-system, BlinkMacSystemFont, sans-serif;
 
 	--size-font-sm: var(--size-font-sm);
 
 	/*
 	 * Colors
 	 */
-	--color-font-primary: rgba(255, 255, 255, 1);
-	--color-font-secondary: rgba(255, 255, 255, 0.6);
-	--color-font-tertiary: rgba(255, 255, 255, 0.1);
+	--color-font-primary: rgb(238, 245, 255);
+	--color-font-secondary: rgba(238, 245, 255, 0.6);
+	--color-font-tertiary: rgba(238, 245, 255, 0.2);
 
-	--color-body: rgb(30, 34, 37); //#141723
-	--color-background: rgb(41, 43, 48); //#1c2634
-	--color-foreground: rgb(60, 63, 70); //#35465e
+	--color-body: rgb(32, 34, 37); //
+	--color-background: rgb(41, 43, 47); //
+	--color-foreground: rgb(54, 57, 63); //
 
 	--color-primary: rgb(248, 224, 176);
 	--color-green: rgb(36, 161, 109);

@@ -11,9 +11,11 @@
 	& h2 {
 		max-width: 75%;
 		padding: var(--vertical-gap) 0;
-		font-size: 1.25rem;
-		font-weight: 500;
-		line-height: 1.5;
+		color: var(--color-font-tertiary);
+		font-size: 2rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		line-height: 1.25;
 		text-align: center;
 
 		:global(.debug) & {

@@ -53,8 +53,7 @@
 		width: 4rem;
 		height: 4rem;
 		padding: 0.375rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: var(--border-radius-lg);
+		border-radius: var(--border-radius-sm);
 		transition: background-color 0.2s;
 
 		&.economic {
@@ -73,7 +72,7 @@
 }
 
 .name {
-	color: rgba(255, 255, 255, 0.1);
+	color: rgba(255, 255, 255, 0.2);
 	font-size: 1.25rem;
 	font-weight: 400;
 }
@@ -100,7 +99,7 @@
 	color: rgba(0, 0, 0, 0);
 	font-family: var(--key-font);
 	font-size: 1.125rem;
-	font-weight: 600;
+	font-weight: 500;
 	text-transform: uppercase;
 	transition: transform 0.1s, box-shadow 0.1s;
 	user-select: none;
