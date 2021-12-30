@@ -112,8 +112,19 @@ const App = () => {
 							primary>
 							{endResult ? 'Play again' : `Start typin'`}
 						</Button>
-						<Button onClick={() => setOptionsModal(true)}>
+						<Button
+							onClick={() => setOptionsModal(true)}
+							style={{ position: 'relative' }}>
 							Options
+							<span
+								className={`new`}
+								style={{
+									position: 'absolute',
+									top: '-25%',
+									fontWeight: 600
+								}}>
+								New
+							</span>
 						</Button>
 					</div>
 				)}

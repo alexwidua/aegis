@@ -76,6 +76,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+// TODO: Refactor this file and create some hierarchy
+
 footer {
 	font-size: var(--size-font-sm);
 
@@ -129,6 +131,16 @@ ul {
 	& a ~ img {
 		margin-left: 0.5rem;
 	}
+}
+
+// Temporary
+.new {
+	padding: 0.25rem 0.5rem;
+	margin-left: 0.25rem;
+	background: var(--color-lavender);
+	border-radius: var(--border-radius-sm);
+	font-size: 0.75rem;
+	vertical-align: middle;
 }
 
 @media (min-width: 769px) {

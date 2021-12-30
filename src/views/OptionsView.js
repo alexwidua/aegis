@@ -162,7 +162,7 @@ const OptionsView = () => {
 			</div>
 			<div className={styles['keyboard-options']}>
 				<h2>
-					Keyboard profile <span className={styles.new}>NEW</span>
+					Keyboard profile <span className={`new`}>New</span>
 				</h2>
 				<p>
 					Customize your key mappings. The mappings will be saved for
