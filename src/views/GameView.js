@@ -5,6 +5,7 @@
 import useStore from '../store/store'
 import styles from './game.module.scss'
 import useGameState from '../hooks/useGameState'
+import useEffectOnce from '../hooks/useEffectOnce'
 
 import Button from '../components/ui/Button'
 
@@ -26,6 +27,13 @@ const GameView = () => {
 		playerSecondKeyCorrect,
 		currentBuilding
 	} = useGameState()
+
+	// Preload all icons to avoid flash of unloaded images
+	useEffectOnce(() => {
+		recipe.forEach((img) => {
+			new Image().src = img.icon
+		})
+	})
 
 	return recipe ? (
 		<div
@@ -50,7 +58,13 @@ const GameView = () => {
 			</div>
 		</div>
 	) : (
-		<div> nothin here mate</div>
+		<div
+			className={styles['click-anywhere']}
+			onClick={() => handleGameEnd()}>
+			<h3>No building selected 👀</h3>
+			<br />
+			<p>Click anywhere to end this session and change your settings.</p>
+		</div>
 	)
 }
 
