@@ -6,8 +6,12 @@ import styles from './app.module.scss'
 
 import useStore from './store/store'
 import useGameLogic from './game/useGameLogic'
-import useGameState from './hooks/useGameState'
-import useLocalStorage from './hooks/useLocalStorage'
+import {
+	useGameState,
+	useLocalStorage,
+	useWindowSize,
+	useEffectOnce
+} from './hooks/'
 
 import { InitialView, GameView, ResultView, OptionsView } from './views'
 import Modal from 'react-modal'
@@ -18,6 +22,7 @@ import HRE from './assets/images/hre.png'
 import Wood from './assets/images/wood.png'
 import Gold from './assets/images/gold.png'
 
+const MOBILE_WIDTH = 769
 Modal.setAppElement('#root')
 
 const App = () => {
@@ -36,6 +41,8 @@ const App = () => {
 	 * UI states
 	 */
 	const [optionsModal, setOptionsModal] = useState(false)
+	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
+	const { width } = useWindowSize()
 
 	/**
 	 * Local storage
@@ -64,14 +71,18 @@ const App = () => {
 		showKeyLabels,
 		keyboardLayout
 	}
-	useEffect(() => {
+	useEffectOnce(() => {
 		if (!localStorageOptions) {
 			setLocalStorageOptions(gameOptions)
 		} else {
 			updateGameSettingsFromLocalStorage(localStorageOptions)
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	})
+
+	useEffectOnce(() => {
+		if (width < MOBILE_WIDTH) setShowMobileOnlyMsg(true)
+		console.log(width)
+	})
 
 	// Sync data to local storage on modal close
 	useEffect(() => {
@@ -114,6 +125,11 @@ const App = () => {
 				onRequestClose={() => setOptionsModal(false)}>
 				<OptionsView />
 			</ModalWindow>
+			{showMobileOnlyMsg && (
+				<DisplayMessageOnMobileOnly
+					onDiscardMessage={() => setShowMobileOnlyMsg(false)}
+				/>
+			)}
 		</div>
 	)
 }
@@ -137,6 +153,28 @@ const Footer = () => {
 				</li>
 			</ul>
 		</footer>
+	)
+}
+
+/**
+ * Show mobile users a message.
+ */
+const MAIL_SUBJECT = '[Reminder] Aegis, tiny game for AoE shortcuts'
+const MAIL_BODY = 'https://www.aegis.lol/'
+const DisplayMessageOnMobileOnly = ({ onDiscardMessage }) => {
+	return (
+		<div className={styles['mobile-only']}>
+			<h2>
+				Aegis is a typing game that requires keyboard input and doesn't
+				work on mobile devices.
+			</h2>
+			<div>
+				<a href={`mailto:?subject=${MAIL_SUBJECT}&body=${MAIL_BODY}`}>
+					📧 Email yourself this link for later
+				</a>
+				<button onClick={onDiscardMessage}>Show game anyway</button>
+			</div>
+		</div>
 	)
 }
 
