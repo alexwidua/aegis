@@ -1,8 +1,11 @@
 const filterBuildings = (arr, filterParam) => {
+	const { types, ages, group } = filterParam
+
 	return arr.filter((building) => {
-		if (!filterParam.includeCivSpecific && building.civSpecific) return null
 		return (
-			filterParam.types[building.type] && filterParam.ages[building.age]
+			types[building.type] &&
+			ages[building.age] &&
+			(building.group === group || building.group === 'COMMON')
 		)
 	})
 }
