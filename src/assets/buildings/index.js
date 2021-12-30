@@ -72,7 +72,7 @@ const buildings = [
 			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
 		],
 		icon: '/buildings/outpost.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'I',
 		civSpecific: false
 	},
@@ -80,7 +80,7 @@ const buildings = [
 		name: 'Palisade',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'x'],
 		icon: '/buildings/palisade.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'I',
 		civSpecific: false
 	},
@@ -88,7 +88,7 @@ const buildings = [
 		name: 'Gate',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'c'],
 		icon: '/buildings/palisade-gate.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'I',
 		civSpecific: false
 	},
@@ -149,7 +149,7 @@ const buildings = [
 			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
 		],
 		icon: '/buildings/tower.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'II',
 		civSpecific: false
 	},
@@ -157,7 +157,7 @@ const buildings = [
 		name: 'Wall',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'x'],
 		icon: '/buildings/wall.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'II',
 		civSpecific: false
 	},
@@ -165,7 +165,7 @@ const buildings = [
 		name: 'Gate',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'c'],
 		icon: '/buildings/stone-gate.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'II',
 		civSpecific: false
 	},
@@ -190,7 +190,7 @@ const buildings = [
 		name: 'Keep',
 		hotkeys: ['e', { qwerty: 'z', qwertz: 'y', azerty: 'w' }],
 		icon: '/buildings/keep.png',
-		type: 'fort',
+		type: 'fortified',
 		age: 'III',
 		civSpecific: false
 	},
