@@ -1,12 +1,10 @@
 .container {
 	position: relative;
 	display: flex;
+	height: 12.5rem;
 	flex-direction: column;
 	align-items: center;
-
-	& div:not(:last-child) {
-		margin-bottom: var(--vertical-gap);
-	}
+	justify-content: flex-end;
 
 	.debug & {
 		border: 1px solid blue;
@@ -17,23 +15,6 @@
 	opacity: 0.2;
 }
 
-.building-column {
-	position: absolute;
-	top: -75%;
-	left: 50%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	& div:first-child {
-		margin-bottom: calc(var(--vertical-gap) / 2);
-	}
-
-	.debug & {
-		border: 1px solid pink;
-	}
-}
-
 .icon {
 	width: 100%;
 	height: 100%;
@@ -41,7 +22,7 @@
 	&-container {
 		position: absolute;
 		z-index: 10;
-		top: -4rem;
+		top: 0;
 		left: 50%;
 		width: 4rem;
 		height: 4rem;
@@ -65,9 +46,13 @@
 }
 
 .name {
+	position: absolute;
+	top: 5.5rem;
+	left: 50%;
 	color: rgba(255, 255, 255, 0.2);
 	font-size: 1.25rem;
 	font-weight: 400;
+	transform: translateX(-50%);
 	white-space: nowrap;
 }
 

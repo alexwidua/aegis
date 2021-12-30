@@ -68,3 +68,23 @@
 		transition: opacity 0.3s, transform 0.3s;
 	}
 }
+
+.fade {
+	&-enter {
+		opacity: 0;
+	}
+
+	&-enter-active {
+		opacity: 1;
+	}
+	&-exit {
+		opacity: 1;
+	}
+	&-exit-active {
+		opacity: 0;
+	}
+	&-enter-active,
+	&-exit-active {
+		transition: opacity 0.3s;
+	}
+}

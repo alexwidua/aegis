@@ -103,7 +103,11 @@ const Prompt = ({ name, icon, type }) => {
 					</div>
 				</CSSTransition>
 			</TransitionGroup>
-			<div className={styles.name}>{name}</div>
+			<TransitionGroup>
+				<CSSTransition key={score} timeout={300} classNames="fade">
+					<div className={styles.name}>{name}</div>
+				</CSSTransition>
+			</TransitionGroup>
 		</>
 	)
 }
