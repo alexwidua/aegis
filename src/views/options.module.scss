@@ -3,6 +3,15 @@
 
 	& h2 {
 		margin: 0 0 2rem 0;
+
+		& .new {
+			padding: 0.25rem 0.5rem;
+			margin-left: 0.25rem;
+			background: var(--color-lavender);
+			border-radius: var(--border-radius-sm);
+			font-size: 0.75rem;
+			vertical-align: middle;
+		}
 	}
 
 	& p {
@@ -89,7 +98,7 @@
 		border-radius: 0.5rem;
 		text-transform: uppercase;
 		transform: translate3d(-50%, -50%, 0);
-		transition: background 0.2s, font-size 0.2s;
+		transition: background-color 0.2s, font-size 0.2s;
 		white-space: nowrap;
 	}
 
@@ -108,13 +117,14 @@
 		background: var(--color-red);
 	}
 
+	// Display small indicator of Age base key
 	&.age span::after {
 		position: absolute;
-		top: -0.25rem;
+		top: -100%;
 		left: 50%;
 		width: 0.5rem;
 		height: 0.5rem;
-		background: var(--color-lavender);
+		background: var(--color-font-tertiary);
 		border-radius: 100%;
 
 		content: '';
