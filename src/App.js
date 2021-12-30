@@ -143,7 +143,7 @@ const Footer = () => {
 					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
 				</li>
 				<li>
-					<a href="https://github.com/alexwidua/aoe-shortcuts">
+					<a href="https://github.com/alexwidua/aegis">
 						View on GitHub
 					</a>
 				</li>
