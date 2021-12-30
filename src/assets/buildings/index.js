@@ -1,26 +1,3 @@
-import House from './house.png'
-import Mill from './mill.png'
-import LumberCamp from './lumber-camp.png'
-import MiningCamp from './mining-camp.png'
-import Farm from './farm.png'
-import Barracks from './barracks.png'
-import Dock from './dock.png'
-import Outpost from './outpost.png'
-import WoodenWall from './wooden-wall.png'
-import WoodenGate from './wooden-gate.png'
-import Blacksmith from './blacksmith.png'
-import Market from './market.png'
-import TownCenter from './town-center.png'
-import ArcheryRange from './archery-range.png'
-import Stable from './stable.png'
-import StoneTower from './stone-tower.png'
-import StoneWall from './stone-wall.png'
-import StoneGate from './stone-gate.png'
-import Monastery from './monastery.png'
-import SiegeWorkshop from './siege-workshop.png'
-import Keep from './keep.png'
-import University from './university.png'
-
 const buildings = [
 	// Age I
 	{
@@ -29,7 +6,7 @@ const buildings = [
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' }
 		],
-		icon: House,
+		icon: '/buildings/house.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -40,7 +17,7 @@ const buildings = [
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' }
 		],
-		icon: Mill,
+		icon: '/buildings/mill.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -48,7 +25,7 @@ const buildings = [
 	{
 		name: 'LC',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'e'],
-		icon: LumberCamp,
+		icon: '/buildings/lc.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -56,7 +33,7 @@ const buildings = [
 	{
 		name: 'MC',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'r'],
-		icon: MiningCamp,
+		icon: '/buildings/mc.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -67,7 +44,7 @@ const buildings = [
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
 			{ qwerty: 'a', qwertz: 'a', azerty: 'q' }
 		],
-		icon: Farm,
+		icon: '/buildings/farm.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -75,7 +52,7 @@ const buildings = [
 	{
 		name: 'Barracks',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 's'],
-		icon: Barracks,
+		icon: '/buildings/barracks.png',
 		type: 'military',
 		age: 'I',
 		civSpecific: false
@@ -83,7 +60,7 @@ const buildings = [
 	{
 		name: 'Dock',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'd'],
-		icon: Dock,
+		icon: '/buildings/dock.png',
 		type: 'economic',
 		age: 'I',
 		civSpecific: false
@@ -94,7 +71,7 @@ const buildings = [
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
 			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
 		],
-		icon: Outpost,
+		icon: '/buildings/outpost.png',
 		type: 'fort',
 		age: 'I',
 		civSpecific: false
@@ -102,7 +79,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'x'],
-		icon: WoodenWall,
+		icon: '/buildings/palisade.png',
 		type: 'fort',
 		age: 'I',
 		civSpecific: false
@@ -110,7 +87,7 @@ const buildings = [
 	{
 		name: 'Gate',
 		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'c'],
-		icon: WoodenGate,
+		icon: '/buildings/palisade-gate.png',
 		type: 'fort',
 		age: 'I',
 		civSpecific: false
@@ -122,7 +99,7 @@ const buildings = [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'q', qwertz: 'q', azerty: 'a' }
 		],
-		icon: Blacksmith,
+		icon: '/buildings/blacksmith.png',
 		type: 'research',
 		age: 'II',
 		civSpecific: false
@@ -133,7 +110,7 @@ const buildings = [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' }
 		],
-		icon: Market,
+		icon: '/buildings/market.png',
 		type: 'economic',
 		age: 'II',
 		civSpecific: false
@@ -141,7 +118,7 @@ const buildings = [
 	{
 		name: 'TC',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'e'],
-		icon: TownCenter,
+		icon: '/buildings/tc.png',
 		type: 'economic',
 		age: 'II',
 		civSpecific: false
@@ -152,7 +129,7 @@ const buildings = [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'a', qwertz: 'a', azerty: 'q' }
 		],
-		icon: ArcheryRange,
+		icon: '/buildings/ar.png',
 		type: 'military',
 		age: 'II',
 		civSpecific: false
@@ -160,7 +137,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 's'],
-		icon: Stable,
+		icon: '/buildings/stable.png',
 		type: 'military',
 		age: 'II',
 		civSpecific: false
@@ -171,7 +148,7 @@ const buildings = [
 			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
 			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
 		],
-		icon: StoneTower,
+		icon: '/buildings/tower.png',
 		type: 'fort',
 		age: 'II',
 		civSpecific: false
@@ -179,7 +156,7 @@ const buildings = [
 	{
 		name: 'Wall',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'x'],
-		icon: StoneWall,
+		icon: '/buildings/wall.png',
 		type: 'fort',
 		age: 'II',
 		civSpecific: false
@@ -187,7 +164,7 @@ const buildings = [
 	{
 		name: 'Gate',
 		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'c'],
-		icon: StoneGate,
+		icon: '/buildings/stone-gate.png',
 		type: 'fort',
 		age: 'II',
 		civSpecific: false
@@ -196,7 +173,7 @@ const buildings = [
 	{
 		name: 'Monastery',
 		hotkeys: ['e', { qwerty: 'q', qwertz: 'q', azerty: 'a' }],
-		icon: Monastery,
+		icon: '/buildings/monastery.png',
 		type: 'research',
 		age: 'III',
 		civSpecific: false
@@ -204,7 +181,7 @@ const buildings = [
 	{
 		name: 'Siege',
 		hotkeys: ['e', { qwerty: 'a', qwertz: 'a', azerty: 'q' }],
-		icon: SiegeWorkshop,
+		icon: '/buildings/siege.png',
 		type: 'military',
 		age: 'III',
 		civSpecific: false
@@ -212,7 +189,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		hotkeys: ['e', { qwerty: 'z', qwertz: 'y', azerty: 'w' }],
-		icon: Keep,
+		icon: '/buildings/keep.png',
 		type: 'fort',
 		age: 'III',
 		civSpecific: false
@@ -221,7 +198,7 @@ const buildings = [
 	{
 		name: 'University',
 		hotkeys: ['r', { qwerty: 'q', qwertz: 'q', azerty: 'a' }],
-		icon: University,
+		icon: '/buildings/university.png',
 		type: 'research',
 		age: 'IV',
 		civSpecific: true
