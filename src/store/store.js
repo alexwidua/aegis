@@ -154,6 +154,7 @@ const useStore = create((set) => ({
 				promptStartTime: currentTimeInSeconds(),
 				promptTimes: _newObj,
 				isPlaying: true,
+				incorrectInputs: 0,
 				recipe
 			}
 		}),
