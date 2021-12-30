@@ -95,7 +95,7 @@ const OptionsView = () => {
 				<h3>Buildings</h3>
 				<ItemSegmentedInput
 					name={`buildings`}
-					label={`Number of buildings`}
+					label={`Number of buildings each game`}
 					value={scoreLimit}
 					onValueChange={(value) => handleSetScoreLimit(value)}
 					options={[{ value: 25 }, { value: 50 }, { value: 100 }]}
@@ -140,11 +140,11 @@ const OptionsView = () => {
 					style={{ marginBottom: '1.25rem' }}
 				/>
 				<ItemCheckbox
-					label={`Building ages`}
+					label={`Restrict to age`}
 					style={{ marginBottom: '1.25rem' }}>
 					{filterAges}
 				</ItemCheckbox>
-				<ItemCheckbox label={`Building types`}>
+				<ItemCheckbox label={`Restrict to type`}>
 					{filterTypes}
 				</ItemCheckbox>
 				<h3>Display</h3>
@@ -162,10 +162,15 @@ const OptionsView = () => {
 			</div>
 			<div className={styles['keyboard-options']}>
 				<h2>Keyboard profile</h2>
+				<p>
+					Customize your key mappings. The mappings will be saved for
+					future sessions as long as you don't clear your browser
+					data.
+				</p>
 				<div className={styles['keyboard-options-container']}>
 					<ItemSegmentedInput
 						name={`keymapOverlay`}
-						label={`Overlay age`}
+						label={`Show age`}
 						value={keymapOverlayAge}
 						onValueChange={(value) => setKeymapOverlayAge(value)}
 						options={[
@@ -174,6 +179,7 @@ const OptionsView = () => {
 							{ value: 'III' },
 							{ value: 'IV' }
 						]}
+						style={{ width: 356 }}
 					/>
 					<div className={styles.grid} ref={keymapRef}>
 						{keyMap.map((el, row) => {
@@ -208,6 +214,10 @@ const OptionsView = () => {
 												el.age === keymapOverlayAge
 										)
 
+										const pendingRebind =
+											row === keyRebind[0] &&
+											col === keyRebind[1]
+
 										return (
 											<button
 												onClick={() =>
@@ -215,12 +225,16 @@ const OptionsView = () => {
 												}
 												className={`
 												${styles.key} 
-												${row === keyRebind[0] && col === keyRebind[1] ? styles.rebind : null}
+												${pendingRebind ? styles.rebind : null}
 												${el === '?' ? styles.missing : null}
 												${isAgeKey ? styles.age : null}						
 										`}
 												key={col}>
-												<span>{el}</span>
+												<span>
+													{pendingRebind
+														? 'Press Key'
+														: el}
+												</span>
 												{building && (
 													<div
 														className={`

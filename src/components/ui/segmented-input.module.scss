@@ -9,10 +9,6 @@
 
 .labels {
 	display: flex;
-
-	&:hover .children {
-		color: var(--color-font-secondary) !important;
-	}
 }
 
 .label {
@@ -32,6 +28,11 @@
 	height: 100%;
 	appearance: none;
 	cursor: pointer;
+
+	&:hover ~ .children {
+		background: var(--color-foreground);
+		color: var(--color-font-primary);
+	}
 }
 
 .children {
@@ -61,7 +62,6 @@
 }
 .segmented-input:hover .label:first-child .input:checked ~ .children {
 	border-bottom-left-radius: var(--border-radius-sm);
-
 	border-top-left-radius: var(--border-radius-sm);
 }
 .segmented-input:hover .label:last-child .input:checked ~ .children {
@@ -75,7 +75,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: var(--border-radius-sm);
 	pointer-events: none;
 }
