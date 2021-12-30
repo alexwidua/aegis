@@ -18,7 +18,7 @@
 	--color-font-secondary: rgba(238, 245, 255, 0.6);
 	--color-font-tertiary: rgba(238, 245, 255, 0.2);
 
-	--color-font-link: rgba(238, 245, 255, 0.4);
+	--color-font-link: rgba(238, 245, 255, 0.3);
 	--color-font-link-hover: rgba(238, 245, 255, 0.8);
 
 	--color-body: rgb(32, 34, 37); //
@@ -72,12 +72,35 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+footer {
+	font-size: var(--size-font-sm);
+
+	& img {
+		height: 0.75rem;
+		margin: 0 0.25rem -0.125rem 0.25rem;
+	}
+}
+
+.footer {
+	position: fixed;
+	bottom: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	& span:first-child {
+		margin-bottom: calc(var(--vertical-gap) / 1.5);
+	}
+}
+
 button {
 	font-family: var(--sans-serif-font);
 }
 
 a {
 	color: var(--color-font-link);
+	text-decoration: none;
 
 	&:hover {
 		color: var(--color-font-link-hover);
@@ -98,26 +121,8 @@ ul {
 			opacity: 0.25;
 		}
 	}
-}
 
-footer {
-	font-size: var(--size-font-sm);
-
-	& img {
-		height: 0.75rem;
-		margin: 0 0.25rem -0.125rem 0.25rem;
-	}
-}
-
-.footer {
-	position: fixed;
-	bottom: 4rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	& span:first-child {
-		margin-bottom: calc(var(--vertical-gap) / 1.5);
+	& a ~ img {
+		margin-left: 0.5rem;
 	}
 }
