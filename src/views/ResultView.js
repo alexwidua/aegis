@@ -20,7 +20,7 @@ const ResultView = () => {
 
 	return endResult ? (
 		<div className={styles.container}>
-			<h2>Result</h2>
+			<h2>Your result</h2>
 			<div className={styles['result-container']}>
 				{hideStats && <Hint />}
 				<div className={styles['result-row']}>
