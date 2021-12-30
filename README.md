@@ -5,7 +5,8 @@ Using ⚛️ [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.
 
 # License
 
-With the exception of all visual assets (`/public/buildings*.png`), the project is licensed under MIT. [LICENSE](LICENSE)
+With the exception of all visual assets (`/public/buildings/*.png`), the project is licensed under MIT.
+See [LICENSE](LICENSE).
 
 # Disclaimer
 
