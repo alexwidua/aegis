@@ -32,7 +32,8 @@
 		right: auto;
 		bottom: auto;
 		left: 50%;
-		max-width: var(--layout-max-width);
+		overflow: hidden;
+		// max-width: var(--layout-max-width);
 		background: var(--color-background);
 		border-radius: 0.5rem;
 		transform: translate3d(-50%, 50%, 0);
