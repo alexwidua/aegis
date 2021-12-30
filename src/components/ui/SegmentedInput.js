@@ -60,7 +60,10 @@ const SegmentedControls = ({
 									[ITEM_ID_DATA_ATTRIBUTE_NAME]: `${i}`
 								}}
 							/>
-							<div className={styles.children}>{children}</div>
+							<div
+								className={styles.children}
+								dangerouslySetInnerHTML={{ __html: children }}
+							/>
 						</div>
 					)
 				})}

@@ -44,6 +44,10 @@
 	border: 1px solid transparent;
 	color: var(--color-font-tertiary);
 	white-space: nowrap;
+
+	& img {
+		height: 1rem;
+	}
 }
 .input:checked ~ .children {
 	background: var(--color-foreground);
