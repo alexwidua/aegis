@@ -45,6 +45,10 @@
 		white-space: nowrap;
 	}
 
+	&.disabled {
+		opacity: 0.4;
+	}
+
 	& .stats {
 		display: flex;
 		flex-direction: column;
@@ -62,7 +66,7 @@
 	}
 }
 
-.building {
+.fastest-slowest-building {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 2rem 2rem;
@@ -99,4 +103,11 @@
 	&:last-child h2 {
 		color: var(--color-font-secondary);
 	}
+}
+
+.hint {
+	padding: 1rem;
+	margin-bottom: var(--horizontal-gap);
+	background: var(--color-lavender);
+	font-weight: 600;
 }
