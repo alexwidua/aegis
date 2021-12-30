@@ -22,6 +22,8 @@ const DEFAULT_TICK = 0
 const DEFAULT_SCORE = 0
 const DEFAULT_START_TIME = 0
 
+//Keyboard defaults
+
 const useStore = create((set) => ({
 	/**
 	 * Global UI states
@@ -58,14 +60,47 @@ const useStore = create((set) => ({
 			research: false
 		},
 		ages: { I: true, II: false, III: false, IV: false },
-		civSpecific: true
+		civSpecific: true,
+		group: 'GENERIC'
 	},
 	handleSetBuildingFilter: (value) =>
 		set((state) => ({ buildingFilter: value })),
 	showKeyLabels: 'FADE_IN',
 	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
-	keyboardLayout: 'qwertz',
-	handleSetKeyboardLayout: (value) => set(() => ({ keyboardLayout: value })),
+	keyMap: [
+		['q', 'w', 'e', 'r'],
+		['a', 's', 'd', 'f'],
+		['y', 'x', 'c', 'v']
+	],
+	handleSetKeyMap: (column, row, value) =>
+		set((state) => {
+			const arr = state.keyMap
+			arr[column][row] = value
+			return {
+				keyMap: arr
+			}
+		}),
+	handleSetKeyMapDefault: (layout) =>
+		set(() => {
+			const KEY_MAP_DEFAULTS = {
+				QWERTY: [
+					['q', 'w', 'e', 'r'],
+					['a', 's', 'd', 'f'],
+					['y', 'x', 'c', 'v']
+				],
+				QWERTZ: [
+					['q', 'w', 'e', 'r'],
+					['a', 's', 'd', 'f'],
+					['y', 'x', 'c', 'v']
+				],
+				AZERTY: [
+					['a', 'z', 'e', 'r'],
+					['q', 's', 'd', 'f'],
+					['w', 'x', 'c', 'v']
+				]
+			}
+			return { keyMap: KEY_MAP_DEFAULTS[layout] }
+		}),
 
 	/**
 	 * Key events that occur during play

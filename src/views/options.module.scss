@@ -12,6 +12,7 @@
 }
 
 .item {
+	width: 100%;
 	margin-bottom: var(--vertical-gap);
 }
 
@@ -24,4 +25,121 @@
 
 .children {
 	display: flex;
+}
+
+// Keyboard options
+.keyboard-options {
+	padding: 4rem;
+	background: var(--color-body);
+
+	&-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.grid {
+	display: grid;
+	margin-bottom: calc(var(--vertical-gap) * 1.5);
+	grid-gap: 12px;
+	text-align: center;
+}
+
+.row {
+	display: grid;
+	grid-gap: 12px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.key {
+	position: relative;
+	width: 5rem;
+	height: 5rem;
+	padding: 16px;
+	border: none;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: linear-gradient(
+			180deg,
+			var(--color-background) 0%,
+			var(--color-foreground) 100%
+		),
+		var(--color-background);
+	border-radius: var(--border-radius);
+	box-shadow: 0rem 0.375rem 0rem rgba(0, 0, 0, 0.25);
+	color: #fff;
+	cursor: pointer;
+	font-family: var(--key-font);
+	font-size: 1.25rem;
+	text-transform: uppercase;
+
+	& span {
+		padding: 0.25rem 1rem;
+		background: rgba(0, 0, 0, 0.2);
+		border-radius: 0.5rem;
+		white-space: nowrap;
+	}
+
+	&.rebind span {
+		background: var(--color-green);
+	}
+
+	&.missing span {
+		background: var(--color-red);
+	}
+
+	&.age span::after {
+		position: absolute;
+		top: -0.25rem;
+		left: 50%;
+		width: 0.5rem;
+		height: 0.5rem;
+		background: var(--color-lavender);
+		border-radius: 100%;
+
+		content: '';
+		transform: translateX(-50%);
+	}
+}
+
+.icon {
+	position: absolute;
+	bottom: -25%;
+	left: 50%;
+	transform: translateX(-50%);
+
+	& img {
+		width: 2rem;
+		height: 2rem;
+	}
+}
+
+.presets {
+	& p {
+		margin-bottom: 0.75rem;
+		font-size: var(--size-font-sm);
+		font-weight: 300;
+		opacity: 0.5;
+	}
+	&-row {
+		display: flex;
+
+		// TODO: Redundant styling, merge with <Button/> component
+		& button {
+			padding: 0.5rem 1rem;
+			border: none;
+			background: var(--color-foreground);
+			border-radius: 10rem;
+			color: var(--color-font-secondary);
+			cursor: pointer;
+
+			&:not(:last-child) {
+				margin-right: 0.5rem;
+			}
+			&:hover {
+				box-shadow: 0 0 24rem rgba(255, 255, 255, 0.05) inset;
+			}
+		}
+	}
 }

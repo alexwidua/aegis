@@ -23,7 +23,7 @@ const useKeyPress = (callback) => {
 			window.removeEventListener('keyup', handleKeyUp)
 		}
 	})
-	return keyPressed
+	return keyPressed?.toLowerCase()
 }
 
 export default useKeyPress

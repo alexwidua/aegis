@@ -2,206 +2,317 @@ const buildings = [
 	// Age I
 	{
 		name: 'House',
-		hotkeys: [
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' }
-		],
+		shortcut: ['0:0', '0:0'],
 		icon: '/buildings/house.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Mill',
-		hotkeys: [
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' }
-		],
+		shortcut: ['0:0', '0:1'],
 		icon: '/buildings/mill.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
-		name: 'LC',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'e'],
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
 		icon: '/buildings/lc.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
-		name: 'MC',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'r'],
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
 		icon: '/buildings/mc.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Farm',
-		hotkeys: [
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
-			{ qwerty: 'a', qwertz: 'a', azerty: 'q' }
-		],
+		shortcut: ['0:0', '1:0'],
 		icon: '/buildings/farm.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Barracks',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 's'],
+		shortcut: ['0:0', '1:1'],
 		icon: '/buildings/barracks.png',
 		type: 'military',
 		age: 'I',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Dock',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'd'],
+		shortcut: ['0:0', '1:2'],
 		icon: '/buildings/dock.png',
 		type: 'economic',
 		age: 'I',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Outpost',
-		hotkeys: [
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' },
-			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
-		],
+		shortcut: ['0:0', '2:0'],
 		icon: '/buildings/outpost.png',
 		type: 'fortified',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Palisade',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'x'],
+		shortcut: ['0:0', '2:1'],
 		icon: '/buildings/palisade.png',
 		type: 'fortified',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Gate',
-		hotkeys: [{ qwerty: 'q', qwertz: 'q', azerty: 'a' }, 'c'],
+		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
 		age: 'I',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	// Age II
 	{
 		name: 'Blacksmith',
-		hotkeys: [
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
-			{ qwerty: 'q', qwertz: 'q', azerty: 'a' }
-		],
+		shortcut: ['0:1', '0:0'],
 		icon: '/buildings/blacksmith.png',
 		type: 'research',
 		age: 'II',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Market',
-		hotkeys: [
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' }
-		],
+		shortcut: ['0:1', '0:1'],
 		icon: '/buildings/market.png',
 		type: 'economic',
 		age: 'II',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
-		name: 'TC',
-		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'e'],
+		name: 'Town Center',
+		shortcut: ['0:1', '0:2'],
 		icon: '/buildings/tc.png',
 		type: 'economic',
 		age: 'II',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'AR',
-		hotkeys: [
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
-			{ qwerty: 'a', qwertz: 'a', azerty: 'q' }
-		],
+		shortcut: ['0:1', '1:0'],
 		icon: '/buildings/ar.png',
 		type: 'military',
 		age: 'II',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Stable',
-		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 's'],
+		shortcut: ['0:1', '1:1'],
 		icon: '/buildings/stable.png',
 		type: 'military',
 		age: 'II',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Tower',
-		hotkeys: [
-			{ qwerty: 'w', qwertz: 'w', azerty: 'z' },
-			{ qwerty: 'z', qwertz: 'y', azerty: 'w' }
-		],
+		shortcut: ['0:1', '2:0'],
 		icon: '/buildings/tower.png',
 		type: 'fortified',
 		age: 'II',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Wall',
-		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'x'],
+		shortcut: ['0:1', '2:1'],
 		icon: '/buildings/wall.png',
 		type: 'fortified',
 		age: 'II',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	{
 		name: 'Gate',
-		hotkeys: [{ qwerty: 'w', qwertz: 'w', azerty: 'z' }, 'c'],
+		shortcut: ['0:1', '2:2'],
 		icon: '/buildings/stone-gate.png',
 		type: 'fortified',
 		age: 'II',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	// Age III
 	{
 		name: 'Monastery',
-		hotkeys: ['e', { qwerty: 'q', qwertz: 'q', azerty: 'a' }],
+		shortcut: ['0:2', '0:0'],
 		icon: '/buildings/monastery.png',
 		type: 'research',
 		age: 'III',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Siege',
-		hotkeys: ['e', { qwerty: 'a', qwertz: 'a', azerty: 'q' }],
+		shortcut: ['0:2', '1:0'],
 		icon: '/buildings/siege.png',
 		type: 'military',
 		age: 'III',
-		civSpecific: false
+		group: 'COMMON'
 	},
 	{
 		name: 'Keep',
-		hotkeys: ['e', { qwerty: 'z', qwertz: 'y', azerty: 'w' }],
+		shortcut: ['0:2', '2:0'],
 		icon: '/buildings/keep.png',
 		type: 'fortified',
 		age: 'III',
-		civSpecific: false
+		group: 'GENERIC'
 	},
 	// Age IV
 	{
 		name: 'University',
-		hotkeys: ['r', { qwerty: 'q', qwertz: 'q', azerty: 'a' }],
+		shortcut: ['0:3', '0:0'],
 		icon: '/buildings/university.png',
 		type: 'research',
 		age: 'IV',
-		civSpecific: true
+		group: 'GENERIC'
+	},
+	/**
+	 * Mongol-specific
+	 */
+	{
+		name: 'Ovoo',
+		shortcut: ['0:0', '0:0'],
+		icon: '/buildings/ovoo.png',
+		type: 'economic',
+		age: 'I',
+		group: 'MONGOL'
+	},
+	{
+		name: 'Ger',
+		shortcut: ['0:0', '0:1'],
+		icon: '/buildings/ger.png',
+		type: 'economic',
+		age: 'I',
+		group: 'MONGOL'
+	},
+	{
+		name: 'Pasture',
+		shortcut: ['0:0', '1:0'],
+		icon: '/buildings/ger.png',
+		type: 'economic',
+		age: 'I',
+		group: 'MONGOL'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: '/buildings/outpost.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'MONGOL'
+	},
+	// Stable in Age I
+	{
+		name: 'Stable',
+		shortcut: ['0:0', '1:3'],
+		icon: '/buildings/stable.png',
+		type: 'military',
+		age: 'I',
+		group: 'MONGOL'
+	},
+	/**
+	 * Rus-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: '/buildings/house.png',
+		type: 'economic',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Cabin',
+		shortcut: ['0:0', '0:1'],
+		icon: '/buildings/hunting-cabin.png',
+		type: 'economic',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: '/buildings/lc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: '/buildings/mc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: '/buildings/farm.png',
+		type: 'economic',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Fortress',
+		shortcut: ['0:0', '2:0'],
+		icon: '/buildings/wooden-fortress.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Palisade',
+		shortcut: ['0:0', '2:1'],
+		icon: '/buildings/palisade.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: '/buildings/palisade-gate.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'RUS'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: '/buildings/stable.png',
+		type: 'military',
+		age: 'II',
+		group: 'RUS'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: '/buildings/keep.png',
+		type: 'fortified',
+		age: 'III',
+		group: 'RUS'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: '/buildings/university.png',
+		type: 'research',
+		age: 'IV',
+		group: 'RUS'
 	}
 ]
 

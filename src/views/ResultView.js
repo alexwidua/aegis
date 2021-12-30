@@ -73,24 +73,23 @@ const Item = ({ value, type, disabled }) => {
 }
 
 const FastestSlowestBuilding = ({ value, type, disabled }) => {
-	const keyboardLayout = useStore((state) => state.keyboardLayout)
-
+	const keyMap = useStore((state) => state.keyMap)
 	const _building = value
 		? buildings.find((el) => value[0] === el.name)
 		: undefined
 
 	const _value = value ? value[1].toFixed(2) : 0
 
-	const firstKey = _building
-		? typeof _building.hotkeys[0] === 'object'
-			? _building.hotkeys[0][keyboardLayout]
-			: _building.hotkeys[0]
-		: undefined
-	const secondKey = _building
-		? typeof _building.hotkeys[1] === 'object'
-			? _building.hotkeys[1][keyboardLayout]
-			: _building.hotkeys[1]
-		: undefined
+	// Each shortcut is stored as a coordinate for an 2d array, ex. 0:0
+	const firstKeyIndex = _building ? _building.shortcut[0].split(':') : null
+	const secondKeyIndex = _building ? _building.shortcut[1].split(':') : null
+
+	const firstKey = firstKeyIndex
+		? keyMap[firstKeyIndex[0]][firstKeyIndex[1]]
+		: null
+	const secondKey = secondKeyIndex
+		? keyMap[secondKeyIndex[0]][secondKeyIndex[1]]
+		: null
 
 	return (
 		<div

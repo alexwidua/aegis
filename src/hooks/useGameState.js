@@ -4,32 +4,26 @@
 import useStore from '../store/store'
 
 const useGameState = () => {
-	const {
-		score,
-		scoreLimit,
-		keyboardLayout,
-		currentBuilding,
-		gameState,
-		_firstKey,
-		_secondKey
-	} = useStore((state) => ({
-		score: state.score,
-		scoreLimit: state.scoreLimit,
-		keyboardLayout: state.keyboardLayout,
-		gameState: state.gameState,
-		currentBuilding: state.recipe ? state.recipe[state.score] : null,
-		_firstKey: state.recipe ? state.recipe[state.tick]?.hotkeys[0] : null,
-		_secondKey: state.recipe ? state.recipe[state.tick]?.hotkeys[1] : null
-	}))
+	const { score, scoreLimit, currentBuilding, gameState, shortcut, keyMap } =
+		useStore((state) => ({
+			score: state.score,
+			scoreLimit: state.scoreLimit,
+			gameState: state.gameState,
+			currentBuilding: state.recipe ? state.recipe[state.score] : null,
+			shortcut: state.recipe ? state.recipe[state.tick]?.shortcut : null,
+			keyMap: state.keyMap
+		}))
 
-	const firstKey =
-		_firstKey && typeof _firstKey === 'object'
-			? _firstKey[keyboardLayout]
-			: _firstKey || null
-	const secondKey =
-		_secondKey && typeof _secondKey === 'object'
-			? _secondKey[keyboardLayout]
-			: _secondKey || null
+	// Each shortcut is stored as a coordinate for an 2d array, ex. 0:0
+	const firstKeyIndex = shortcut ? shortcut[0].split(':') : null
+	const secondKeyIndex = shortcut ? shortcut[1].split(':') : null
+
+	const firstKey = firstKeyIndex
+		? keyMap[firstKeyIndex[0]][firstKeyIndex[1]]
+		: null
+	const secondKey = secondKeyIndex
+		? keyMap[secondKeyIndex[0]][secondKeyIndex[1]]
+		: null
 
 	const gameAwaitingInput = gameState === '0/2'
 	const gameEnded = score === scoreLimit

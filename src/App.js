@@ -52,24 +52,24 @@ const App = () => {
 		scoreLimit,
 		buildingFilter,
 		showKeyLabels,
-		keyboardLayout
+		keyMap
 	} = useStore((state) => ({
 		updateGameSettingsFromLocalStorage:
 			state.updateGameSettingsFromLocalStorage,
 		scoreLimit: state.scoreLimit,
 		buildingFilter: state.buildingFilter,
 		showKeyLabels: state.showKeyLabels,
-		keyboardLayout: state.keyboardLayout
+		keyMap: state.keyMap
 	}))
 	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		'aoe-shortcuts-v030',
+		'aoe-shortcuts-v030-dev-abcde',
 		''
 	)
 	const gameOptions = {
 		scoreLimit,
 		buildingFilter,
 		showKeyLabels,
-		keyboardLayout
+		keyMap
 	}
 	useEffectOnce(() => {
 		if (!localStorageOptions) {
@@ -81,7 +81,6 @@ const App = () => {
 
 	useEffectOnce(() => {
 		if (width < MOBILE_WIDTH) setShowMobileOnlyMsg(true)
-		console.log(width)
 	})
 
 	// Sync data to local storage on modal close

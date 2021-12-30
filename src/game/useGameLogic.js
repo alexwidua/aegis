@@ -57,13 +57,13 @@ const useGameLogic = () => {
 		}
 
 		if (gameAwaitingInput) {
-			if (key === firstKey || key === firstKey.toUpperCase()) {
+			if (key === firstKey) {
 				handleFirstKeyCorrect()
 			} else {
 				handleKeyIncorrect()
 			}
 		} else if (playerFirstKeyCorrect) {
-			if (key === secondKey || key === secondKey.toUpperCase()) {
+			if (key === secondKey) {
 				handleSecondKeyCorrect()
 			} else {
 				handleKeyIncorrect()
