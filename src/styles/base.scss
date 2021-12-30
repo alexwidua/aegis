@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 
 :root {
+	--font-size: 14px;
+	font-size: var(--font-size);
 	/*
 	 * Typo
 	 */
@@ -28,6 +30,7 @@
 	--color-primary: rgb(248, 224, 176);
 	--color-green: rgb(36, 161, 109);
 	--color-lightgreen: rgb(141, 221, 122);
+	--color-lavender: rgb(136, 107, 214);
 
 	// Building icons
 	--color-building-economic: radial-gradient(
@@ -67,7 +70,7 @@ body {
 	background: var(--color-body);
 	color: var(--color-font-primary);
 	font-family: var(--sans-serif-font);
-	font-size: 16px;
+	font-size: var(--font-size);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -124,5 +127,11 @@ ul {
 
 	& a ~ img {
 		margin-left: 0.5rem;
+	}
+}
+
+@media (min-width: 769px) {
+	:root {
+		--font-size: 16px;
 	}
 }
