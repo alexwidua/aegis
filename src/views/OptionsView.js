@@ -217,14 +217,26 @@ const OptionsView = () => {
 												${styles.key} 
 												${row === keyRebind[0] && col === keyRebind[1] ? styles.rebind : null}
 												${el === '?' ? styles.missing : null}
-												${isAgeKey ? styles.age : null}
-												
+												${isAgeKey ? styles.age : null}						
 										`}
 												key={col}>
 												<span>{el}</span>
 												{building && (
 													<div
-														className={styles.icon}>
+														className={`
+														${styles.icon} 
+														${
+															buildingFilter
+																?.ages[
+																building?.age
+															] &&
+															buildingFilter
+																?.types[
+																building?.type
+															]
+																? styles.enabled
+																: null
+														}`}>
 														<img
 															src={building.icon}
 															alt={building.name}

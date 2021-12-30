@@ -107,11 +107,21 @@
 	position: absolute;
 	bottom: -25%;
 	left: 50%;
+	opacity: 0.15;
 	transform: translateX(-50%);
 
 	& img {
 		width: 2rem;
 		height: 2rem;
+		filter: grayscale(1);
+	}
+
+	&.enabled {
+		opacity: 1;
+
+		& img {
+			filter: none;
+		}
 	}
 }
 
