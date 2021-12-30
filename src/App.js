@@ -11,10 +11,12 @@ import useLocalStorage from './hooks/useLocalStorage'
 
 import { InitialView, GameView, ResultView, OptionsView } from './views'
 import Modal from 'react-modal'
+import ModalWindow from './components/Modal'
 import Button from './components/ui/Button'
 
-// import HRE from './assets/images/hre.png'
-// import Wood from './assets/images/wood.png'
+import HRE from './assets/images/hre.png'
+import Wood from './assets/images/wood.png'
+import Gold from './assets/images/gold.png'
 
 Modal.setAppElement('#root')
 
@@ -33,7 +35,7 @@ const App = () => {
 	/**
 	 * UI states
 	 */
-	const [modal, setModal] = useState(false)
+	const [optionsModal, setOptionsModal] = useState(false)
 
 	/**
 	 * Local storage
@@ -68,15 +70,14 @@ const App = () => {
 		} else {
 			updateGameSettingsFromLocalStorage(localStorageOptions)
 		}
-		console.log(localStorageOptions)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	// Sync data to local storage on modal close
 	useEffect(() => {
-		if (!modal) setLocalStorageOptions(gameOptions)
+		if (!optionsModal) setLocalStorageOptions(gameOptions)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [modal])
+	}, [optionsModal])
 
 	return (
 		<div
@@ -87,6 +88,8 @@ const App = () => {
 				{isPlaying && !gameEnded ? (
 					<GameView />
 				) : !isPlaying && gameEnded ? (
+					<ResultView />
+				) : endResult ? (
 					<ResultView />
 				) : (
 					<InitialView />
@@ -99,61 +102,42 @@ const App = () => {
 							primary>
 							{endResult ? 'Play again' : `Start typin'`}
 						</Button>
-						<Button onClick={() => setModal(true)}>Options</Button>
+						<Button onClick={() => setOptionsModal(true)}>
+							Options
+						</Button>
 					</div>
 				)}
 			</div>
-			{/* {!isPlaying && <Footer />} */}
-			<OptionsModal
-				isOpen={modal}
-				onRequestClose={() => setModal(false)}
-			/>
+			{!isPlaying && <Footer />}
+			<ModalWindow
+				isOpen={optionsModal}
+				onRequestClose={() => setOptionsModal(false)}>
+				<OptionsView />
+			</ModalWindow>
 		</div>
 	)
 }
 
-/**
- * Options modal window
- */
-const OptionsModal = ({ isOpen, onRequestClose, ...rest }) => {
+const Footer = () => {
 	return (
-		<Modal
-			isOpen={isOpen}
-			onRequestClose={onRequestClose}
-			className={styles['modal-content']}
-			overlayClassName={styles['modal-overlay']}
-			closeTimeoutMS={200}>
-			<button
-				className={styles['modal-btn-close']}
-				onClick={onRequestClose}>
-				✗
-			</button>
-			<OptionsView />
-		</Modal>
+		<footer className={`footer`}>
+			<ul>
+				<li>
+					Created with <img src={Wood} alt={`Wood`} /> in{' '}
+					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
+				</li>
+				<li>
+					<a href="https://github.com/alexwidua/aoe-shortcuts">
+						View on GitHub
+					</a>
+				</li>
+				<li>
+					<a href="https://ko-fi.com/alexwidua">Send tribute</a>
+					<img src={Gold} alt={`Gold`} />
+				</li>
+			</ul>
+		</footer>
 	)
 }
-
-// const Footer = () => {
-// 	return (
-// 		<footer className={`footer`}>
-// 			<ul>
-// 				<li>
-// 					Created with <img src={Wood} alt={`Wood`} /> in{' '}
-// 					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
-// 				</li>
-// 				<li>
-// 					<a href="https://github.com/alexwidua/aoe-shortcuts">
-// 						View on GitHub
-// 					</a>
-// 				</li>
-// 				<li>
-// 					<a href="https://www.buymeacoffee.com/alexwidua">
-// 						Buy me a coffee
-// 					</a>
-// 				</li>
-// 			</ul>
-// 		</footer>
-// 	)
-// }
 
 export default App
