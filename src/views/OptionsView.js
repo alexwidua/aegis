@@ -109,7 +109,10 @@ const OptionsView = () => {
 					options={[
 						{ children: 'Generic', value: 'GENERIC' },
 						{ children: 'Mongol', value: 'MONGOL' },
-						{ children: 'Rus', value: 'RUS' }
+						{ children: 'Rus', value: 'RUS' },
+						{ children: 'Chinese', value: 'CHINESE' },
+						{ children: 'Abbasid', value: 'ABBASID' },
+						{ children: 'Delhi', value: 'DELHI' }
 					]}
 					style={{ marginBottom: '1.25rem' }}
 				/>

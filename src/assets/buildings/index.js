@@ -152,7 +152,7 @@ const buildings = [
 		icon: '/buildings/monastery.png',
 		type: 'research',
 		age: 'III',
-		group: 'COMMON'
+		group: 'GENERIC'
 	},
 	{
 		name: 'Siege',
@@ -221,6 +221,14 @@ const buildings = [
 		icon: '/buildings/stable.png',
 		type: 'military',
 		age: 'I',
+		group: 'MONGOL'
+	},
+	{
+		name: 'Monastery',
+		shortcut: ['0:2', '0:0'],
+		icon: '/buildings/monastery.png',
+		type: 'research',
+		age: 'III',
 		group: 'MONGOL'
 	},
 	/**
@@ -299,6 +307,14 @@ const buildings = [
 		group: 'RUS'
 	},
 	{
+		name: 'Monastery',
+		shortcut: ['0:2', '0:0'],
+		icon: '/buildings/monastery.png',
+		type: 'research',
+		age: 'III',
+		group: 'RUS'
+	},
+	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
 		icon: '/buildings/keep.png',
@@ -313,6 +329,407 @@ const buildings = [
 		type: 'research',
 		age: 'IV',
 		group: 'RUS'
+	},
+	/**
+	 * Chinese-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: '/buildings/house.png',
+		type: 'economic',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: '/buildings/mill.png',
+		type: 'economic',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: '/buildings/lc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: '/buildings/mc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: '/buildings/farm.png',
+		type: 'economic',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: '/buildings/outpost.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Palisade',
+		shortcut: ['0:0', '2:1'],
+		icon: '/buildings/palisade.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: '/buildings/palisade-gate.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: '/buildings/stable.png',
+		type: 'military',
+		age: 'II',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Village',
+		shortcut: ['0:1', '1:2'],
+		icon: '/buildings/village.png',
+		type: 'economic',
+		age: 'II',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: '/buildings/tower.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: '/buildings/wall.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: '/buildings/stone-gate.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Monastery',
+		shortcut: ['0:2', '0:0'],
+		icon: '/buildings/monastery.png',
+		type: 'research',
+		age: 'III',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Granary',
+		shortcut: ['0:2', '0:1'],
+		icon: '/buildings/granary.png',
+		type: 'economic',
+		age: 'III',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: '/buildings/keep.png',
+		type: 'fortified',
+		age: 'III',
+		group: 'CHINESE'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: '/buildings/university.png',
+		type: 'research',
+		age: 'IV',
+		group: 'CHINESE'
+	},
+	{
+		name: 'Pagoda',
+		shortcut: ['0:3', '1:0'],
+		icon: '/buildings/pagoda.png',
+		type: 'economic',
+		age: 'IV',
+		group: 'CHINESE'
+	},
+	/**
+	 * Abbasid-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: '/buildings/house.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: '/buildings/mill.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: '/buildings/lc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: '/buildings/mc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: '/buildings/farm.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'H. of W.',
+		shortcut: ['0:0', '1:3'],
+		icon: '/buildings/how.png',
+		type: 'economic',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: '/buildings/outpost.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Palisade',
+		shortcut: ['0:0', '2:1'],
+		icon: '/buildings/palisade.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: '/buildings/palisade-gate.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: '/buildings/stable.png',
+		type: 'military',
+		age: 'II',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: '/buildings/tower.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: '/buildings/wall.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: '/buildings/stone-gate.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Tent',
+		shortcut: ['0:2', '0:0'],
+		icon: '/buildings/mosque.png',
+		type: 'economic',
+		age: 'III',
+		group: 'ABBASID'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: '/buildings/keep.png',
+		type: 'fortified',
+		age: 'III',
+		group: 'ABBASID'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: '/buildings/university.png',
+		type: 'research',
+		age: 'IV',
+		group: 'ABBASID'
+	},
+	/**
+	 * Delhi-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: '/buildings/house.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: '/buildings/mill.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: '/buildings/lc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: '/buildings/mc.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: '/buildings/farm.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Tent',
+		shortcut: ['0:2', '1:3'],
+		icon: '/buildings/mosque.png',
+		type: 'economic',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: '/buildings/outpost.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Palisade',
+		shortcut: ['0:0', '2:1'],
+		icon: '/buildings/palisade.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: '/buildings/palisade-gate.png',
+		type: 'fortified',
+		age: 'I',
+		group: 'DELHI'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: '/buildings/stable.png',
+		type: 'military',
+		age: 'II',
+		group: 'DELHI'
+	},
+	{
+		name: 'Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: '/buildings/tower.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'DELHI'
+	},
+	{
+		name: 'Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: '/buildings/wall.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'DELHI'
+	},
+	{
+		name: 'Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: '/buildings/stone-gate.png',
+		type: 'fortified',
+		age: 'II',
+		group: 'DELHI'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: '/buildings/keep.png',
+		type: 'fortified',
+		age: 'III',
+		group: 'DELHI'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: '/buildings/university.png',
+		type: 'research',
+		age: 'IV',
+		group: 'DELHI'
 	}
 ]
 
