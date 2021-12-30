@@ -116,15 +116,17 @@ const App = () => {
 							onClick={() => setOptionsModal(true)}
 							style={{ position: 'relative' }}>
 							Options
-							<span
-								className={`new`}
-								style={{
-									position: 'absolute',
-									top: '-25%',
-									fontWeight: 600
-								}}>
-								New
-							</span>
+							{!endResult && (
+								<span
+									className={`new`}
+									style={{
+										position: 'absolute',
+										top: '-25%',
+										fontWeight: 600
+									}}>
+									New
+								</span>
+							)}
 						</Button>
 					</div>
 				)}
