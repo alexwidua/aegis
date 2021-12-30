@@ -9,10 +9,18 @@ import { currentTimeInSeconds } from '../utils/time'
 import {
 	calcActionsPerMinute,
 	calcPercentageRemainder,
-	randArrayFrom
+	calcArrayAvg,
+	randArrayFrom,
+	returnArrayAscending
 } from '../utils/math'
 
 import { filterBuildings } from '../utils/game'
+
+// Default values on startup and prompt reset
+const DEFAULT_GAME_STATE = '0/2'
+const DEFAULT_TICK = 0
+const DEFAULT_SCORE = 0
+const DEFAULT_START_TIME = 0
 
 const useStore = create((set) => ({
 	/**
@@ -25,11 +33,13 @@ const useStore = create((set) => ({
 	 * Interactive game states
 	 */
 	isPlaying: false,
-	gameState: '0/2',
+	gameState: DEFAULT_GAME_STATE,
 	recipe: null,
-	tick: 0,
-	score: 0,
-	startTime: 0,
+	tick: DEFAULT_TICK,
+	score: DEFAULT_SCORE,
+	startTime: DEFAULT_START_TIME,
+	promptStartTime: 0,
+	promptTimes: {},
 	handleSetStartTime: () =>
 		set(() => ({ startTime: currentTimeInSeconds() })),
 	incorrectInputs: 0,
@@ -62,7 +72,22 @@ const useStore = create((set) => ({
 	 */
 	handleFirstKeyCorrect: () => set(() => ({ gameState: '1/2' })),
 	handleSecondKeyCorrect: () =>
-		set((state) => ({ score: state.score + 1, gameState: '2/2' })),
+		set((state) => {
+			const temp = state.promptTimes
+			const promptFinishTime =
+				currentTimeInSeconds() - state.promptStartTime
+
+			if (!temp[state.recipe[state.score].name]) {
+				temp[state.recipe[state.score].name] = []
+			}
+			temp[state.recipe[state.score].name].push(promptFinishTime)
+
+			return {
+				score: state.score + 1,
+				gameState: '2/2',
+				promptTimes: temp
+			}
+		}),
 	handleKeyIncorrect: () =>
 		set((state) => ({
 			gameState: 'INCORRECT_INPUT',
@@ -71,7 +96,11 @@ const useStore = create((set) => ({
 	handleResetKeyInput: () => set(() => ({ gameState: '0/2' })),
 	handleAfterPlayerScored: () =>
 		set((state) => {
-			return { gameState: '0/2', tick: state.tick + 1 }
+			return {
+				gameState: '0/2',
+				tick: state.tick + 1,
+				promptStartTime: currentTimeInSeconds()
+			}
 		}),
 
 	/**
@@ -81,11 +110,14 @@ const useStore = create((set) => ({
 		set((state) => {
 			const filtered = filterBuildings(buildings, state.buildingFilter)
 			const recipe = randArrayFrom(filtered, state.scoreLimit)
+			const _newObj = {}
 			return {
-				gameState: '0/2',
-				tick: 0,
-				score: 0,
-				startTime: 0,
+				gameState: DEFAULT_GAME_STATE,
+				tick: DEFAULT_TICK,
+				score: DEFAULT_SCORE,
+				startTime: DEFAULT_START_TIME,
+				promptStartTime: currentTimeInSeconds(),
+				promptTimes: _newObj,
 				isPlaying: true,
 				recipe
 			}
@@ -94,24 +126,37 @@ const useStore = create((set) => ({
 		set((state) => {
 			const finishTime = currentTimeInSeconds()
 			const numBuildings = state.score
-			const apm =
-				Math.round(
-					calcActionsPerMinute(
-						finishTime - state.startTime,
-						state.scoreLimit
-					) * 100
-				) / 100
+			const apm = Math.round(
+				calcActionsPerMinute(
+					finishTime - state.startTime,
+					state.scoreLimit
+				)
+			)
 
 			const correctInputs = state.scoreLimit * 2 // scoreLimit === num of buildings á 2 keys
 			const accuracy = calcPercentageRemainder(
 				state.incorrectInputs,
 				correctInputs
 			)
+
+			const buildingsAverageTime = Object.keys(state.promptTimes).map(
+				(el) => {
+					return [el, calcArrayAvg(state.promptTimes[el])]
+				}
+			)
+			const sorted = returnArrayAscending(buildingsAverageTime)
+
+			const fastestBuilding = sorted[0]
+			const slowestBuilding = sorted[sorted.length - 1]
+
 			const endResult = [
 				{ type: 'buildings', value: numBuildings },
-				{ type: 'buildings / minute', value: apm },
-				{ type: 'accuracy', value: accuracy }
+				{ type: 'actions per minute', value: apm },
+				{ type: 'accuracy', value: accuracy },
+				{ type: 'fastest building', value: fastestBuilding },
+				{ type: 'slowest building', value: slowestBuilding }
 			]
+
 			return {
 				isPlaying: false,
 				endResult
