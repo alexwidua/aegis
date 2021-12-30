@@ -107,12 +107,35 @@ const OptionsView = () => {
 					value={buildingFilter.group}
 					onValueChange={(value) => handleFilter('group', value)}
 					options={[
-						{ children: 'Generic', value: 'GENERIC' },
-						{ children: 'Mongol', value: 'MONGOL' },
-						{ children: 'Rus', value: 'RUS' },
-						{ children: 'Chinese', value: 'CHINESE' },
-						{ children: 'Abbasid', value: 'ABBASID' },
-						{ children: 'Delhi', value: 'DELHI' }
+						{
+							children:
+								'<img src="/flags/generic.png" alt="Flag"/>',
+							value: 'GENERIC'
+						},
+						{
+							children:
+								'<img src="/flags/mongol.png" alt="Flag"/>',
+							value: 'MONGOL'
+						},
+						{
+							children: '<img src="/flags/rus.png" alt="Flag"/>',
+							value: 'RUS'
+						},
+						{
+							children:
+								'<img src="/flags/chinese.png" alt="Flag"/>',
+							value: 'CHINESE'
+						},
+						{
+							children:
+								'<img src="/flags/delhi.png" alt="Flag"/>',
+							value: 'DELHI'
+						},
+						{
+							children:
+								'<img src="/flags/abbasid.png" alt="Flag"/>',
+							value: 'ABBASID'
+						}
 					]}
 					style={{ marginBottom: '1.25rem' }}
 				/>
