@@ -11,8 +11,17 @@ const calcPercentageRemainder = (a, b) => {
 	return 100 - (100 * a) / b
 }
 
+const calcArrayAvg = (arr) => {
+	const sum = arr.reduce((a, b) => a + b, 0)
+	return sum / arr.length || 0
+}
+
 const returnRandomIndex = (arr) => {
 	return arr[Math.floor(Math.random() * arr.length)]
+}
+
+const returnArrayAscending = (arr) => {
+	return arr.sort((a, b) => a[1] - b[1])
 }
 
 const randArrayFrom = (arr, length) => {
@@ -26,6 +35,8 @@ export {
 	calcActionsPerMinute,
 	calcPercentage,
 	calcPercentageRemainder,
+	calcArrayAvg,
 	returnRandomIndex,
+	returnArrayAscending,
 	randArrayFrom
 }
