@@ -54,7 +54,7 @@ const useStore = create((set) => ({
 		types: {
 			economic: true,
 			military: false,
-			fort: false,
+			fortified: false,
 			research: false
 		},
 		ages: { I: true, II: false, III: false, IV: false },
