@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+-   `feat:` Add experimental icon grid feature (thanks `/u/anmr` for the idea and suggestion)
+
 ## 0.5.0
 
 -   `feat:` Allow custom key binds
