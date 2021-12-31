@@ -73,7 +73,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Gate',
+		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
@@ -106,7 +106,7 @@ const buildings = [
 		group: 'COMMON'
 	},
 	{
-		name: 'AR',
+		name: 'Archery Range',
 		shortcut: ['0:1', '1:0'],
 		icon: '/buildings/ar.png',
 		type: 'military',
@@ -122,7 +122,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Tower',
+		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
 		icon: '/buildings/tower.png',
 		type: 'fortified',
@@ -130,7 +130,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Wall',
+		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
 		icon: '/buildings/wall.png',
 		type: 'fortified',
@@ -138,7 +138,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Gate',
+		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
 		icon: '/buildings/stone-gate.png',
 		type: 'fortified',
@@ -291,7 +291,7 @@ const buildings = [
 		group: 'RUS'
 	},
 	{
-		name: 'Gate',
+		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
@@ -390,7 +390,7 @@ const buildings = [
 		group: 'CHINESE'
 	},
 	{
-		name: 'Gate',
+		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
@@ -414,7 +414,7 @@ const buildings = [
 		group: 'CHINESE'
 	},
 	{
-		name: 'Tower',
+		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
 		icon: '/buildings/tower.png',
 		type: 'fortified',
@@ -422,7 +422,7 @@ const buildings = [
 		group: 'CHINESE'
 	},
 	{
-		name: 'Wall',
+		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
 		icon: '/buildings/wall.png',
 		type: 'fortified',
@@ -430,7 +430,7 @@ const buildings = [
 		group: 'CHINESE'
 	},
 	{
-		name: 'Gate',
+		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
 		icon: '/buildings/stone-gate.png',
 		type: 'fortified',
@@ -521,7 +521,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'H. of W.',
+		name: 'House of Wisdom',
 		shortcut: ['0:0', '1:3'],
 		icon: '/buildings/how.png',
 		type: 'economic',
@@ -545,7 +545,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Gate',
+		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
@@ -561,7 +561,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Tower',
+		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
 		icon: '/buildings/tower.png',
 		type: 'fortified',
@@ -569,7 +569,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Wall',
+		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
 		icon: '/buildings/wall.png',
 		type: 'fortified',
@@ -577,7 +577,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Gate',
+		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
 		icon: '/buildings/stone-gate.png',
 		type: 'fortified',
@@ -652,7 +652,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Tent',
+		name: 'Mosque',
 		shortcut: ['0:2', '1:3'],
 		icon: '/buildings/mosque.png',
 		type: 'economic',
@@ -676,7 +676,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Gate',
+		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
 		icon: '/buildings/palisade-gate.png',
 		type: 'fortified',
@@ -692,7 +692,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Tower',
+		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
 		icon: '/buildings/tower.png',
 		type: 'fortified',
@@ -700,7 +700,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Wall',
+		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
 		icon: '/buildings/wall.png',
 		type: 'fortified',
@@ -708,7 +708,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Gate',
+		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
 		icon: '/buildings/stone-gate.png',
 		type: 'fortified',

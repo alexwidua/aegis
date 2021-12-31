@@ -32,10 +32,14 @@ const GameView = () => {
 	} = useGameState()
 
 	// Preload all icons to avoid flash of unloaded images
+	// TODO: Get rid of preload
 	useEffectOnce(() => {
-		recipe.forEach((img) => {
-			new Image().src = img.icon
-		})
+		const interval = setInterval(() => {
+			recipe.forEach((img) => {
+				new Image().src = img.icon
+			})
+		}, 1000)
+		return () => clearInterval(interval)
 	})
 
 	return recipe ? (
