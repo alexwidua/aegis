@@ -1,9 +1,47 @@
+/**
+ * TODO: Refactor this document, right now there is quite some redundancy
+ * caused by the janky way buildings are filtered.
+ */
+
+import ar from '../icons/buildings/ar.png'
+import barracks from '../icons/buildings/barracks.png'
+import blacksmith from '../icons/buildings/blacksmith.png'
+import dock from '../icons/buildings/dock.png'
+import farm from '../icons/buildings/farm.png'
+import ger from '../icons/buildings/ger.png'
+import granary from '../icons/buildings/granary.png'
+import house from '../icons/buildings/house.png'
+import how from '../icons/buildings/how.png'
+import hc from '../icons/buildings/hunting-cabin.png'
+import keep from '../icons/buildings/keep.png'
+import lc from '../icons/buildings/lc.png'
+import market from '../icons/buildings/market.png'
+import mc from '../icons/buildings/mc.png'
+import mill from '../icons/buildings/mill.png'
+import monastery from '../icons/buildings/monastery.png'
+import mosque from '../icons/buildings/mosque.png'
+import outpost from '../icons/buildings/outpost.png'
+import ovoo from '../icons/buildings/ovoo.png'
+import pagoda from '../icons/buildings/pagoda.png'
+import palisadeGate from '../icons/buildings/palisade-gate.png'
+import palisade from '../icons/buildings/palisade.png'
+import pasture from '../icons/buildings/pasture.png'
+import siege from '../icons/buildings/siege.png'
+import stable from '../icons/buildings/stable.png'
+import stoneGate from '../icons/buildings/stone-gate.png'
+import tc from '../icons/buildings/tc.png'
+import tower from '../icons/buildings/tower.png'
+import university from '../icons/buildings/university.png'
+import village from '../icons/buildings/village.png'
+import wall from '../icons/buildings/wall.png'
+import woodenFortress from '../icons/buildings/wooden-fortress.png'
+
 const buildings = [
 	// Age I
 	{
 		name: 'House',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/house.png',
+		icon: house,
 		type: 'economic',
 		age: 'I',
 		group: 'GENERIC'
@@ -11,7 +49,7 @@ const buildings = [
 	{
 		name: 'Mill',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/mill.png',
+		icon: mill,
 		type: 'economic',
 		age: 'I',
 		group: 'GENERIC'
@@ -19,7 +57,7 @@ const buildings = [
 	{
 		name: 'Lumber Camp',
 		shortcut: ['0:0', '0:2'],
-		icon: '/buildings/lc.png',
+		icon: lc,
 		type: 'economic',
 		age: 'I',
 		group: 'GENERIC'
@@ -27,7 +65,7 @@ const buildings = [
 	{
 		name: 'Mining Camp',
 		shortcut: ['0:0', '0:3'],
-		icon: '/buildings/mc.png',
+		icon: mc,
 		type: 'economic',
 		age: 'I',
 		group: 'GENERIC'
@@ -35,7 +73,7 @@ const buildings = [
 	{
 		name: 'Farm',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/farm.png',
+		icon: farm,
 		type: 'economic',
 		age: 'I',
 		group: 'GENERIC'
@@ -43,7 +81,7 @@ const buildings = [
 	{
 		name: 'Barracks',
 		shortcut: ['0:0', '1:1'],
-		icon: '/buildings/barracks.png',
+		icon: barracks,
 		type: 'military',
 		age: 'I',
 		group: 'COMMON'
@@ -51,7 +89,7 @@ const buildings = [
 	{
 		name: 'Dock',
 		shortcut: ['0:0', '1:2'],
-		icon: '/buildings/dock.png',
+		icon: dock,
 		type: 'economic',
 		age: 'I',
 		group: 'COMMON'
@@ -59,7 +97,7 @@ const buildings = [
 	{
 		name: 'Outpost',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/outpost.png',
+		icon: outpost,
 		type: 'fortified',
 		age: 'I',
 		group: 'GENERIC'
@@ -67,7 +105,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		shortcut: ['0:0', '2:1'],
-		icon: '/buildings/palisade.png',
+		icon: palisade,
 		type: 'fortified',
 		age: 'I',
 		group: 'GENERIC'
@@ -75,7 +113,7 @@ const buildings = [
 	{
 		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
-		icon: '/buildings/palisade-gate.png',
+		icon: palisadeGate,
 		type: 'fortified',
 		age: 'I',
 		group: 'GENERIC'
@@ -84,7 +122,7 @@ const buildings = [
 	{
 		name: 'Blacksmith',
 		shortcut: ['0:1', '0:0'],
-		icon: '/buildings/blacksmith.png',
+		icon: blacksmith,
 		type: 'research',
 		age: 'II',
 		group: 'COMMON'
@@ -92,7 +130,7 @@ const buildings = [
 	{
 		name: 'Market',
 		shortcut: ['0:1', '0:1'],
-		icon: '/buildings/market.png',
+		icon: market,
 		type: 'economic',
 		age: 'II',
 		group: 'COMMON'
@@ -100,7 +138,7 @@ const buildings = [
 	{
 		name: 'Town Center',
 		shortcut: ['0:1', '0:2'],
-		icon: '/buildings/tc.png',
+		icon: tc,
 		type: 'economic',
 		age: 'II',
 		group: 'COMMON'
@@ -108,7 +146,7 @@ const buildings = [
 	{
 		name: 'Archery Range',
 		shortcut: ['0:1', '1:0'],
-		icon: '/buildings/ar.png',
+		icon: ar,
 		type: 'military',
 		age: 'II',
 		group: 'COMMON'
@@ -116,7 +154,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:1', '1:1'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'II',
 		group: 'GENERIC'
@@ -124,7 +162,7 @@ const buildings = [
 	{
 		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
-		icon: '/buildings/tower.png',
+		icon: tower,
 		type: 'fortified',
 		age: 'II',
 		group: 'GENERIC'
@@ -132,7 +170,7 @@ const buildings = [
 	{
 		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
-		icon: '/buildings/wall.png',
+		icon: wall,
 		type: 'fortified',
 		age: 'II',
 		group: 'GENERIC'
@@ -140,7 +178,7 @@ const buildings = [
 	{
 		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
-		icon: '/buildings/stone-gate.png',
+		icon: stoneGate,
 		type: 'fortified',
 		age: 'II',
 		group: 'GENERIC'
@@ -149,7 +187,7 @@ const buildings = [
 	{
 		name: 'Monastery',
 		shortcut: ['0:2', '0:0'],
-		icon: '/buildings/monastery.png',
+		icon: monastery,
 		type: 'research',
 		age: 'III',
 		group: 'GENERIC'
@@ -157,7 +195,7 @@ const buildings = [
 	{
 		name: 'Siege',
 		shortcut: ['0:2', '1:0'],
-		icon: '/buildings/siege.png',
+		icon: siege,
 		type: 'military',
 		age: 'III',
 		group: 'COMMON'
@@ -165,7 +203,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
-		icon: '/buildings/keep.png',
+		icon: keep,
 		type: 'fortified',
 		age: 'III',
 		group: 'GENERIC'
@@ -174,7 +212,7 @@ const buildings = [
 	{
 		name: 'University',
 		shortcut: ['0:3', '0:0'],
-		icon: '/buildings/university.png',
+		icon: university,
 		type: 'research',
 		age: 'IV',
 		group: 'GENERIC'
@@ -185,7 +223,7 @@ const buildings = [
 	{
 		name: 'Ovoo',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/ovoo.png',
+		icon: ovoo,
 		type: 'economic',
 		age: 'I',
 		group: 'MONGOL'
@@ -193,7 +231,7 @@ const buildings = [
 	{
 		name: 'Ger',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/ger.png',
+		icon: ger,
 		type: 'economic',
 		age: 'I',
 		group: 'MONGOL'
@@ -201,7 +239,7 @@ const buildings = [
 	{
 		name: 'Pasture',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/pasture.png',
+		icon: pasture,
 		type: 'economic',
 		age: 'I',
 		group: 'MONGOL'
@@ -209,7 +247,7 @@ const buildings = [
 	{
 		name: 'Outpost',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/outpost.png',
+		icon: outpost,
 		type: 'fortified',
 		age: 'I',
 		group: 'MONGOL'
@@ -218,7 +256,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:0', '1:3'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'I',
 		group: 'MONGOL'
@@ -226,7 +264,7 @@ const buildings = [
 	{
 		name: 'Monastery',
 		shortcut: ['0:2', '0:0'],
-		icon: '/buildings/monastery.png',
+		icon: monastery,
 		type: 'research',
 		age: 'III',
 		group: 'MONGOL'
@@ -237,7 +275,7 @@ const buildings = [
 	{
 		name: 'House',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/house.png',
+		icon: house,
 		type: 'economic',
 		age: 'I',
 		group: 'RUS'
@@ -245,7 +283,7 @@ const buildings = [
 	{
 		name: 'Cabin',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/hunting-cabin.png',
+		icon: hc,
 		type: 'economic',
 		age: 'I',
 		group: 'RUS'
@@ -253,7 +291,7 @@ const buildings = [
 	{
 		name: 'Lumber Camp',
 		shortcut: ['0:0', '0:2'],
-		icon: '/buildings/lc.png',
+		icon: lc,
 		type: 'economic',
 		age: 'I',
 		group: 'RUS'
@@ -261,7 +299,7 @@ const buildings = [
 	{
 		name: 'Mining Camp',
 		shortcut: ['0:0', '0:3'],
-		icon: '/buildings/mc.png',
+		icon: mc,
 		type: 'economic',
 		age: 'I',
 		group: 'RUS'
@@ -269,7 +307,7 @@ const buildings = [
 	{
 		name: 'Farm',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/farm.png',
+		icon: farm,
 		type: 'economic',
 		age: 'I',
 		group: 'RUS'
@@ -277,7 +315,7 @@ const buildings = [
 	{
 		name: 'Fortress',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/wooden-fortress.png',
+		icon: woodenFortress,
 		type: 'fortified',
 		age: 'I',
 		group: 'RUS'
@@ -285,7 +323,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		shortcut: ['0:0', '2:1'],
-		icon: '/buildings/palisade.png',
+		icon: palisade,
 		type: 'fortified',
 		age: 'I',
 		group: 'RUS'
@@ -293,7 +331,7 @@ const buildings = [
 	{
 		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
-		icon: '/buildings/palisade-gate.png',
+		icon: palisadeGate,
 		type: 'fortified',
 		age: 'I',
 		group: 'RUS'
@@ -301,7 +339,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:1', '1:1'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'II',
 		group: 'RUS'
@@ -309,7 +347,7 @@ const buildings = [
 	{
 		name: 'Monastery',
 		shortcut: ['0:2', '0:0'],
-		icon: '/buildings/monastery.png',
+		icon: monastery,
 		type: 'research',
 		age: 'III',
 		group: 'RUS'
@@ -317,7 +355,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
-		icon: '/buildings/keep.png',
+		icon: keep,
 		type: 'fortified',
 		age: 'III',
 		group: 'RUS'
@@ -325,7 +363,7 @@ const buildings = [
 	{
 		name: 'University',
 		shortcut: ['0:3', '0:0'],
-		icon: '/buildings/university.png',
+		icon: university,
 		type: 'research',
 		age: 'IV',
 		group: 'RUS'
@@ -336,7 +374,7 @@ const buildings = [
 	{
 		name: 'House',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/house.png',
+		icon: house,
 		type: 'economic',
 		age: 'I',
 		group: 'CHINESE'
@@ -344,7 +382,7 @@ const buildings = [
 	{
 		name: 'Mill',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/mill.png',
+		icon: mill,
 		type: 'economic',
 		age: 'I',
 		group: 'CHINESE'
@@ -352,7 +390,7 @@ const buildings = [
 	{
 		name: 'Lumber Camp',
 		shortcut: ['0:0', '0:2'],
-		icon: '/buildings/lc.png',
+		icon: lc,
 		type: 'economic',
 		age: 'I',
 		group: 'CHINESE'
@@ -360,7 +398,7 @@ const buildings = [
 	{
 		name: 'Mining Camp',
 		shortcut: ['0:0', '0:3'],
-		icon: '/buildings/mc.png',
+		icon: mc,
 		type: 'economic',
 		age: 'I',
 		group: 'CHINESE'
@@ -368,7 +406,7 @@ const buildings = [
 	{
 		name: 'Farm',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/farm.png',
+		icon: farm,
 		type: 'economic',
 		age: 'I',
 		group: 'CHINESE'
@@ -376,7 +414,7 @@ const buildings = [
 	{
 		name: 'Outpost',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/outpost.png',
+		icon: outpost,
 		type: 'fortified',
 		age: 'I',
 		group: 'CHINESE'
@@ -384,7 +422,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		shortcut: ['0:0', '2:1'],
-		icon: '/buildings/palisade.png',
+		icon: palisade,
 		type: 'fortified',
 		age: 'I',
 		group: 'CHINESE'
@@ -392,7 +430,7 @@ const buildings = [
 	{
 		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
-		icon: '/buildings/palisade-gate.png',
+		icon: palisadeGate,
 		type: 'fortified',
 		age: 'I',
 		group: 'CHINESE'
@@ -400,7 +438,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:1', '1:1'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'II',
 		group: 'CHINESE'
@@ -408,7 +446,7 @@ const buildings = [
 	{
 		name: 'Village',
 		shortcut: ['0:1', '1:2'],
-		icon: '/buildings/village.png',
+		icon: village,
 		type: 'economic',
 		age: 'II',
 		group: 'CHINESE'
@@ -416,7 +454,7 @@ const buildings = [
 	{
 		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
-		icon: '/buildings/tower.png',
+		icon: tower,
 		type: 'fortified',
 		age: 'II',
 		group: 'CHINESE'
@@ -424,7 +462,7 @@ const buildings = [
 	{
 		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
-		icon: '/buildings/wall.png',
+		icon: wall,
 		type: 'fortified',
 		age: 'II',
 		group: 'CHINESE'
@@ -432,7 +470,7 @@ const buildings = [
 	{
 		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
-		icon: '/buildings/stone-gate.png',
+		icon: stoneGate,
 		type: 'fortified',
 		age: 'II',
 		group: 'CHINESE'
@@ -440,7 +478,7 @@ const buildings = [
 	{
 		name: 'Monastery',
 		shortcut: ['0:2', '0:0'],
-		icon: '/buildings/monastery.png',
+		icon: monastery,
 		type: 'research',
 		age: 'III',
 		group: 'CHINESE'
@@ -448,7 +486,7 @@ const buildings = [
 	{
 		name: 'Granary',
 		shortcut: ['0:2', '0:1'],
-		icon: '/buildings/granary.png',
+		icon: granary,
 		type: 'economic',
 		age: 'III',
 		group: 'CHINESE'
@@ -456,7 +494,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
-		icon: '/buildings/keep.png',
+		icon: keep,
 		type: 'fortified',
 		age: 'III',
 		group: 'CHINESE'
@@ -464,7 +502,7 @@ const buildings = [
 	{
 		name: 'University',
 		shortcut: ['0:3', '0:0'],
-		icon: '/buildings/university.png',
+		icon: university,
 		type: 'research',
 		age: 'IV',
 		group: 'CHINESE'
@@ -472,7 +510,7 @@ const buildings = [
 	{
 		name: 'Pagoda',
 		shortcut: ['0:3', '1:0'],
-		icon: '/buildings/pagoda.png',
+		icon: pagoda,
 		type: 'economic',
 		age: 'IV',
 		group: 'CHINESE'
@@ -483,7 +521,7 @@ const buildings = [
 	{
 		name: 'House',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/house.png',
+		icon: house,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -491,7 +529,7 @@ const buildings = [
 	{
 		name: 'Mill',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/mill.png',
+		icon: mill,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -499,7 +537,7 @@ const buildings = [
 	{
 		name: 'Lumber Camp',
 		shortcut: ['0:0', '0:2'],
-		icon: '/buildings/lc.png',
+		icon: lc,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -507,7 +545,7 @@ const buildings = [
 	{
 		name: 'Mining Camp',
 		shortcut: ['0:0', '0:3'],
-		icon: '/buildings/mc.png',
+		icon: mc,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -515,7 +553,7 @@ const buildings = [
 	{
 		name: 'Farm',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/farm.png',
+		icon: farm,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -523,7 +561,7 @@ const buildings = [
 	{
 		name: 'House of Wisdom',
 		shortcut: ['0:0', '1:3'],
-		icon: '/buildings/how.png',
+		icon: how,
 		type: 'economic',
 		age: 'I',
 		group: 'ABBASID'
@@ -531,7 +569,7 @@ const buildings = [
 	{
 		name: 'Outpost',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/outpost.png',
+		icon: outpost,
 		type: 'fortified',
 		age: 'I',
 		group: 'ABBASID'
@@ -539,7 +577,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		shortcut: ['0:0', '2:1'],
-		icon: '/buildings/palisade.png',
+		icon: palisade,
 		type: 'fortified',
 		age: 'I',
 		group: 'ABBASID'
@@ -547,7 +585,7 @@ const buildings = [
 	{
 		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
-		icon: '/buildings/palisade-gate.png',
+		icon: palisadeGate,
 		type: 'fortified',
 		age: 'I',
 		group: 'ABBASID'
@@ -555,7 +593,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:1', '1:1'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'II',
 		group: 'ABBASID'
@@ -563,7 +601,7 @@ const buildings = [
 	{
 		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
-		icon: '/buildings/tower.png',
+		icon: tower,
 		type: 'fortified',
 		age: 'II',
 		group: 'ABBASID'
@@ -571,7 +609,7 @@ const buildings = [
 	{
 		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
-		icon: '/buildings/wall.png',
+		icon: wall,
 		type: 'fortified',
 		age: 'II',
 		group: 'ABBASID'
@@ -579,7 +617,7 @@ const buildings = [
 	{
 		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
-		icon: '/buildings/stone-gate.png',
+		icon: stoneGate,
 		type: 'fortified',
 		age: 'II',
 		group: 'ABBASID'
@@ -587,7 +625,7 @@ const buildings = [
 	{
 		name: 'Tent',
 		shortcut: ['0:2', '0:0'],
-		icon: '/buildings/mosque.png',
+		icon: mosque,
 		type: 'economic',
 		age: 'III',
 		group: 'ABBASID'
@@ -595,7 +633,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
-		icon: '/buildings/keep.png',
+		icon: keep,
 		type: 'fortified',
 		age: 'III',
 		group: 'ABBASID'
@@ -603,7 +641,7 @@ const buildings = [
 	{
 		name: 'University',
 		shortcut: ['0:3', '0:0'],
-		icon: '/buildings/university.png',
+		icon: university,
 		type: 'research',
 		age: 'IV',
 		group: 'ABBASID'
@@ -614,7 +652,7 @@ const buildings = [
 	{
 		name: 'House',
 		shortcut: ['0:0', '0:0'],
-		icon: '/buildings/house.png',
+		icon: house,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -622,7 +660,7 @@ const buildings = [
 	{
 		name: 'Mill',
 		shortcut: ['0:0', '0:1'],
-		icon: '/buildings/mill.png',
+		icon: mill,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -630,7 +668,7 @@ const buildings = [
 	{
 		name: 'Lumber Camp',
 		shortcut: ['0:0', '0:2'],
-		icon: '/buildings/lc.png',
+		icon: lc,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -638,7 +676,7 @@ const buildings = [
 	{
 		name: 'Mining Camp',
 		shortcut: ['0:0', '0:3'],
-		icon: '/buildings/mc.png',
+		icon: mc,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -646,7 +684,7 @@ const buildings = [
 	{
 		name: 'Farm',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/farm.png',
+		icon: farm,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -654,7 +692,7 @@ const buildings = [
 	{
 		name: 'Mosque',
 		shortcut: ['0:2', '1:3'],
-		icon: '/buildings/mosque.png',
+		icon: mosque,
 		type: 'economic',
 		age: 'I',
 		group: 'DELHI'
@@ -662,7 +700,7 @@ const buildings = [
 	{
 		name: 'Outpost',
 		shortcut: ['0:0', '2:0'],
-		icon: '/buildings/outpost.png',
+		icon: outpost,
 		type: 'fortified',
 		age: 'I',
 		group: 'DELHI'
@@ -670,7 +708,7 @@ const buildings = [
 	{
 		name: 'Palisade',
 		shortcut: ['0:0', '2:1'],
-		icon: '/buildings/palisade.png',
+		icon: palisade,
 		type: 'fortified',
 		age: 'I',
 		group: 'DELHI'
@@ -678,7 +716,7 @@ const buildings = [
 	{
 		name: 'Palisade Gate',
 		shortcut: ['0:0', '2:2'],
-		icon: '/buildings/palisade-gate.png',
+		icon: palisadeGate,
 		type: 'fortified',
 		age: 'I',
 		group: 'DELHI'
@@ -686,7 +724,7 @@ const buildings = [
 	{
 		name: 'Stable',
 		shortcut: ['0:1', '1:1'],
-		icon: '/buildings/stable.png',
+		icon: stable,
 		type: 'military',
 		age: 'II',
 		group: 'DELHI'
@@ -694,7 +732,7 @@ const buildings = [
 	{
 		name: 'Stone Tower',
 		shortcut: ['0:1', '2:0'],
-		icon: '/buildings/tower.png',
+		icon: tower,
 		type: 'fortified',
 		age: 'II',
 		group: 'DELHI'
@@ -702,7 +740,7 @@ const buildings = [
 	{
 		name: 'Stone Wall',
 		shortcut: ['0:1', '2:1'],
-		icon: '/buildings/wall.png',
+		icon: wall,
 		type: 'fortified',
 		age: 'II',
 		group: 'DELHI'
@@ -710,7 +748,7 @@ const buildings = [
 	{
 		name: 'Stone Gate',
 		shortcut: ['0:1', '2:2'],
-		icon: '/buildings/stone-gate.png',
+		icon: stoneGate,
 		type: 'fortified',
 		age: 'II',
 		group: 'DELHI'
@@ -718,7 +756,7 @@ const buildings = [
 	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
-		icon: '/buildings/keep.png',
+		icon: keep,
 		type: 'fortified',
 		age: 'III',
 		group: 'DELHI'
@@ -726,7 +764,7 @@ const buildings = [
 	{
 		name: 'University',
 		shortcut: ['0:3', '0:0'],
-		icon: '/buildings/university.png',
+		icon: university,
 		type: 'research',
 		age: 'IV',
 		group: 'DELHI'

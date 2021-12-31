@@ -18,9 +18,9 @@ import Modal from 'react-modal'
 import ModalWindow from './components/Modal'
 import Button from './components/ui/Button'
 
-import HRE from './assets/images/hre.png'
-import Wood from './assets/images/wood.png'
-import Gold from './assets/images/gold.png'
+import HRE from './assets/icons/flags/hre.png'
+import Wood from './assets/icons/misc/wood.png'
+import Gold from './assets/icons/misc/gold.png'
 
 const MOBILE_WIDTH = 769
 Modal.setAppElement('#root')
