@@ -1,5 +1,11 @@
 # Changelog
 
+### 0.6.3
+
+-   `style:` Add visual indicators for correct key presses in grid view
+-   `fix:` Capslock preventing correct key input
+-   `misc:` Push assets and stylesheets around
+
 ### 0.6.2
 
 -   `fix:` Fixed QWERTY default preset not properly setting the keyboard layout
