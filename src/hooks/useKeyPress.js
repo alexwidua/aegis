@@ -10,7 +10,7 @@ const useKeyPress = (callback) => {
 		const handleKeyDown = ({ key }) => {
 			if (keyPressed !== key && key.length === 1) {
 				setKeyPressed(key)
-				callback && callback(key)
+				callback && callback(key.toLowerCase())
 			}
 		}
 		const handleKeyUp = () => {
