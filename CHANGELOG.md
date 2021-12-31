@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.6.1
+### 0.6.2
+
+-   `fix:` Fixed QWERTY default preset not properly setting the keyboard layout
+
+### 0.6.1
 
 -   `fix:` Rename fortifications to prevent confusion
 
