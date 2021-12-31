@@ -4,8 +4,6 @@
 
 import create from 'zustand'
 import buildings from '../assets/buildings'
-import { currentTimeInSeconds } from '../utils/time'
-
 import {
 	calcActionsPerMinute,
 	calcPercentageRemainder,
@@ -13,16 +11,8 @@ import {
 	randArrayFrom,
 	returnArrayAscending
 } from '../utils/math'
-
+import { currentTimeInSeconds } from '../utils/time'
 import { filterBuildings } from '../utils/game'
-
-// Default values on startup and prompt reset
-const DEFAULT_GAME_STATE = '0/2'
-const DEFAULT_TICK = 0
-const DEFAULT_SCORE = 0
-const DEFAULT_START_TIME = 0
-
-//Keyboard defaults
 
 const useStore = create((set) => ({
 	/**
@@ -34,12 +24,13 @@ const useStore = create((set) => ({
 	/**
 	 * Interactive game states
 	 */
+	tickPreemptive: 0,
+	tick: 0,
 	isPlaying: false,
-	gameState: DEFAULT_GAME_STATE,
+	gameState: '0/2',
 	recipe: null,
-	tick: DEFAULT_TICK,
-	score: DEFAULT_SCORE,
-	startTime: DEFAULT_START_TIME,
+	score: 0,
+	startTime: 0,
 	promptStartTime: 0,
 	promptTimes: {},
 	handleSetStartTime: () =>
@@ -47,7 +38,8 @@ const useStore = create((set) => ({
 	incorrectInputs: 0,
 
 	/**
-	 * Game settings
+	 * Game options.
+	 * These values are exposed and set via the options modal.
 	 */
 	updateGameSettingsFromLocalStorage: (value) => set(() => value),
 	scoreLimit: 25,
@@ -60,11 +52,9 @@ const useStore = create((set) => ({
 			research: false
 		},
 		ages: { I: true, II: false, III: false, IV: false },
-		civSpecific: true,
 		group: 'GENERIC'
 	},
-	handleSetBuildingFilter: (value) =>
-		set((state) => ({ buildingFilter: value })),
+	handleSetBuildingFilter: (value) => set(() => ({ buildingFilter: value })),
 	promptStyle: 'SINGLE',
 	handleSetPromptStyle: (value) => set(() => ({ promptStyle: value })),
 	showKeyLabels: 'FADE_IN',
@@ -105,24 +95,25 @@ const useStore = create((set) => ({
 		}),
 
 	/**
-	 * Key events that occur during play
+	 * Handle events that progress the game
 	 */
 	handleFirstKeyCorrect: () => set(() => ({ gameState: '1/2' })),
 	handleSecondKeyCorrect: () =>
 		set((state) => {
-			const temp = state.promptTimes
+			// Add input time for each buidling to later calc average
+			const prevTimes = state.promptTimes
 			const promptFinishTime =
 				currentTimeInSeconds() - state.promptStartTime
-
-			if (!temp[state.recipe[state.score].name]) {
-				temp[state.recipe[state.score].name] = []
+			if (!prevTimes[state.recipe[state.score].name]) {
+				prevTimes[state.recipe[state.score].name] = []
 			}
-			temp[state.recipe[state.score].name].push(promptFinishTime)
+			prevTimes[state.recipe[state.score].name].push(promptFinishTime)
 
 			return {
+				tickPreemptive: state.tickPreemptive + 1,
 				score: state.score + 1,
 				gameState: '2/2',
-				promptTimes: temp
+				promptTimes: prevTimes
 			}
 		}),
 	handleKeyIncorrect: () =>
@@ -141,20 +132,21 @@ const useStore = create((set) => ({
 		}),
 
 	/**
-	 * Game cycle
+	 * Handle game (re-)start and game end
 	 */
 	handleGameStart: () =>
 		set((state) => {
 			const filtered = filterBuildings(buildings, state.buildingFilter)
 			const recipe = randArrayFrom(filtered, state.scoreLimit)
-			const _newObj = {}
+			const _emptyObj = {} // to avoid state merging and start with empty obj
 			return {
-				gameState: DEFAULT_GAME_STATE,
-				tick: DEFAULT_TICK,
-				score: DEFAULT_SCORE,
-				startTime: DEFAULT_START_TIME,
+				tickPreemptive: 0,
+				tick: 0,
+				gameState: '0/2',
+				score: 0,
+				startTime: 0,
 				promptStartTime: currentTimeInSeconds(),
-				promptTimes: _newObj,
+				promptTimes: _emptyObj,
 				isPlaying: true,
 				incorrectInputs: 0,
 				recipe
@@ -196,6 +188,7 @@ const useStore = create((set) => ({
 			]
 
 			return {
+				gameState: 'GAME_ENDED',
 				isPlaying: false,
 				endResult
 			}

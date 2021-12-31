@@ -4,41 +4,64 @@
 import useStore from '../store/store'
 
 const useGameState = () => {
-	const {
-		score,
-		scoreLimit,
-		currentBuilding,
-		gameState,
-		shortcut,
-		_shortcut,
-		keyMap
-	} = useStore((state) => ({
-		score: state.score,
-		scoreLimit: state.scoreLimit,
-		gameState: state.gameState,
-		currentBuilding: state.recipe ? state.recipe[state.score] : null,
-		shortcut: state.recipe ? state.recipe[state.tick]?.shortcut : null,
-		_shortcut: state.recipe ? state.recipe[state.score]?.shortcut : null, // TODO: proper name,unify tick and score
-		keyMap: state.keyMap
-	}))
+	const { score, scoreLimit, building, gameState, keyMap } = useStore(
+		(state) => ({
+			score: state.score,
+			scoreLimit: state.scoreLimit,
+			gameState: state.gameState,
+			building: {
+				preemptive: state.recipe
+					? state.recipe[state.tickPreemptive]
+					: null,
+				current: state.recipe ? state.recipe[state.tick] : null
+			},
+			keyMap: state.keyMap
+		})
+	)
 
-	// Each shortcut is stored as a coordinate for an 2d array, ex. 0:0
-	const firstKeyIndex = shortcut ? shortcut[0].split(':') : null
-	const secondKeyIndex = shortcut ? shortcut[1].split(':') : null
+	/**
+	 * current vs. preemptive value
+	 *
+	 * If a shortcut has been entered correctly, there is a brief
+	 * interval before the game progresses to the next shortcut.
+	 *
+	 * preemptive === next shortcut, set pre-emtpively BEFORE interval finishes
+	 * current === next shortcut, set AFTER interval finishes (in that sense, it catches up to the preemptive value)
+	 */
 
-	// TODO: Remove or unify w/ above
-	const _firstKeyIndex = _shortcut ? _shortcut[0].split(':') : null
-	const _secondKeyIndex = _shortcut ? _shortcut[1].split(':') : null
+	const shortcut = {
+		preemptive: building.preemptive ? building.preemptive.shortcut : null,
+		current: building.current ? building.current.shortcut : null
+	}
 
-	const firstKey = firstKeyIndex
-		? keyMap[firstKeyIndex[0]][firstKeyIndex[1]]
+	const keyPosition = {
+		preemptive: {
+			firstKey: shortcut.preemptive
+				? shortcut.preemptive[0].split(':')
+				: null,
+			secondKey: shortcut.preemptive
+				? shortcut.preemptive[1].split(':')
+				: null
+		},
+		current: {
+			firstKey: shortcut.current ? shortcut.current[0].split(':') : null,
+			secondKey: shortcut.current ? shortcut.current[1].split(':') : null
+		}
+	}
+
+	const firstKey = keyPosition.current.firstKey
+		? keyMap[keyPosition.current.firstKey[0]][
+				keyPosition.current.firstKey[1]
+		  ]
 		: null
-	const secondKey = secondKeyIndex
-		? keyMap[secondKeyIndex[0]][secondKeyIndex[1]]
+	const secondKey = keyPosition.current.secondKey
+		? keyMap[keyPosition.current.secondKey[0]][
+				keyPosition.current.secondKey[1]
+		  ]
 		: null
 
 	const gameAwaitingInput = gameState === '0/2'
-	const gameEnded = score === scoreLimit
+	const gameEnded = gameState === 'GAME_ENDED'
 	const playerFirstKeyCorrect = gameState === '1/2'
 	const playerSecondKeyCorrect = gameState === '2/2'
 	const playerKeyIncorrect = gameState === 'INCORRECT_INPUT'
@@ -46,9 +69,8 @@ const useGameState = () => {
 	return {
 		firstKey,
 		secondKey,
-		_firstKeyIndex,
-		_secondKeyIndex,
-		currentBuilding,
+		keyPosition,
+		building,
 		gameAwaitingInput,
 		gameEnded,
 		playerFirstKeyCorrect,
