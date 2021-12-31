@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+-   `fix:` Rename fortifications to prevent confusion
+
 ## 0.6.0
 
 -   `feat:` Add experimental icon grid feature (thanks `/u/anmr` for the idea and suggestion)
