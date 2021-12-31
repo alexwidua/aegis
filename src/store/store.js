@@ -88,7 +88,7 @@ const useStore = create((set) => ({
 				QWERTY: [
 					['q', 'w', 'e', 'r'],
 					['a', 's', 'd', 'f'],
-					['y', 'x', 'c', 'v']
+					['z', 'x', 'c', 'v']
 				],
 				QWERTZ: [
 					['q', 'w', 'e', 'r'],
