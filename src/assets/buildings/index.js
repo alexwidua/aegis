@@ -201,7 +201,7 @@ const buildings = [
 	{
 		name: 'Pasture',
 		shortcut: ['0:0', '1:0'],
-		icon: '/buildings/ger.png',
+		icon: '/buildings/pasture.png',
 		type: 'economic',
 		age: 'I',
 		group: 'MONGOL'

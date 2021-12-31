@@ -62,7 +62,7 @@ const App = () => {
 		keyMap: state.keyMap
 	}))
 	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		'aoe-shortcuts-v030-dev-abcde',
+		'aoe-shortcuts-v051',
 		''
 	)
 	const gameOptions = {
