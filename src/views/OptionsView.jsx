@@ -1,14 +1,18 @@
 import { useState, useRef } from 'react'
 import styles from './options.module.scss'
 import useStore from '../store/store'
-
+import { useOnClickOutside, useKeyPress } from '../hooks'
 import SegmentedInput from '../components/ui/SegmentedInput'
 import Checkbox from '../components/ui/Checkbox'
 
-import useKeyPress from '../hooks/useKeyPress'
-import { useOnClickOutside } from '../hooks'
-
+// Assets
 import buildings from '../assets/buildings'
+import IconGeneric from '../assets/icons/flags/generic.png'
+import IconMongol from '../assets/icons/flags/mongol.png'
+import IconRus from '../assets/icons/flags/rus.png'
+import IconChinese from '../assets/icons/flags/chinese.png'
+import IconDelhi from '../assets/icons/flags/delhi.png'
+import IconAbbasid from '../assets/icons/flags/abbasid.png'
 
 const OptionsView = () => {
 	const {
@@ -113,32 +117,27 @@ const OptionsView = () => {
 					onValueChange={(value) => handleFilter('group', value)}
 					options={[
 						{
-							children:
-								'<img src="/flags/generic.png" alt="Flag"/>',
+							children: `<img src="${IconGeneric}" alt="Flag"/>`,
 							value: 'GENERIC'
 						},
 						{
-							children:
-								'<img src="/flags/mongol.png" alt="Flag"/>',
+							children: `<img src="${IconMongol}" alt="Flag"/>`,
 							value: 'MONGOL'
 						},
 						{
-							children: '<img src="/flags/rus.png" alt="Flag"/>',
+							children: `<img src="${IconRus}" alt="Flag"/>`,
 							value: 'RUS'
 						},
 						{
-							children:
-								'<img src="/flags/chinese.png" alt="Flag"/>',
+							children: `<img src="${IconChinese}" alt="Flag"/>`,
 							value: 'CHINESE'
 						},
 						{
-							children:
-								'<img src="/flags/delhi.png" alt="Flag"/>',
+							children: `<img src="${IconDelhi}" alt="Flag"/>`,
 							value: 'DELHI'
 						},
 						{
-							children:
-								'<img src="/flags/abbasid.png" alt="Flag"/>',
+							children: `<img src="${IconAbbasid}" alt="Flag"/>`,
 							value: 'ABBASID'
 						}
 					]}

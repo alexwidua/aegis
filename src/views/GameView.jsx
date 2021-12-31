@@ -18,17 +18,18 @@ const GameView = () => {
 			score: state.score,
 			scoreLimit: state.scoreLimit,
 			promptStyle: state.promptStyle,
-			handleGameEnd: state.handleGameEnd
+			handleGameEnd: state.handleGameEnd,
+			currentBuilding: state.recipe ? state.recipe[state.score] : null,
+			currentA: state.recipe ? state.recipe[state.tick] : null
 		})
 	)
 	const {
 		firstKey,
 		secondKey,
-		_firstKeyIndex,
-		_secondKeyIndex,
+		keyPosition,
+		building,
 		playerKeyIncorrect,
-		playerSecondKeyCorrect,
-		currentBuilding
+		playerSecondKeyCorrect
 	} = useGameState()
 
 	// Preload all icons to avoid flash of unloaded images
@@ -50,17 +51,17 @@ const GameView = () => {
 				${playerSecondKeyCorrect ? 'scored' : null} 
 				${promptStyle === 'GRID' ? styles['container-grid-style'] : null}`}>
 				{promptStyle === 'SINGLE' ? (
-					<Prompt
-						name={currentBuilding?.name || ''}
-						icon={currentBuilding?.icon || ''}
-						type={currentBuilding?.type || ''}
+					<PromptSingleView
+						name={building.preemptive?.name || ''}
+						icon={building.preemptive?.icon || ''}
+						type={building.preemptive?.type || ''}
 					/>
 				) : (
-					<GridPrompt
-						icon={currentBuilding?.icon || ''}
-						firstKeyIndex={_firstKeyIndex}
-						secondKeyIndex={_secondKeyIndex}
-						type={currentBuilding?.type || ''}
+					<PromptGridView
+						icon={building.current?.icon || ''}
+						firstKeyPosition={keyPosition.current?.firstKey || ''}
+						secondKeyPosition={keyPosition.current?.secondKey || ''}
+						type={building.current?.type || ''}
 					/>
 				)}
 				<Keys
@@ -100,9 +101,10 @@ const Score = ({ score, scoreLimit }) => {
 }
 
 /**
- * Displays the current building prompt
+ * Displays the current building icon and name, depending on what
+ * view is set in the options menu (default: Single)
  */
-const Prompt = ({ name, icon, type }) => {
+const PromptSingleView = ({ name, icon, type }) => {
 	const score = useStore((state) => state.score)
 
 	return (
@@ -114,11 +116,13 @@ const Prompt = ({ name, icon, type }) => {
 				${styles['icon-container']}
 				${styles[type]}
 				`}>
-						<img
-							className={styles.icon}
-							src={icon}
-							alt={name + ' icon'}
-						/>
+						{icon && (
+							<img
+								className={styles.icon}
+								src={icon}
+								alt={name + ' icon'}
+							/>
+						)}
 					</div>
 				</CSSTransition>
 			</TransitionGroup>
@@ -131,15 +135,23 @@ const Prompt = ({ name, icon, type }) => {
 	)
 }
 
-const GridPrompt = ({ name, icon, type, firstKeyIndex, secondKeyIndex }) => {
-	const keyMap = useStore((state) => state.keyMap)
-
+const PromptGridView = ({
+	name,
+	icon,
+	type,
+	firstKeyPosition,
+	secondKeyPosition
+}) => {
+	const { keyMap } = useStore((state) => ({
+		keyMap: state.keyMap
+	}))
+	const { playerSecondKeyCorrect } = useGameState()
 	const ages = [0, 1, 2, 3]
 
 	return (
 		<div className={styles.grid}>
 			{ages.map((el, age) => {
-				const isAge = parseInt(firstKeyIndex[1]) === age
+				const isAge = parseInt(firstKeyPosition[1]) === age
 				return (
 					<div className={styles.ages}>
 						{keyMap.map((el, row) => {
@@ -148,9 +160,10 @@ const GridPrompt = ({ name, icon, type, firstKeyIndex, secondKeyIndex }) => {
 									{el.map((el, col) => {
 										const isKey =
 											isAge &&
-											parseInt(secondKeyIndex[0]) ===
+											parseInt(secondKeyPosition[0]) ===
 												row &&
-											parseInt(secondKeyIndex[1]) === col
+											parseInt(secondKeyPosition[1]) ===
+												col
 
 										return col < 4 - age ? (
 											<span
@@ -159,7 +172,8 @@ const GridPrompt = ({ name, icon, type, firstKeyIndex, secondKeyIndex }) => {
 														? styles.visible
 														: null
 												}
-												${styles[type]}`}
+												${styles[type]}
+												${playerSecondKeyCorrect && isKey ? styles.scored : null}`}
 												key={col + 'i'}>
 												{isKey && (
 													<img

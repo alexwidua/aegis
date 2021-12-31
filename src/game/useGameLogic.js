@@ -7,6 +7,12 @@ import useStore from '../store/store'
 import useKeyPress from '../hooks/useKeyPress'
 import useGameState from '../hooks/useGameState'
 
+/**
+ * Constants
+ */
+
+const GAME_INTERVAL_AFTER_CORRECT_INPUT = 300
+
 const useGameLogic = () => {
 	/**
 	 * Game internal state & handlers
@@ -82,16 +88,15 @@ const useGameLogic = () => {
 	 */
 	useEffect(() => {
 		let interval
-		const interval_duration = 300
 		if (playerKeyIncorrect) {
 			interval = setInterval(
 				() => handleResetKeyInput(),
-				interval_duration
+				GAME_INTERVAL_AFTER_CORRECT_INPUT
 			)
 		} else if (playerSecondKeyCorrect) {
 			interval = setInterval(
 				() => handleAfterPlayerScored(),
-				interval_duration
+				GAME_INTERVAL_AFTER_CORRECT_INPUT
 			)
 		}
 		return () => clearInterval(interval)
@@ -99,12 +104,17 @@ const useGameLogic = () => {
 	}, [playerKeyIncorrect, playerSecondKeyCorrect])
 
 	/**
-	 * Check if game ends
+	 * Handle game end
 	 */
 	useEffect(() => {
+		let interval
 		if (score === scoreLimit) {
-			handleGameEnd()
+			interval = setInterval(() => {
+				handleGameEnd()
+			}, GAME_INTERVAL_AFTER_CORRECT_INPUT)
 		}
+
+		return () => clearInterval(interval)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [score, scoreLimit])
 

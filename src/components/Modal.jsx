@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 const ModalWindow = ({ isOpen, onRequestClose, children, ...rest }) => {
 	return (
 		<Modal
+			parentSelector={() => document.querySelector('#root')}
 			isOpen={isOpen}
 			onRequestClose={onRequestClose}
 			className={styles['modal-content']}
