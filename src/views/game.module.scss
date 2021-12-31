@@ -88,13 +88,17 @@
 }
 
 .column {
+	position: relative;
 	display: block;
 	width: 4rem;
 	height: 4rem;
 	background: #000;
+	border-radius: 0.25rem;
 	opacity: 0.2;
+	transition: transform 0.2s, box-shadow 0.2s;
 
 	&.visible {
+		background: none;
 		opacity: 1;
 
 		&.economic {
@@ -110,6 +114,11 @@
 		&.research {
 			background: var(--color-building-research);
 		}
+	}
+
+	&.scored {
+		z-index: 100;
+		box-shadow: 0 0 2rem var(--color-green) inset;
 	}
 }
 
