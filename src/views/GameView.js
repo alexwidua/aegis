@@ -4,25 +4,28 @@
 
 import useStore from '../store/store'
 import styles from './game.module.scss'
-import useGameState from '../hooks/useGameState'
-import useEffectOnce from '../hooks/useEffectOnce'
-
+import { useGameState, useEffectOnce } from '../hooks/'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Button from '../components/ui/Button'
 
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 /**
  * Default game view. Props take presedence, this is used to display the game preview in the OptionsView component.
  */
 const GameView = () => {
-	const { recipe, score, scoreLimit, handleGameEnd } = useStore((state) => ({
-		recipe: state.recipe,
-		score: state.score,
-		scoreLimit: state.scoreLimit,
-		handleGameEnd: state.handleGameEnd
-	}))
+	const { recipe, score, scoreLimit, promptStyle, handleGameEnd } = useStore(
+		(state) => ({
+			recipe: state.recipe,
+			score: state.score,
+			scoreLimit: state.scoreLimit,
+			promptStyle: state.promptStyle,
+			handleGameEnd: state.handleGameEnd
+		})
+	)
 	const {
 		firstKey,
 		secondKey,
+		_firstKeyIndex,
+		_secondKeyIndex,
 		playerKeyIncorrect,
 		playerSecondKeyCorrect,
 		currentBuilding
@@ -36,27 +39,39 @@ const GameView = () => {
 	})
 
 	return recipe ? (
-		<div
-			className={`${styles.container} ${
-				playerSecondKeyCorrect ? 'scored' : null
-			}`}>
-			<Prompt
-				name={currentBuilding?.name || ''}
-				icon={currentBuilding?.icon || ''}
-				type={currentBuilding?.type || ''}
-			/>
-			<Keys
-				firstKey={firstKey}
-				secondKey={secondKey}
-				playerKeyIncorrect={playerKeyIncorrect}
-			/>
+		<>
+			<div
+				className={`
+				${styles.container} 
+				${playerSecondKeyCorrect ? 'scored' : null} 
+				${promptStyle === 'GRID' ? styles['container-grid-style'] : null}`}>
+				{promptStyle === 'SINGLE' ? (
+					<Prompt
+						name={currentBuilding?.name || ''}
+						icon={currentBuilding?.icon || ''}
+						type={currentBuilding?.type || ''}
+					/>
+				) : (
+					<GridPrompt
+						icon={currentBuilding?.icon || ''}
+						firstKeyIndex={_firstKeyIndex}
+						secondKeyIndex={_secondKeyIndex}
+						type={currentBuilding?.type || ''}
+					/>
+				)}
+				<Keys
+					firstKey={firstKey}
+					secondKey={secondKey}
+					playerKeyIncorrect={playerKeyIncorrect}
+				/>
+			</div>
 			<div className={'footer'}>
 				<Score score={score} scoreLimit={scoreLimit} />
 				<Button onClick={handleGameEnd} tertiary>
 					End game
 				</Button>
 			</div>
-		</div>
+		</>
 	) : (
 		<div
 			className={styles['click-anywhere']}
@@ -109,6 +124,56 @@ const Prompt = ({ name, icon, type }) => {
 				</CSSTransition>
 			</TransitionGroup>
 		</>
+	)
+}
+
+const GridPrompt = ({ name, icon, type, firstKeyIndex, secondKeyIndex }) => {
+	const keyMap = useStore((state) => state.keyMap)
+
+	const ages = [0, 1, 2, 3]
+
+	return (
+		<div className={styles.grid}>
+			{ages.map((el, age) => {
+				const isAge = parseInt(firstKeyIndex[1]) === age
+				return (
+					<div className={styles.ages}>
+						{keyMap.map((el, row) => {
+							return (
+								<div className={styles.row} key={row}>
+									{el.map((el, col) => {
+										const isKey =
+											isAge &&
+											parseInt(secondKeyIndex[0]) ===
+												row &&
+											parseInt(secondKeyIndex[1]) === col
+
+										return col < 4 - age ? (
+											<span
+												className={`${styles.column} ${
+													isKey
+														? styles.visible
+														: null
+												}
+												${styles[type]}`}
+												key={col + 'i'}>
+												{isKey && (
+													<img
+														className={`${styles.icon}`}
+														src={icon}
+														alt={name + ' icon'}
+													/>
+												)}
+											</span>
+										) : null
+									})}
+								</div>
+							)
+						})}
+					</div>
+				)
+			})}
+		</div>
 	)
 }
 

@@ -19,6 +19,8 @@ const OptionsView = () => {
 		handleSetScoreLimit,
 		showKeyLabels,
 		handleSetShowKey,
+		promptStyle,
+		handleSetPromptStyle,
 		buildingFilter,
 		handleSetBuildingFilter
 	} = useStore((state) => ({
@@ -29,6 +31,8 @@ const OptionsView = () => {
 		handleSetScoreLimit: state.handleSetScoreLimit,
 		showKeyLabels: state.showKeyLabels,
 		handleSetShowKey: state.handleSetShowKey,
+		promptStyle: state.promptStyle,
+		handleSetPromptStyle: state.handleSetPromptStyle,
 		buildingFilter: state.buildingFilter,
 		handleSetBuildingFilter: state.handleSetBuildingFilter
 	}))
@@ -46,7 +50,8 @@ const OptionsView = () => {
 		if (!keyRebind) return
 		const row = keyRebind[0]
 		const col = keyRebind[1]
-		//if (flatKeyMap.some((el) => el === key)) return handleDuplicateKey(key) // if duplicate binding
+
+		// If duplicate, clear other duplicate key
 		let isDuplicate
 		keyMap.forEach((row, i) => {
 			const duplicate = row.indexOf(key)
@@ -150,13 +155,23 @@ const OptionsView = () => {
 				<h3>Display</h3>
 				<ItemSegmentedInput
 					name={`showLabels`}
-					label={`Key labels`}
+					label={`Show key labels on buttons`}
 					value={showKeyLabels}
 					onValueChange={(value) => handleSetShowKey(value)}
 					options={[
 						{ children: 'Show', value: 'SHOW' },
 						{ children: 'Fade in after 1s', value: 'FADE_IN' },
 						{ children: 'Hide', value: 'HIDE' }
+					]}
+				/>
+				<ItemSegmentedInput
+					name={`promptStyle`}
+					label={`Icon style <span class='new'>New</span>`}
+					value={promptStyle}
+					onValueChange={(value) => handleSetPromptStyle(value)}
+					options={[
+						{ children: 'Single icon', value: 'SINGLE' },
+						{ children: 'Spatial grid', value: 'GRID' }
 					]}
 				/>
 			</div>
@@ -305,7 +320,10 @@ const ItemSegmentedInput = ({
 }) => {
 	return (
 		<div className={styles.item} {...rest}>
-			<div className={styles.label}>{label}</div>
+			<div
+				className={styles.label}
+				dangerouslySetInnerHTML={{ __html: label }}
+			/>
 			<SegmentedInput
 				name={name}
 				value={value}

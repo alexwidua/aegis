@@ -25,9 +25,13 @@
 
 .label {
 	margin-bottom: 0.75rem;
+	color: var(--color-font-tertiary);
 	font-size: var(--size-font-sm);
 	font-weight: 300;
-	opacity: 0.5;
+
+	& span {
+		color: var(--color-font-primary);
+	}
 }
 
 .children {

@@ -52,24 +52,27 @@ const App = () => {
 		scoreLimit,
 		buildingFilter,
 		showKeyLabels,
-		keyMap
+		keyMap,
+		promptStyle
 	} = useStore((state) => ({
 		updateGameSettingsFromLocalStorage:
 			state.updateGameSettingsFromLocalStorage,
 		scoreLimit: state.scoreLimit,
 		buildingFilter: state.buildingFilter,
 		showKeyLabels: state.showKeyLabels,
-		keyMap: state.keyMap
+		keyMap: state.keyMap,
+		promptStyle: state.promptStyle
 	}))
 	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		'aoe-shortcuts-v051',
+		'aoe-shortcuts-v060',
 		''
 	)
 	const gameOptions = {
 		scoreLimit,
 		buildingFilter,
 		showKeyLabels,
-		keyMap
+		keyMap,
+		promptStyle
 	}
 	useEffectOnce(() => {
 		if (!localStorageOptions) {

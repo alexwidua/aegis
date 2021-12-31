@@ -65,6 +65,8 @@ const useStore = create((set) => ({
 	},
 	handleSetBuildingFilter: (value) =>
 		set((state) => ({ buildingFilter: value })),
+	promptStyle: 'SINGLE',
+	handleSetPromptStyle: (value) => set(() => ({ promptStyle: value })),
 	showKeyLabels: 'FADE_IN',
 	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
 	keyMap: [
