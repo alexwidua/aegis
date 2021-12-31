@@ -109,23 +109,23 @@
 	}
 
 	// Display small indicator of Age base key
-	&.age span::after {
-		position: absolute;
-		top: -100%;
-		left: 50%;
-		width: 0.5rem;
-		height: 0.5rem;
-		background: var(--color-font-tertiary);
-		border-radius: 100%;
+	// &.age span::after {
+	// 	position: absolute;
+	// 	top: -130%;
+	// 	left: 50%;
+	// 	width: 0.5rem;
+	// 	height: 0.5rem;
+	// 	background: var(--color-font-tertiary);
+	// 	border-radius: 100%;
 
-		content: '';
-		transform: translateX(-50%);
-	}
+	// 	content: '';
+	// 	transform: translateX(-50%);
+	// }
 }
 
 .icon {
 	position: absolute;
-	bottom: -25%;
+	top: -25%;
 	left: 50%;
 	opacity: 0.15;
 	transform: translateX(-50%);
