@@ -89,6 +89,11 @@ const useStore = create((set) => ({
 					['a', 'z', 'e', 'r'],
 					['q', 's', 'd', 'f'],
 					['w', 'x', 'c', 'v']
+				],
+				Dvorak: [
+					['\'', ',', '.', 'p'],
+					['a', 'o', 'e', 'u'],
+					[';', 'q', 'j', 'k']
 				]
 			}
 			return { keyMap: KEY_MAP_DEFAULTS[layout] }

@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.6.4
+
+-   `feat:` Add Dvorak keyboard layout
+-   `fix:` APM not being calculated and displayed properly
+
 ### 0.6.3
 
 -   `style:` Add visual indicators for correct key presses in grid view
