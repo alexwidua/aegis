@@ -301,6 +301,12 @@ const OptionsView = () => {
 								}>
 								AZERTY
 							</button>
+							<button
+								onClick={() =>
+									handleSetKeyMapDefault('Dvorak')
+								}>
+								Dvorak
+							</button>
 						</div>
 					</div>
 				</div>
