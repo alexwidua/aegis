@@ -87,19 +87,19 @@ const useGameLogic = () => {
 	 * Handle game state updates
 	 */
 	useEffect(() => {
-		let interval
+		let timeout
 		if (playerKeyIncorrect) {
-			interval = setInterval(
+			timeout = setTimeout(
 				() => handleResetKeyInput(),
 				GAME_INTERVAL_AFTER_CORRECT_INPUT
 			)
 		} else if (playerSecondKeyCorrect) {
-			interval = setInterval(
+			timeout = setTimeout(
 				() => handleAfterPlayerScored(),
 				GAME_INTERVAL_AFTER_CORRECT_INPUT
 			)
 		}
-		return () => clearInterval(interval)
+		return () => clearTimeout(timeout)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [playerKeyIncorrect, playerSecondKeyCorrect])
 
@@ -107,14 +107,14 @@ const useGameLogic = () => {
 	 * Handle game end
 	 */
 	useEffect(() => {
-		let interval
+		let timeout
 		if (score === scoreLimit) {
-			interval = setInterval(() => {
+			timeout = setTimeout(() => {
 				handleGameEnd()
 			}, GAME_INTERVAL_AFTER_CORRECT_INPUT)
 		}
 
-		return () => clearInterval(interval)
+		return () => clearTimeout(timeout)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [score, scoreLimit])
 
