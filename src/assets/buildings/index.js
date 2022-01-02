@@ -691,7 +691,7 @@ const buildings = [
 	},
 	{
 		name: 'Mosque',
-		shortcut: ['0:2', '1:3'],
+		shortcut: ['0:0', '1:3'],
 		icon: mosque,
 		type: 'economic',
 		age: 'I',
