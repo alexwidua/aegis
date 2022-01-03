@@ -20,8 +20,35 @@ import IconDelhi from '../assets/icons/flags/delhi.png'
 import IconAbbasid from '../assets/icons/flags/abbasid.png'
 
 const LOCAL_STORAGE_KEY = 'aoe-shortcuts-v060'
+const getKeyboardDefaults = () => ({
+	QWERTY: [
+		['q', 'w', 'e', 'r'],
+		['a', 's', 'd', 'f'],
+		['z', 'x', 'c', 'v']
+	],
+	QWERTZ: [
+		['q', 'w', 'e', 'r'],
+		['a', 's', 'd', 'f'],
+		['y', 'x', 'c', 'v']
+	],
+	AZERTY: [
+		['a', 'z', 'e', 'r'],
+		['q', 's', 'd', 'f'],
+		['w', 'x', 'c', 'v']
+	],
+	DVORAK: [
+		["'", ',', '.', 'p'],
+		['a', 'o', 'e', 'u'],
+		[';', 'q', 'j', 'k']
+	],
+	NULL: [
+		['?', '?', '?', '?'],
+		['?', '?', '?', '?'],
+		['?', '?', '?', '?']
+	]
+})
 
-const OptionsView = ({ isVisible }) => {
+const OptionsView = () => {
 	/**
 	 * Let's get all option values and option setters from our useStore hook.
 	 */
@@ -107,9 +134,11 @@ const OptionsView = ({ isVisible }) => {
 	/**
 	 * Handle key remap logic, ex. rebinding keys
 	 */
+
 	const keymapRef = useRef()
 	const [keyRebind, setkeyRebind] = useState('')
-	const [keymapOverlayAge, setKeymapOverlayAge] = useState('I')
+	// Show or hide building icon overlay
+	const [showKeyboardIconOverlay, setShowKeyboardIconOverlay] = useState(null)
 
 	// Cancel key rebind when clicked outside of keymap area
 	useOnClickOutside(keymapRef, () => setkeyRebind(''))
@@ -133,6 +162,23 @@ const OptionsView = ({ isVisible }) => {
 		handleSetKeyMap(row, col, key)
 		setkeyRebind('')
 	})
+
+	// Check if one of the current layouts matches one of the default profiles
+	const deriveKeyboardLayoutFromMapping = useCallback(() => {
+		const defaultLayouts = getKeyboardDefaults()
+		return Object.keys(defaultLayouts).find(
+			(key) =>
+				JSON.stringify(defaultLayouts[key]) === JSON.stringify(keyMap)
+		)
+	}, [keyMap])
+
+	const handleKeyboardLayoutChange = (layout) => {
+		const defaultLayouts = getKeyboardDefaults()
+		// If the user clicks the Custom button, reset all keys
+		if (layout === 'CUSTOM') {
+			handleSetKeyMapDefault(defaultLayouts.undefined)
+		} else handleSetKeyMapDefault(defaultLayouts[layout])
+	}
 
 	/**
 	 * Handle building filter options
@@ -251,45 +297,31 @@ const OptionsView = ({ isVisible }) => {
 					Keyboard profile <span className={`new`}>New</span>
 				</h2>
 				<p>
-					Customize your key mappings. The mappings will be saved for
-					future sessions as long as you don't clear your browser
-					data.
+					Select an existing profile or re-map individual keys by
+					clicking on the respective button.
 				</p>
 				<div className={styles['keyboard-options-container']}>
+					<h3 style={{ alignSelf: 'flex-start' }}>Current layout</h3>
 					<ItemSegmentedInput
 						name={`keymapOverlay`}
-						label={`Show age`}
-						value={keymapOverlayAge}
-						onValueChange={(value) => setKeymapOverlayAge(value)}
+						value={deriveKeyboardLayoutFromMapping() || 'NULL'}
+						onValueChange={(value) =>
+							handleKeyboardLayoutChange(value)
+						}
 						options={[
-							{ value: 'I' },
-							{ value: 'II' },
-							{ value: 'III' },
-							{ value: 'IV' }
+							{ children: 'QWERTY', value: 'QWERTY' },
+							{ children: 'QWERTY', value: 'QWERTZ' },
+							{ children: 'AZERTY', value: 'AZERTY' },
+							{ children: 'Dvorak', value: 'DVORAK' },
+							{ children: 'Custom', value: 'NULL' }
 						]}
-						style={{ width: 356 }}
 					/>
+
 					<div className={styles.grid} ref={keymapRef}>
 						{keyMap.map((el, row) => {
 							return (
 								<div className={styles.row} key={row}>
 									{el.map((el, col) => {
-										const _age = keymapOverlayAge
-										const isAgeKey =
-											(row === 0 &&
-												col === 0 &&
-												_age === 'I') ||
-											(row === 0 &&
-												col === 1 &&
-												_age === 'II') ||
-											(row === 0 &&
-												col === 2 &&
-												_age === 'III') ||
-											(row === 0 &&
-												col === 3 &&
-												_age === 'IV')
-										// aight, this one is super whacky
-										// TODO: Refactor!
 										const building = buildings.find(
 											(el) =>
 												el.shortcut[1][0] ===
@@ -299,9 +331,9 @@ const OptionsView = ({ isVisible }) => {
 												(el.group ===
 													buildingFilter.group ||
 													el.group === 'COMMON') &&
-												el.age === keymapOverlayAge
+												el.age ===
+													showKeyboardIconOverlay
 										)
-
 										const pendingRebind =
 											row === keyRebind[0] &&
 											col === keyRebind[1]
@@ -314,8 +346,7 @@ const OptionsView = ({ isVisible }) => {
 												className={`
 												${styles.key} 
 												${pendingRebind ? styles.rebind : null}
-												${el === '?' ? styles.missing : null}
-												${isAgeKey ? styles.age : null}						
+												${el === '?' ? styles.missing : null}				
 										`}
 												key={col}>
 												<span>
@@ -323,28 +354,22 @@ const OptionsView = ({ isVisible }) => {
 														? 'Press Key'
 														: el}
 												</span>
-												{building && (
-													<div
-														className={`
+												{building &&
+													showKeyboardIconOverlay && (
+														<div
+															className={`
 														${styles.icon} 
-														${
-															buildingFilter
-																?.ages[
-																building?.age
-															] &&
-															buildingFilter
-																?.types[
-																building?.type
-															]
-																? styles.enabled
-																: null
-														}`}>
-														<img
-															src={building.icon}
-															alt={building.name}
-														/>
-													</div>
-												)}
+														`}>
+															<img
+																src={
+																	building.icon
+																}
+																alt={
+																	building.name
+																}
+															/>
+														</div>
+													)}
 											</button>
 										)
 									})}
@@ -352,35 +377,22 @@ const OptionsView = ({ isVisible }) => {
 							)
 						})}
 					</div>
-					<div className={styles.presets}>
-						<p>Reset to default profile</p>
-						<div className={styles['presets-row']}>
-							<button
-								onClick={() =>
-									handleSetKeyMapDefault('QWERTY')
-								}>
-								QWERTY
-							</button>
-							<button
-								onClick={() =>
-									handleSetKeyMapDefault('QWERTZ')
-								}>
-								QWERTZ
-							</button>
-							<button
-								onClick={() =>
-									handleSetKeyMapDefault('AZERTY')
-								}>
-								AZERTY
-							</button>
-							<button
-								onClick={() =>
-									handleSetKeyMapDefault('Dvorak')
-								}>
-								Dvorak
-							</button>
-						</div>
-					</div>
+					<ItemSegmentedInput
+						name={`d`}
+						label={`Show icon overlay`}
+						value={showKeyboardIconOverlay}
+						onValueChange={(value) =>
+							setShowKeyboardIconOverlay(value)
+						}
+						options={[
+							{ children: 'Hide', value: null },
+							{ children: 'Age I', value: 'I' },
+							{ children: 'Age II', value: 'II' },
+							{ children: 'Age III', value: 'III' },
+							{ children: 'Age IV', value: 'IV' }
+						]}
+						style={{ width: 356 }}
+					/>
 				</div>
 			</div>
 		</div>

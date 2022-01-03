@@ -66,7 +66,7 @@ const useStore = create((set) => ({
 	],
 	handleSetKeyMap: (column, row, value) =>
 		set((state) => {
-			const arr = state.keyMap
+			const arr = [...state.keyMap]
 			arr[column][row] = value
 			return {
 				keyMap: arr
@@ -74,29 +74,7 @@ const useStore = create((set) => ({
 		}),
 	handleSetKeyMapDefault: (layout) =>
 		set(() => {
-			const KEY_MAP_DEFAULTS = {
-				QWERTY: [
-					['q', 'w', 'e', 'r'],
-					['a', 's', 'd', 'f'],
-					['z', 'x', 'c', 'v']
-				],
-				QWERTZ: [
-					['q', 'w', 'e', 'r'],
-					['a', 's', 'd', 'f'],
-					['y', 'x', 'c', 'v']
-				],
-				AZERTY: [
-					['a', 'z', 'e', 'r'],
-					['q', 's', 'd', 'f'],
-					['w', 'x', 'c', 'v']
-				],
-				Dvorak: [
-					['\'', ',', '.', 'p'],
-					['a', 'o', 'e', 'u'],
-					[';', 'q', 'j', 'k']
-				]
-			}
-			return { keyMap: KEY_MAP_DEFAULTS[layout] }
+			return { keyMap: layout }
 		}),
 
 	/**

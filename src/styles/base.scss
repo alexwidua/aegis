@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 
 .aegis {
+	--font-size: 14px;
+
 	background: var(--color-body);
 	color: var(--color-font-primary);
 	font-family: var(--sans-serif-font);
@@ -9,8 +11,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	--font-size: 14px;
-	font-size: var(--font-size);
 	/*
 	 * Typo
 	 */
@@ -39,6 +39,7 @@
 	--color-lightgreen: rgb(141, 221, 122);
 	--color-lavender: rgb(136, 107, 214);
 	--color-red: rgb(185, 66, 66);
+	--color-orange: rgb(185, 114, 66);
 
 	// Building icons
 	--color-building-economic: radial-gradient(
@@ -71,7 +72,6 @@
 	--border-radius-sm: 0.25rem;
 	--border-radius-lg: 0.75rem;
 }
-
 
 // TODO: Refactor this file and create some hierarchy
 

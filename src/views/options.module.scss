@@ -1,15 +1,23 @@
 .container {
 	display: flex;
-
 	& h2 {
 		margin: 0 0 2rem 0;
 	}
 
+	& h3 {
+		margin: 0 0 0.5rem 0;
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
 	& p {
-		padding: 0 0 2rem 0;
 		color: var(--color-font-tertiary);
 		font-size: var(--size-font-sm);
 		line-height: 1.35;
+
+		&:last-of-type {
+			padding: 0 0 1rem 0;
+		}
 	}
 }
 
@@ -25,7 +33,7 @@
 
 .label {
 	margin-bottom: 0.75rem;
-	color: var(--color-font-tertiary);
+	color: var(--color-font-secondary);
 	font-size: var(--size-font-sm);
 	font-weight: 300;
 
@@ -53,9 +61,8 @@
 
 .grid {
 	display: grid;
-	margin-bottom: calc(var(--vertical-gap) * 1.5);
+	padding: 1rem 0 3rem 0;
 	grid-gap: 0.75rem;
-	text-align: center;
 }
 
 .row {
@@ -84,6 +91,18 @@
 	font-family: var(--key-font);
 	font-size: 1.25rem;
 
+	&:hover {
+		box-shadow: 0 0 10rem rgba(255, 255, 255, 0.1) inset !important;
+	}
+
+	&:focus {
+		border: 2px solid rgba(255, 255, 255, 0.25);
+		outline: none;
+	}
+	&:active {
+		outline: none;
+	}
+
 	& span {
 		position: absolute;
 		top: 50%;
@@ -97,6 +116,10 @@
 		white-space: nowrap;
 	}
 
+	&.missing span {
+		background: var(--color-orange);
+	}
+
 	&.rebind {
 		box-shadow: 0 0 24rem rgba(36, 161, 109, 0.2) inset;
 		& span {
@@ -106,46 +129,22 @@
 			font-size: 0.75rem;
 			text-transform: none;
 		}
+
+		&:hover {
+			box-shadow: 0 0 24rem rgba(36, 161, 109, 0.2) inset;
+		}
 	}
-
-	&.missing span {
-		background: var(--color-red);
-	}
-
-	// Display small indicator of Age base key
-	// &.age span::after {
-	// 	position: absolute;
-	// 	top: -130%;
-	// 	left: 50%;
-	// 	width: 0.5rem;
-	// 	height: 0.5rem;
-	// 	background: var(--color-font-tertiary);
-	// 	border-radius: 100%;
-
-	// 	content: '';
-	// 	transform: translateX(-50%);
-	// }
 }
 
 .icon {
 	position: absolute;
 	top: -25%;
 	left: 50%;
-	opacity: 0.15;
 	transform: translateX(-50%);
 
 	& img {
 		width: 2rem;
 		height: 2rem;
-		filter: grayscale(1);
-	}
-
-	&.enabled {
-		opacity: 1;
-
-		& img {
-			filter: none;
-		}
 	}
 }
 
@@ -157,7 +156,6 @@
 		font-size: var(--size-font-sm);
 		font-weight: 300;
 		opacity: 0.5;
-		text-align: center;
 	}
 	&-row {
 		display: flex;
