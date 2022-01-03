@@ -1,7 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './options.module.scss'
 import useStore from '../store/store'
-import { useOnClickOutside, useKeyPress } from '../hooks'
+import {
+	useOnClickOutside,
+	useKeyPress,
+	useEffectOnce,
+	useLocalStorage
+} from '../hooks'
 import SegmentedInput from '../components/ui/SegmentedInput'
 import Checkbox from '../components/ui/Checkbox'
 
@@ -14,7 +19,12 @@ import IconChinese from '../assets/icons/flags/chinese.png'
 import IconDelhi from '../assets/icons/flags/delhi.png'
 import IconAbbasid from '../assets/icons/flags/abbasid.png'
 
-const OptionsView = () => {
+const LOCAL_STORAGE_KEY = 'aoe-shortcuts-v060'
+
+const OptionsView = ({ isVisible }) => {
+	/**
+	 * Let's get all option values and option setters from our useStore hook.
+	 */
 	const {
 		keyMap,
 		handleSetKeyMap,
@@ -26,7 +36,8 @@ const OptionsView = () => {
 		promptStyle,
 		handleSetPromptStyle,
 		buildingFilter,
-		handleSetBuildingFilter
+		handleSetBuildingFilter,
+		updateGameSettingsFromLocalStorage
 	} = useStore((state) => ({
 		keyMap: state.keyMap,
 		handleSetKeyMap: state.handleSetKeyMap,
@@ -38,16 +49,69 @@ const OptionsView = () => {
 		promptStyle: state.promptStyle,
 		handleSetPromptStyle: state.handleSetPromptStyle,
 		buildingFilter: state.buildingFilter,
-		handleSetBuildingFilter: state.handleSetBuildingFilter
+		handleSetBuildingFilter: state.handleSetBuildingFilter,
+		updateGameSettingsFromLocalStorage:
+			state.updateGameSettingsFromLocalStorage
 	}))
+	const { ages, types, group } = buildingFilter
 
 	/**
-	 * Keyboard map stuff
+	 * Handle local storage.
+	 */
+	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
+		LOCAL_STORAGE_KEY,
+		''
+	)
+
+	// First, check if LOCAL_STORAGE_KEY has been set, if not populate it
+	useEffectOnce(() => {
+		if (!localStorageOptions) {
+			setLocalStorageOptions({
+				scoreLimit,
+				buildingFilter,
+				showKeyLabels,
+				keyMap,
+				promptStyle
+			})
+		} else {
+			updateGameSettingsFromLocalStorage(localStorageOptions)
+		}
+	})
+
+	//Update local store on game option changes
+	useEffect(() => {
+		setLocalStorageOptions({
+			scoreLimit,
+			buildingFilter,
+			showKeyLabels,
+			keyMap,
+			promptStyle
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [
+		keyMap,
+		scoreLimit,
+		showKeyLabels,
+		promptStyle,
+		group,
+		ages.I,
+		ages.II,
+		ages.III,
+		ages.IV,
+		types.economic,
+		types.military,
+		types.fortified,
+		types.research
+	])
+
+	/**
+	 * Handle key remap logic, ex. rebinding keys
 	 */
 	const keymapRef = useRef()
 	const [keyRebind, setkeyRebind] = useState('')
-
 	const [keymapOverlayAge, setKeymapOverlayAge] = useState('I')
+
+	// Cancel key rebind when clicked outside of keymap area
 	useOnClickOutside(keymapRef, () => setkeyRebind(''))
 
 	useKeyPress((key) => {
@@ -71,36 +135,26 @@ const OptionsView = () => {
 	})
 
 	/**
-	 * TODO: Refactor and split up filter into several objects
+	 * Handle building filter options
 	 */
-	const handleFilter = (category, key, isCheckbox) => {
-		const obj = buildingFilter
-		if (isCheckbox) obj[category][key] = !obj[category][key]
-		else obj[category] = key
-		handleSetBuildingFilter(obj)
-	}
-	const filterTypes = Object.keys(buildingFilter.types).map((el, i) => (
-		<Checkbox
-			value={buildingFilter.types[el]}
-			onChange={() => handleFilter('types', el, true)}
-			key={i}>
-			{el}
-		</Checkbox>
-	))
-	const filterAges = Object.keys(buildingFilter.ages).map((el, i) => (
-		<Checkbox
-			value={buildingFilter.ages[el]}
-			onChange={() => handleFilter('ages', el, true)}
-			key={i}
-			style={{ textTransform: 'uppercase' }}>
-			{el}
-		</Checkbox>
-	))
+	const handleFilter = useCallback(
+		(category, key, isCheckbox) => {
+			const obj = buildingFilter
+			if (isCheckbox) obj[category][key] = !obj[category][key]
+			else obj[category] = key
+			handleSetBuildingFilter(obj)
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[buildingFilter]
+	)
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.options}>
 				<h2>Options</h2>
+				{/*
+				 * Display
+				 */}
 				<h3>Buildings</h3>
 				<ItemSegmentedInput
 					name={`buildings`}
@@ -113,7 +167,7 @@ const OptionsView = () => {
 				<ItemSegmentedInput
 					name={`civ`}
 					label={`Civilization`}
-					value={buildingFilter.group}
+					value={group}
 					onValueChange={(value) => handleFilter('group', value)}
 					options={[
 						{
@@ -146,11 +200,29 @@ const OptionsView = () => {
 				<ItemCheckbox
 					label={`Restrict to age`}
 					style={{ marginBottom: '1.25rem' }}>
-					{filterAges}
+					{Object.keys(ages).map((el, i) => (
+						<Checkbox
+							value={ages[el]}
+							onChange={() => handleFilter('ages', el, true)}
+							key={i}
+							style={{ textTransform: 'uppercase' }}>
+							{el}
+						</Checkbox>
+					))}
 				</ItemCheckbox>
 				<ItemCheckbox label={`Restrict to type`}>
-					{filterTypes}
+					{Object.keys(types).map((el, i) => (
+						<Checkbox
+							value={types[el]}
+							onChange={() => handleFilter('types', el, true)}
+							key={i}>
+							{el}
+						</Checkbox>
+					))}
 				</ItemCheckbox>
+				{/*
+				 * Display
+				 */}
 				<h3>Display</h3>
 				<ItemSegmentedInput
 					name={`showLabels`}

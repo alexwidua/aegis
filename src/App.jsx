@@ -1,17 +1,12 @@
 /**
  * @file App, collects all views
  */
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styles from './app.module.scss'
 
 import useStore from './store/store'
 import useGameLogic from './game/useGameLogic'
-import {
-	useGameState,
-	useLocalStorage,
-	useWindowSize,
-	useEffectOnce
-} from './hooks/'
+import { useGameState, useWindowSize, useEffectOnce } from './hooks/'
 
 import { InitialView, GameView, ResultView, OptionsView } from './views'
 import Modal from 'react-modal'
@@ -27,6 +22,13 @@ Modal.setAppElement('#root')
 
 const App = () => {
 	/**
+	 * UI states
+	 */
+	const [optionsModal, setOptionsModal] = useState(false)
+	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
+	const { width } = useWindowSize()
+
+	/**
 	 * Game-related states
 	 */
 	useGameLogic()
@@ -35,62 +37,12 @@ const App = () => {
 		endResult: state.endResult,
 		handleGameStart: state.handleGameStart
 	}))
+
 	const { gameEnded, playerSecondKeyCorrect } = useGameState()
-
-	/**
-	 * UI states
-	 */
-	const [optionsModal, setOptionsModal] = useState(false)
-	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
-	const { width } = useWindowSize()
-
-	/**
-	 * Local storage
-	 */
-	const {
-		updateGameSettingsFromLocalStorage,
-		scoreLimit,
-		buildingFilter,
-		showKeyLabels,
-		keyMap,
-		promptStyle
-	} = useStore((state) => ({
-		updateGameSettingsFromLocalStorage:
-			state.updateGameSettingsFromLocalStorage,
-		scoreLimit: state.scoreLimit,
-		buildingFilter: state.buildingFilter,
-		showKeyLabels: state.showKeyLabels,
-		keyMap: state.keyMap,
-		promptStyle: state.promptStyle
-	}))
-	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		'aoe-shortcuts-v060',
-		''
-	)
-	const gameOptions = {
-		scoreLimit,
-		buildingFilter,
-		showKeyLabels,
-		keyMap,
-		promptStyle
-	}
-	useEffectOnce(() => {
-		if (!localStorageOptions) {
-			setLocalStorageOptions(gameOptions)
-		} else {
-			updateGameSettingsFromLocalStorage(localStorageOptions)
-		}
-	})
 
 	useEffectOnce(() => {
 		if (width < MOBILE_WIDTH) setShowMobileOnlyMsg(true)
 	})
-
-	// Sync data to local storage on modal close
-	useEffect(() => {
-		if (!optionsModal) setLocalStorageOptions(gameOptions)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [optionsModal])
 
 	return (
 		<div
