@@ -1,14 +1,19 @@
 .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
 	& h2 {
 		margin-bottom: calc(var(--vertical-gap) * 1.5);
 	}
 }
 
-.result-container {
+.result {
 	margin-bottom: calc(var(--vertical-gap) * 2.5);
 }
 
-.result-row {
+.row {
 	display: flex;
 
 	margin-bottom: var(--horizontal-gap);
@@ -103,11 +108,4 @@
 	&:last-child h2 {
 		color: var(--color-font-secondary);
 	}
-}
-
-.hint {
-	padding: 1rem;
-	margin-bottom: var(--horizontal-gap);
-	background: var(--color-lavender);
-	font-weight: 600;
 }

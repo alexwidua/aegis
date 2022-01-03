@@ -1,0 +1,7 @@
+.row {
+	display: flex;
+
+	& button:first-child {
+		margin-right: var(--horizontal-gap);
+	}
+}

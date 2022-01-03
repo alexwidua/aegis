@@ -3,8 +3,7 @@
 	display: inline-block;
 	width: 100%;
 	border-radius: var(--border-radius-sm);
-
-	font-size: var(--size-font-sm);
+	font-size: 0.75rem;
 }
 
 .labels {
@@ -58,7 +57,7 @@
 
 .segmented-input:hover .input:checked ~ .children,
 .segmented-input:focus-within .input:checked ~ .children {
-	border-radius: 0;
+	border-radius: var(--border-radius-sm);
 }
 .segmented-input:hover .label:first-child .input:checked ~ .children {
 	border-bottom-left-radius: var(--border-radius-sm);

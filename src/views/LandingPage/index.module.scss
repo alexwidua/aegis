@@ -35,14 +35,3 @@
 		color: var(--color-font-tertiary);
 	}
 }
-
-.logo {
-	width: 100px;
-	height: 100px;
-	background: #000;
-	border-radius: 100%;
-
-	:global(.debug) & {
-		border: 1px solid orange;
-	}
-}

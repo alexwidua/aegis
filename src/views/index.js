@@ -1,6 +1,8 @@
-import InitialView from './InitialView'
-import GameView from './GameView'
-import ResultView from './ResultView'
-import OptionsView from './OptionsView'
+import LandingPage from './LandingPage'
+import Game from './Game'
+import { Result } from './Result'
+import Options from './Options'
+import MessageOnMobile from './MessageOnMobile'
+import Footer from './Footer'
 
-export { InitialView, GameView, ResultView, OptionsView }
+export { LandingPage, Game, Result, Options, MessageOnMobile, Footer }

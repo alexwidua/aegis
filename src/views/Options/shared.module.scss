@@ -1,0 +1,19 @@
+.item {
+	width: 100%;
+	margin-bottom: var(--vertical-gap);
+}
+
+.label {
+	margin-bottom: 0.75rem;
+	color: var(--color-font-secondary);
+	font-size: var(--size-font-sm);
+	font-weight: 300;
+
+	& span {
+		color: var(--color-font-primary);
+	}
+}
+
+.children {
+	display: flex;
+}

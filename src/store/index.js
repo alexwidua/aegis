@@ -18,6 +18,8 @@ const useStore = create((set) => ({
 	/**
 	 * Global UI states
 	 */
+	optionsModalOpen: false,
+	setOptionsModalOpen: (value) => set(() => ({ optionsModalOpen: value })),
 	keyPressed: false,
 	handleKeyPressed: (value) => set(() => ({ keyPressed: value })),
 
@@ -55,8 +57,8 @@ const useStore = create((set) => ({
 		group: 'GENERIC'
 	},
 	handleSetBuildingFilter: (value) => set(() => ({ buildingFilter: value })),
-	promptStyle: 'SINGLE',
-	handleSetPromptStyle: (value) => set(() => ({ promptStyle: value })),
+	iconStyle: 'SINGLE',
+	handleSetPromptStyle: (value) => set(() => ({ iconStyle: value })),
 	showKeyLabels: 'FADE_IN',
 	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
 	keyMap: [

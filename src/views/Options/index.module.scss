@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	& h2 {
+		margin: 0 0 2rem 0;
+	}
+
+	& h3 {
+		margin: 0 0 0.5rem 0;
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	& p {
+		color: var(--color-font-tertiary);
+		font-size: var(--size-font-sm);
+		line-height: 1.35;
+
+		&:last-of-type {
+			padding: 0 0 1rem 0;
+		}
+	}
+}

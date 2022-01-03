@@ -3,7 +3,7 @@
  */
 
 import { useEffect } from 'react'
-import useStore from '../store/store'
+import useStore from '../store'
 import useKeyPress from '../hooks/useKeyPress'
 import useGameState from '../hooks/useGameState'
 
@@ -13,7 +13,7 @@ import useGameState from '../hooks/useGameState'
 
 const GAME_INTERVAL_AFTER_CORRECT_INPUT = 300
 
-const useGameLogic = () => {
+const Game = () => {
 	/**
 	 * Game internal state & handlers
 	 */
@@ -121,4 +121,4 @@ const useGameLogic = () => {
 	return null
 }
 
-export default useGameLogic
+export default Game

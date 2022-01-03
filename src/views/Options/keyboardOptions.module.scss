@@ -1,62 +1,13 @@
 .container {
-	display: flex;
-	& h2 {
-		margin: 0 0 2rem 0;
-	}
-
-	& h3 {
-		margin: 0 0 0.5rem 0;
-		font-size: 1rem;
-		font-weight: 600;
-	}
-
-	& p {
-		color: var(--color-font-tertiary);
-		font-size: var(--size-font-sm);
-		line-height: 1.35;
-
-		&:last-of-type {
-			padding: 0 0 1rem 0;
-		}
-	}
-}
-
-.options {
-	height: 100%;
-	padding: 3rem;
-}
-
-.item {
-	width: 100%;
-	margin-bottom: var(--vertical-gap);
-}
-
-.label {
-	margin-bottom: 0.75rem;
-	color: var(--color-font-secondary);
-	font-size: var(--size-font-sm);
-	font-weight: 300;
-
-	& span {
-		color: var(--color-font-primary);
-	}
-}
-
-.children {
-	display: flex;
-}
-
-// Keyboard options
-.keyboard-options {
 	padding: 3rem;
 	background: var(--color-body);
+}
 
-	&-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+.inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .grid {
@@ -90,6 +41,7 @@
 	cursor: pointer;
 	font-family: var(--key-font);
 	font-size: 1.25rem;
+	transition: box-shadow 0.2s;
 
 	&:hover {
 		box-shadow: 0 0 10rem rgba(255, 255, 255, 0.1) inset !important;
@@ -118,6 +70,7 @@
 
 	&.missing span {
 		background: var(--color-orange);
+		border-radius: 24rem;
 	}
 
 	&.rebind {
@@ -126,12 +79,26 @@
 			z-index: 1000;
 			padding: 0.25rem 0.5rem;
 			background: var(--color-green);
+
 			font-size: 0.75rem;
 			text-transform: none;
 		}
 
 		&:hover {
 			box-shadow: 0 0 24rem rgba(36, 161, 109, 0.2) inset;
+		}
+	}
+
+	&.highlight {
+		animation: flash 0.3s linear both;
+	}
+
+	@keyframes flash {
+		0% {
+			box-shadow: 0 0 10rem var(--flash) inset;
+		}
+		100% {
+			box-shadow: 0 0 10rem rgba(0, 0, 0, 0) inset;
 		}
 	}
 }
@@ -145,36 +112,5 @@
 	& img {
 		width: 2rem;
 		height: 2rem;
-	}
-}
-
-.presets {
-	& p {
-		padding: 0 0 0.5rem 0;
-		margin-bottom: 0.75rem;
-		color: var(--color-font-secondary);
-		font-size: var(--size-font-sm);
-		font-weight: 300;
-		opacity: 0.5;
-	}
-	&-row {
-		display: flex;
-
-		// TODO: Redundant styling, merge with <Button/> component
-		& button {
-			padding: 0.5rem 1rem;
-			border: none;
-			background: var(--color-foreground);
-			border-radius: 10rem;
-			color: var(--color-font-secondary);
-			cursor: pointer;
-
-			&:not(:last-child) {
-				margin-right: 0.5rem;
-			}
-			&:hover {
-				box-shadow: 0 0 24rem rgba(255, 255, 255, 0.05) inset;
-			}
-		}
 	}
 }

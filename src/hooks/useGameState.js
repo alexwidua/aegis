@@ -1,23 +1,21 @@
 /**
  * @file Hook to better access common game states
  */
-import useStore from '../store/store'
+import useStore from '../store'
 
 const useGameState = () => {
-	const { score, scoreLimit, building, gameState, keyMap } = useStore(
-		(state) => ({
-			score: state.score,
-			scoreLimit: state.scoreLimit,
-			gameState: state.gameState,
-			building: {
-				preemptive: state.recipe
-					? state.recipe[state.tickPreemptive]
-					: null,
-				current: state.recipe ? state.recipe[state.tick] : null
-			},
-			keyMap: state.keyMap
-		})
-	)
+	const { building, gameState, keyMap } = useStore((state) => ({
+		score: state.score,
+		scoreLimit: state.scoreLimit,
+		gameState: state.gameState,
+		building: {
+			preemptive: state.recipe
+				? state.recipe[state.tickPreemptive]
+				: null,
+			current: state.recipe ? state.recipe[state.tick] : null
+		},
+		keyMap: state.keyMap
+	}))
 
 	/**
 	 * current vs. preemptive value

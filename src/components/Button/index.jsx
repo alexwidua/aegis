@@ -1,4 +1,4 @@
-import styles from './button.module.scss'
+import styles from './index.module.scss'
 
 const Button = ({ primary, tertiary, children, ...rest }) => {
 	return (
