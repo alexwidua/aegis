@@ -3,11 +3,12 @@
  * Used to ask user for correct keyboard settings to improve the UX and avoid confusion.
  */
 
-import { GameMenu } from '../shared'
 import useStore from '@store'
 import { useLocalStorage } from '@hooks'
 import { deriveKeyboardLayout } from '@utils/keyboard'
 import { LOCAL_STORAGE_KEY, KEYBOARD_DEFAULT_LAYOUTS } from '@store/constants'
+import { GameMenu } from '../shared'
+import Keyboard from '@components/common/Keyboard'
 import styles from './index.module.scss'
 
 const BeforeFirstGame = () => {
@@ -36,16 +37,21 @@ const BeforeFirstGame = () => {
 		keyboardLayout
 	)
 
+	const currentLayoutName =
+		currentLayout === 'NULL'
+			? 'Custom'
+			: currentLayout === 'DVORAK'
+			? 'Dvorak'
+			: currentLayout
+
 	return (
 		<div className={styles.container}>
 			<div>
 				<h2>
 					The keyboard layout is set to{' '}
-					<span>
-						{currentLayout === 'NULL' ? 'Custom' : currentLayout}
-					</span>
-					, is that correct?
+					<span>{currentLayoutName}</span>, is that correct?
 				</h2>
+				<Keyboard keyboardLayout={keyboardLayout} />
 			</div>
 			<GameMenu
 				play={'Looks good!'}

@@ -2,9 +2,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	& div:first-child {
-		margin-bottom: calc(var(--vertical-gap) * 2);
-	}
 
 	& h2 {
 		max-width: 75%;

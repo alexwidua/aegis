@@ -17,10 +17,7 @@ const OptionsView = () => {
 	 * Let's get all option values and option setters from our useStore hook.
 	 */
 	const {
-		optionsModalOpen,
-		isPlaying,
 		showBeforeFirstGame,
-		setShowBeforeFirstGame,
 		keyboardLayout,
 		scoreLimit,
 		showLabeledKeys,
@@ -57,7 +54,6 @@ const OptionsView = () => {
 	// Update local store when game option changes
 	useEffect(() => {
 		setLocalStorageOptions(gameOptions)
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		keyboardLayout,
@@ -74,20 +70,6 @@ const OptionsView = () => {
 		types.fortified,
 		types.research
 	])
-
-	/**
-	 * Disable the showBeforeFirstGame message if the user engages with the menu
-	 * before playing their first round.
-	 */
-	useEffect(() => {
-		if (!isPlaying && showBeforeFirstGame) {
-			setShowBeforeFirstGame(false)
-			setLocalStorageOptions({
-				gameOptions
-			})
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [optionsModalOpen])
 
 	return (
 		<div className={styles.container}>
