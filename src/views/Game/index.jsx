@@ -7,20 +7,18 @@ import { IconSingle, IconGrid, Keys, Score } from '@components/game/'
 import { Button } from '@components/common/Button'
 import styles from './index.module.scss'
 
-const Game = () => {
-	const { recipe, score, scoreLimit, iconStyle, handleGameEnd } = useStore(
-		(state) => ({
+const GameView = () => {
+	const { recipe, score, scoreLimit, iconDisplayStyle, handleGameEnd } =
+		useStore((state) => ({
 			recipe: state.recipe,
 			score: state.score,
 			scoreLimit: state.scoreLimit,
-			iconStyle: state.iconStyle,
+			iconDisplayStyle: state.iconDisplayStyle,
 			handleGameEnd: state.handleGameEnd,
 			currentBuilding: state.recipe ? state.recipe[state.score] : null,
 			currentA: state.recipe ? state.recipe[state.tick] : null
-		})
-	)
-	console.log(iconStyle)
-	const useGrid = iconStyle === 'GRID'
+		}))
+	const useGrid = iconDisplayStyle === 'GRID'
 	return recipe ? (
 		<div className={styles.container}>
 			<div
@@ -47,4 +45,4 @@ const Game = () => {
 	)
 }
 
-export default Game
+export default GameView

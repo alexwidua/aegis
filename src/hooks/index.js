@@ -4,6 +4,7 @@ import useWindowSize from './useWindowSize'
 import useEffectOnce from './useEffectOnce'
 import useOnClickOutside from './useOnClickOutside'
 import useKeyPress from './useKeyPress'
+import useKeyboardLayout from './useKeyboardLayout'
 
 export {
 	useGameState,
@@ -11,5 +12,6 @@ export {
 	useWindowSize,
 	useEffectOnce,
 	useOnClickOutside,
-	useKeyPress
+	useKeyPress,
+	useKeyboardLayout
 }

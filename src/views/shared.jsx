@@ -7,7 +7,12 @@ import HRE from '@assets/icons/flags/hre.png'
 import Wood from '@assets/icons/misc/wood.png'
 import Gold from '@assets/icons/misc/gold.png'
 
-const GameMenu = () => {
+const GameMenu = ({
+	play = "Start typin'",
+	playAgain = 'Play again',
+	onPlay,
+	options = 'Options'
+}) => {
 	const { setOptionsModalOpen, endResult, handleGameStart } = useStore(
 		(state) => ({
 			setOptionsModalOpen: state.setOptionsModalOpen,
@@ -18,15 +23,15 @@ const GameMenu = () => {
 	return (
 		<ButtonRow>
 			<Button
-				onClick={handleGameStart}
-				style={{ minWidth: '12rem' }}
+				onClick={onPlay || handleGameStart}
+				style={{ width: '60%' }}
 				primary>
-				{endResult ? 'Play again' : `Start typin'`}
+				{endResult ? playAgain : play}
 			</Button>
 			<Button
 				onClick={() => setOptionsModalOpen(true)}
-				style={{ position: 'relative' }}>
-				Options
+				style={{ width: '40%', position: 'relative' }}>
+				{options}
 			</Button>
 		</ButtonRow>
 	)

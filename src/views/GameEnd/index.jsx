@@ -10,7 +10,7 @@ import { GameMenu, GameFooter } from '@views/shared'
 import { MIN_BUILDING_TRESHOLD } from '@store/constants'
 import styles from './index.module.scss'
 
-const GameEnd = () => {
+const GameEndView = () => {
 	const { score, endResult } = useStore((state) => ({
 		score: state.score,
 		endResult: state.endResult
@@ -97,4 +97,4 @@ const GameEnd = () => {
 	)
 }
 
-export default GameEnd
+export default GameEndView

@@ -1,7 +1,15 @@
-import BeforeGameStart from './BeforeGameStart'
-import Game from './Game'
-import GameEnd from './GameEnd'
-import Options from './modal/Options'
-import ShowWarningOnMobile from './modal/ShowWarningOnMobile'
+import TitleScreenView from './TitleScreen'
+import BeforeFirstGame from './BeforeFirstGame'
+import GameView from './Game'
+import GameEndView from './GameEnd'
+import OptionsView from './modal/Options'
+import ShowWarningOnMobileView from './modal/ShowWarningOnMobile'
 
-export { BeforeGameStart, Game, GameEnd, Options, ShowWarningOnMobile }
+export {
+	TitleScreenView,
+	BeforeFirstGame,
+	GameView,
+	GameEndView,
+	OptionsView,
+	ShowWarningOnMobileView
+}

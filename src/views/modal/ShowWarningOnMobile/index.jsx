@@ -11,7 +11,7 @@ const MOBILE_WIDTH = 769
 const MAIL_SUBJECT = '[Reminder] Aegis, tiny game for AoE shortcuts'
 const MAIL_BODY = 'https://www.aegis.lol/'
 
-const ShowWarningOnMobile = () => {
+const ShowWarningOnMobileView = () => {
 	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
 	const { width } = useWindowSize()
 	useEffectOnce(() => {
@@ -36,4 +36,4 @@ const ShowWarningOnMobile = () => {
 	) : null
 }
 
-export default ShowWarningOnMobile
+export default ShowWarningOnMobileView
