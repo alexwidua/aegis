@@ -4,7 +4,7 @@
 import useStore from '../store'
 
 const useGameState = () => {
-	const { building, gameState, keyMap } = useStore((state) => ({
+	const { building, gameState, keyboardMap } = useStore((state) => ({
 		score: state.score,
 		scoreLimit: state.scoreLimit,
 		gameState: state.gameState,
@@ -14,7 +14,7 @@ const useGameState = () => {
 				: null,
 			current: state.recipe ? state.recipe[state.tick] : null
 		},
-		keyMap: state.keyMap
+		keyboardMap: state.keyboardMap
 	}))
 
 	/**
@@ -48,12 +48,12 @@ const useGameState = () => {
 	}
 
 	const firstKey = keyPosition.current.firstKey
-		? keyMap[keyPosition.current.firstKey[0]][
+		? keyboardMap[keyPosition.current.firstKey[0]][
 				keyPosition.current.firstKey[1]
 		  ]
 		: null
 	const secondKey = keyPosition.current.secondKey
-		? keyMap[keyPosition.current.secondKey[0]][
+		? keyboardMap[keyPosition.current.secondKey[0]][
 				keyPosition.current.secondKey[1]
 		  ]
 		: null

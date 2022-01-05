@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	& h2:first-of-type {
+		margin-bottom: calc(var(--vertical-gap) * 2);
+	}
+}

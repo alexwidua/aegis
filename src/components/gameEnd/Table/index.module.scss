@@ -3,19 +3,13 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	& h2 {
-		margin-bottom: calc(var(--vertical-gap) * 1.5);
-	}
-}
-
-.result {
-	margin-bottom: calc(var(--vertical-gap) * 2.5);
+	margin-bottom: calc(var(--vertical-gap) * 2);
+	text-align: center;
 }
 
 .row {
 	display: flex;
-
+	width: 100%;
 	margin-bottom: var(--horizontal-gap);
 
 	& div:not(:last-child) {
@@ -25,6 +19,7 @@
 
 .item {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
 	flex-grow: 1;
 	align-items: center;
@@ -34,8 +29,8 @@
 	border-radius: var(--border-radius-lg);
 
 	& h2 {
-		margin: 0;
-		margin-bottom: 1rem;
+		margin: 0 !important;
+		margin-bottom: 1rem !important;
 		color: var(--color-primary);
 		font-size: 2rem;
 		font-weight: 700;
@@ -71,11 +66,12 @@
 	}
 }
 
-.fastest-slowest-building {
+// Divides the layout into a flex-row layout to
+// display a building icon and some building information
+.building {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 2rem 2rem;
-	grid-column: 1 / span 1;
 
 	& .icon {
 		display: flex;

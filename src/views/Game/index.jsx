@@ -1,13 +1,11 @@
 /**
- * @file ...
+ * @file THe main game view, which shows the actual game during play.
  */
 
-import useStore from '../../store'
+import useStore from '@store'
+import { IconSingle, IconGrid, Keys, Score } from '@components/game/'
+import { Button } from '@components/common/Button'
 import styles from './index.module.scss'
-import { IconSingle, IconGrid } from './Icon'
-import Keys from './Keys'
-import Button from '../../components/Button'
-import Score from './Score'
 
 const Game = () => {
 	const { recipe, score, scoreLimit, iconStyle, handleGameEnd } = useStore(
@@ -21,33 +19,29 @@ const Game = () => {
 			currentA: state.recipe ? state.recipe[state.tick] : null
 		})
 	)
-
+	console.log(iconStyle)
+	const useGrid = iconStyle === 'GRID'
 	return recipe ? (
-		<>
+		<div className={styles.container}>
 			<div
 				className={`
-                 ${styles.container} 
-                 ${
-						iconStyle === 'GRID'
-							? styles['container-grid-style']
-							: null
-					}`}>
-				{iconStyle === 'SINGLE' ? <IconSingle /> : <IconGrid />}
+					${styles.game}
+					${useGrid ? styles.grid : null}`}>
+				{useGrid ? <IconGrid /> : <IconSingle />}
 				<Keys />
 			</div>
-			<div className={'footer'}>
+			<div className={styles.bottom}>
 				<Score score={score} scoreLimit={scoreLimit} />
 				<Button onClick={handleGameEnd} tertiary>
 					End game
 				</Button>
 			</div>
-		</>
+		</div>
 	) : (
-		<div
-			className={styles['click-anywhere']}
-			onClick={() => handleGameEnd()}>
+		// Catch error if user hasn't selected any building
+		// by selecting neither any age nor type.
+		<div className={styles.error} onClick={() => handleGameEnd()}>
 			<h3>No building selected 👀</h3>
-			<br />
 			<p>Click anywhere to end this session and change your settings.</p>
 		</div>
 	)

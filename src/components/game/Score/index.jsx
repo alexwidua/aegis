@@ -1,4 +1,4 @@
-import styles from './score.module.scss'
+import styles from './index.module.scss'
 
 const Score = ({ score, scoreLimit }) => {
 	return (

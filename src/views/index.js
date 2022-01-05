@@ -1,8 +1,7 @@
-import LandingPage from './LandingPage'
+import BeforeGameStart from './BeforeGameStart'
 import Game from './Game'
-import { Result } from './Result'
-import Options from './Options'
-import MessageOnMobile from './MessageOnMobile'
-import Footer from './Footer'
+import GameEnd from './GameEnd'
+import Options from './modal/Options'
+import ShowWarningOnMobile from './modal/ShowWarningOnMobile'
 
-export { LandingPage, Game, Result, Options, MessageOnMobile, Footer }
+export { BeforeGameStart, Game, GameEnd, Options, ShowWarningOnMobile }

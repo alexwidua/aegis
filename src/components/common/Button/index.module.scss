@@ -37,3 +37,11 @@
 		box-shadow: 0 0 24rem rgba(255, 255, 255, 0.05) inset;
 	}
 }
+
+.row {
+	display: flex;
+
+	& button:first-child {
+		margin-right: var(--horizontal-gap);
+	}
+}

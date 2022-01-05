@@ -1,23 +1,23 @@
 /**
- * @file App, collects all views
+ * @file Main app file that collects all views.
+ *
+ * This app consist of multiple views, each of which corresponds to the current game view. Conceptually, the views are similar to routes.
  */
 
-import game from './game/'
-import useStore from './store/'
-import { useGameState } from './hooks/'
-import styles from './app.module.scss'
+import game from '@game/'
+import useStore from '@store/'
+import { useGameState } from '@hooks/'
 import {
-	LandingPage,
+	BeforeGameStart,
 	Game,
-	Result,
+	GameEnd,
 	Options,
-	MessageOnMobile,
-	Footer
-} from './views'
-
+	ShowWarningOnMobile
+} from '@views'
 import ModalWindow from './components/Modal'
-
 import Modal from 'react-modal'
+import styles from './app.module.scss'
+
 Modal.setAppElement('#root')
 
 const App = () => {
@@ -37,11 +37,11 @@ const App = () => {
 				{isPlaying && !gameEnded ? (
 					<Game />
 				) : !isPlaying && gameEnded ? (
-					<Result />
+					<GameEnd />
 				) : endResult ? (
-					<Result />
+					<GameEnd />
 				) : (
-					<LandingPage />
+					<BeforeGameStart />
 				)}
 			</div>
 
@@ -51,9 +51,7 @@ const App = () => {
 				onRequestClose={() => setOptionsModalOpen(false)}>
 				<Options />
 			</ModalWindow>
-			<MessageOnMobile />
-
-			{!isPlaying && <Footer />}
+			<ShowWarningOnMobile />
 		</div>
 	)
 }

@@ -1,4 +1,12 @@
 .container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.game {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -9,8 +17,8 @@
 	justify-content: flex-end;
 	transform: translate3d(-50%, -50%, 0);
 
-	// Shift view down a tad to mimic real game
-	&-grid-style {
+	// Push down a bit if grid to better reflect grid position in-game
+	&.grid {
 		top: 60% !important;
 	}
 
@@ -19,8 +27,23 @@
 	}
 }
 
-// Handle error
-.click-anywhere {
+.bottom {
+	position: absolute;
+	bottom: 6rem;
+	left: 50%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	transform: translate3d(-50%, 0, 0);
+
+	& span:first-child {
+		margin-bottom: var(--vertical-gap);
+	}
+}
+
+// Catch error if user hasn't selected any building
+// by selecting neither any age nor type.
+.error {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -32,7 +55,7 @@
 	justify-content: center;
 
 	& h3 {
-		margin: 0;
+		margin: 0 0 1rem 0;
 	}
 	& p {
 		margin: 0;

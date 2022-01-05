@@ -1,9 +1,15 @@
+/**
+ * @file The options view handles all game settings.
+ * It's divided into a GameOptions component, which deals with all game-related settings,
+ * and a KeyboardOptions component, which deals with the keyboard mapping etc.
+ */
+
+import useStore from '@store'
 import { useEffect } from 'react'
-import useStore from '../../store'
-import { useEffectOnce, useLocalStorage } from '../../hooks'
-import styles from './index.module.scss'
+import { useEffectOnce, useLocalStorage } from '@hooks'
 import GameOptions from './GameOptions'
 import KeyboardOptions from './KeyboardOptions'
+import styles from './index.module.scss'
 
 const LOCAL_STORAGE_KEY = 'aoe-shortcuts-v060'
 
@@ -12,14 +18,14 @@ const OptionsView = () => {
 	 * Let's get all option values and option setters from our useStore hook.
 	 */
 	const {
-		keyMap,
+		keyboardMap,
 		scoreLimit,
 		showKeyLabels,
 		iconStyle,
 		buildingFilter,
 		updateGameSettingsFromLocalStorage
 	} = useStore((state) => ({
-		keyMap: state.keyMap,
+		keyboardMap: state.keyboardMap,
 		scoreLimit: state.scoreLimit,
 		showKeyLabels: state.showKeyLabels,
 		iconStyle: state.iconStyle,
@@ -37,16 +43,18 @@ const OptionsView = () => {
 		''
 	)
 
+	const gameOptions = {
+		scoreLimit,
+		buildingFilter,
+		showKeyLabels,
+		keyboardMap,
+		iconStyle
+	}
+
 	// First, check if LOCAL_STORAGE_KEY has been set, if not populate it
 	useEffectOnce(() => {
 		if (!localStorageOptions) {
-			setLocalStorageOptions({
-				scoreLimit,
-				buildingFilter,
-				showKeyLabels,
-				keyMap,
-				iconStyle
-			})
+			setLocalStorageOptions(gameOptions)
 		} else {
 			updateGameSettingsFromLocalStorage(localStorageOptions)
 		}
@@ -54,16 +62,10 @@ const OptionsView = () => {
 
 	// Update local store when game option changes
 	useEffect(() => {
-		setLocalStorageOptions({
-			scoreLimit,
-			buildingFilter,
-			showKeyLabels,
-			keyMap,
-			iconStyle
-		})
+		setLocalStorageOptions(gameOptions)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
-		keyMap,
+		keyboardMap,
 		scoreLimit,
 		showKeyLabels,
 		iconStyle,

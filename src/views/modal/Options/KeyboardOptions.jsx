@@ -1,12 +1,11 @@
+import useStore from '@store'
 import { useState, useRef, useCallback } from 'react'
-import useStore from '../../store'
-import { useOnClickOutside, useKeyPress, useEffectOnce } from '../../hooks'
-
-import styles from './keyboardOptions.module.scss'
+import { useOnClickOutside, useKeyPress, useEffectOnce } from '@hooks'
 import { WrapSegmentedInputComponent } from './shared'
+import styles from './keyboardOptions.module.scss'
 
 // Assets
-import buildings from '../../assets/buildings'
+import buildings from '@assets/buildings'
 
 const getKeyboardDefaults = () => ({
 	QWERTY: [
@@ -40,28 +39,17 @@ const KeyboardOptions = () => {
 	/**
 	 * Get all option values and setters from Zustand
 	 */
-	const { keyMap, handleSetKeyMap, handleSetKeyMapDefault, buildingFilter } =
-		useStore((state) => ({
-			keyMap: state.keyMap,
-			handleSetKeyMap: state.handleSetKeyMap,
-			handleSetKeyMapDefault: state.handleSetKeyMapDefault,
-			buildingFilter: state.buildingFilter
-		}))
-	// Show or hide building icon overlay
-	const [showKeyboardIconOverlay, setShowKeyboardIconOverlay] = useState(null)
-
-	// We want to show a css animation once key changes, but we don't want to flash the keys initially.
-	// We inject the CSS var for the animation color programmatically after the initial animation has been run.
-	const [keyHighlightOnChange, setkeyHighlightOnChange] = useState(
-		'rgba(255,255,255,0)'
-	)
-	useEffectOnce(() => {
-		const injectCSSVarAfterInitialAnimCycle = setTimeout(
-			() => setkeyHighlightOnChange('rgba(255,255,255,0.3)'),
-			300
-		)
-		return () => clearTimeout(injectCSSVarAfterInitialAnimCycle)
-	})
+	const {
+		keyboardMap,
+		handleSetIndividualKey,
+		handleSetKeyMapDefault,
+		buildingFilter
+	} = useStore((state) => ({
+		keyboardMap: state.keyboardMap,
+		handleSetIndividualKey: state.handleSetIndividualKey,
+		handleSetKeyMapDefault: state.handleSetKeyMapDefault,
+		buildingFilter: state.buildingFilter
+	}))
 
 	/**
 	 * Handle re-mapping of keys.
@@ -84,16 +72,16 @@ const KeyboardOptions = () => {
 
 		// If the new key is already mapped, re-move the mapping from the other occurence
 		let isDuplicate
-		keyMap.forEach((row, i) => {
+		keyboardMap.forEach((row, i) => {
 			const duplicate = row.indexOf(key)
 			if (duplicate > -1) {
 				isDuplicate = [i, duplicate]
 			}
 		})
 		if (isDuplicate) {
-			handleSetKeyMap(isDuplicate[0], isDuplicate[1], '?')
+			handleSetIndividualKey(isDuplicate[0], isDuplicate[1], '?')
 		}
-		handleSetKeyMap(row, col, key)
+		handleSetIndividualKey(row, col, key)
 		setKeyCanBeMapped('')
 	})
 
@@ -105,9 +93,10 @@ const KeyboardOptions = () => {
 		const defaultLayouts = getKeyboardDefaults()
 		return Object.keys(defaultLayouts).find(
 			(key) =>
-				JSON.stringify(defaultLayouts[key]) === JSON.stringify(keyMap)
+				JSON.stringify(defaultLayouts[key]) ===
+				JSON.stringify(keyboardMap)
 		)
-	}, [keyMap])
+	}, [keyboardMap])
 
 	const handleKeyboardLayoutChange = (layout) => {
 		const defaultLayouts = getKeyboardDefaults()
@@ -116,6 +105,26 @@ const KeyboardOptions = () => {
 			handleSetKeyMapDefault(defaultLayouts.undefined)
 		} else handleSetKeyMapDefault(defaultLayouts[layout])
 	}
+
+	/**
+	 * Misc settings
+	 */
+
+	// We want to show a css animation once key changes, but we don't want to flash the keys initially.
+	// We inject the CSS var for the animation color programmatically after the initial animation has been run.
+	const [keyHighlightOnChange, setkeyHighlightOnChange] = useState(
+		'rgba(255,255,255,0)'
+	)
+	useEffectOnce(() => {
+		const injectCSSVarAfterInitialAnimCycle = setTimeout(
+			() => setkeyHighlightOnChange('rgba(255,255,255,0.3)'),
+			300
+		)
+		return () => clearTimeout(injectCSSVarAfterInitialAnimCycle)
+	})
+
+	// Show or hide building icon overlay
+	const [showKeyboardIconOverlay, setShowKeyboardIconOverlay] = useState(null)
 
 	return (
 		<div className={styles.container}>
@@ -139,7 +148,7 @@ const KeyboardOptions = () => {
 					]}
 				/>
 				<div className={styles.grid} ref={gridRef}>
-					{keyMap.map((el, row) => {
+					{keyboardMap.map((el, row) => {
 						return (
 							<div className={styles.row} key={row}>
 								{el.map((el, col) => {

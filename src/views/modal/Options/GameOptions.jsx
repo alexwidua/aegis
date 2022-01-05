@@ -1,21 +1,16 @@
-/**
- * @file Handles all game-related options, such as setting score limits,
- * filtering queued up buildings and display options.
- */
-
 import { useCallback } from 'react'
-import useStore from '../../store'
-import styles from './gameOptions.module.scss'
-import Checkbox from '../../components/Checkbox'
+import useStore from '@store'
+import Checkbox from '@components/Checkbox'
 import { WrapSegmentedInputComponent, WrapCheckboxComponent } from './shared'
+import styles from './gameOptions.module.scss'
 
 // Assets
-import IconGeneric from '../../assets/icons/flags/generic.png'
-import IconMongol from '../../assets/icons/flags/mongol.png'
-import IconRus from '../../assets/icons/flags/rus.png'
-import IconChinese from '../../assets/icons/flags/chinese.png'
-import IconDelhi from '../../assets/icons/flags/delhi.png'
-import IconAbbasid from '../../assets/icons/flags/abbasid.png'
+import IconGeneric from '@assets/icons/flags/generic.png'
+import IconMongol from '@assets/icons/flags/mongol.png'
+import IconRus from '@assets/icons/flags/rus.png'
+import IconChinese from '@assets/icons/flags/chinese.png'
+import IconDelhi from '@assets/icons/flags/delhi.png'
+import IconAbbasid from '@assets/icons/flags/abbasid.png'
 
 const GameOptions = () => {
 	/**
@@ -25,7 +20,7 @@ const GameOptions = () => {
 		scoreLimit,
 		handleSetScoreLimit,
 		showKeyLabels,
-		handleSetShowKey,
+		handleSetShowKeyLabels,
 		iconStyle,
 		handleSetPromptStyle,
 		buildingFilter,
@@ -34,7 +29,7 @@ const GameOptions = () => {
 		scoreLimit: state.scoreLimit,
 		handleSetScoreLimit: state.handleSetScoreLimit,
 		showKeyLabels: state.showKeyLabels,
-		handleSetShowKey: state.handleSetShowKey,
+		handleSetShowKeyLabels: state.handleSetShowKeyLabels,
 		iconStyle: state.iconStyle,
 		handleSetPromptStyle: state.handleSetPromptStyle,
 		buildingFilter: state.buildingFilter,
@@ -127,7 +122,7 @@ const GameOptions = () => {
 				name={`showLabels`}
 				label={`Show key labels on buttons`}
 				value={showKeyLabels}
-				onValueChange={(value) => handleSetShowKey(value)}
+				onValueChange={(value) => handleSetShowKeyLabels(value)}
 				options={[
 					{ children: 'Show', value: 'SHOW' },
 					{ children: 'Fade in after 1s', value: 'FADE_IN' },

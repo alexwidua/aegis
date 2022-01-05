@@ -60,23 +60,25 @@ const useStore = create((set) => ({
 	iconStyle: 'SINGLE',
 	handleSetPromptStyle: (value) => set(() => ({ iconStyle: value })),
 	showKeyLabels: 'FADE_IN',
-	handleSetShowKey: (value) => set(() => ({ showKeyLabels: value })),
-	keyMap: [
+	handleSetShowKeyLabels: (value) => set(() => ({ showKeyLabels: value })),
+	// Keyboard settings
+	userHasInteractedWithKeyMap: false,
+	keyboardMap: [
 		['q', 'w', 'e', 'r'],
 		['a', 's', 'd', 'f'],
 		['y', 'x', 'c', 'v']
 	],
-	handleSetKeyMap: (column, row, value) =>
+	handleSetIndividualKey: (column, row, value) =>
 		set((state) => {
-			const arr = [...state.keyMap]
+			const arr = [...state.keyboardMap]
 			arr[column][row] = value
 			return {
-				keyMap: arr
+				keyboardMap: arr
 			}
 		}),
 	handleSetKeyMapDefault: (layout) =>
 		set(() => {
-			return { keyMap: layout }
+			return { keyboardMap: layout }
 		}),
 
 	/**

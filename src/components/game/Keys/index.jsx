@@ -1,10 +1,10 @@
 /**
- * @file ...
+ * @file  TODO: Remove state from component and pass down as prop.
  */
 
-import useStore from '../../store'
-import styles from './keys.module.scss'
-import { useGameState } from '../../hooks'
+import useStore from '@store'
+import { useGameState } from '@hooks'
+import styles from './index.module.scss'
 
 const Keys = () => {
 	const { keyPressed, score, gameState, showKeyLabels } = useStore(

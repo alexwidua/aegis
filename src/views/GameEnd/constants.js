@@ -1,0 +1,1 @@
+export const MIN_BUILDING_TRESHOLD = 15

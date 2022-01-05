@@ -1,12 +1,11 @@
 /**
- * @file ...
+ * @file TODO: Remove state from component and pass down as prop.
  */
 
-import useStore from '../../store'
-import { useGameState } from '../../hooks'
-
-import styles from './icon.module.scss'
+import useStore from '@store'
+import { useGameState } from '@hooks'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import styles from './index.module.scss'
 
 const IconSingle = () => {
 	const score = useStore((state) => state.score)
@@ -42,8 +41,8 @@ const IconSingle = () => {
 }
 
 const IconGrid = () => {
-	const { keyMap } = useStore((state) => ({
-		keyMap: state.keyMap
+	const { keyboardMap } = useStore((state) => ({
+		keyboardMap: state.keyboardMap
 	}))
 	const { building, keyPosition, playerSecondKeyCorrect } = useGameState()
 
@@ -58,7 +57,7 @@ const IconGrid = () => {
 				const isAge = parseInt(firstKeyPosition[1]) === age
 				return (
 					<div className={styles.ages} key={age}>
-						{keyMap.map((el, row) => {
+						{keyboardMap.map((el, row) => {
 							return (
 								<div className={styles.row} key={row}>
 									{el.map((el, col) => {

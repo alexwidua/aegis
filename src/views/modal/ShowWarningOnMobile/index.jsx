@@ -1,16 +1,17 @@
+/**
+ * @file Because the website is not usable on mobile devices, we show a conditional
+ * screen that allows the visitor to email themselves the link -- for later use.
+ */
+
 import { useState } from 'react'
-import { useWindowSize, useEffectOnce } from '../../hooks/'
+import { useWindowSize, useEffectOnce } from '@hooks/'
 import styles from './index.module.scss'
 
-/**
- * When user visits on a mobile device, show a message with a link
- * to send the website link as email for later use
- */
 const MOBILE_WIDTH = 769
 const MAIL_SUBJECT = '[Reminder] Aegis, tiny game for AoE shortcuts'
 const MAIL_BODY = 'https://www.aegis.lol/'
 
-const MessageOnMobile = ({ children }) => {
+const ShowWarningOnMobile = () => {
 	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
 	const { width } = useWindowSize()
 	useEffectOnce(() => {
@@ -35,4 +36,4 @@ const MessageOnMobile = ({ children }) => {
 	) : null
 }
 
-export default MessageOnMobile
+export default ShowWarningOnMobile

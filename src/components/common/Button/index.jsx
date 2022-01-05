@@ -12,4 +12,8 @@ const Button = ({ primary, tertiary, children, ...rest }) => {
 	)
 }
 
-export default Button
+const ButtonRow = ({ children }) => {
+	return <div className={styles.row}>{children}</div>
+}
+
+export { Button, ButtonRow }
