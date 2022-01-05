@@ -11,10 +11,12 @@ const Keyboard = ({
 
 	return isArray ? (
 		<div className={styles.keyboard}>
-			{keyboardLayout.map((el) => (
-				<div className={styles.row}>
-					{el.map((el) => (
-						<div className={styles.key}>{el}</div>
+			{keyboardLayout.map((row, i) => (
+				<div className={styles.row} key={i}>
+					{row.map((el, j) => (
+						<div className={styles.key} key={j}>
+							{el}
+						</div>
 					))}
 				</div>
 			))}
