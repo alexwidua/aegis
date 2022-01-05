@@ -2,7 +2,7 @@
  * @file Wrap Input components to add additional styles.
  */
 
-import SegmentedInput from '@components/ui/SegmentedInput'
+import SegmentedInput from '@components/common/SegmentedInput'
 import styles from './shared.module.scss'
 
 const WrapSegmentedInputComponent = ({

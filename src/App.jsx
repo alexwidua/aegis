@@ -21,7 +21,7 @@ import {
 	OptionsView,
 	ShowWarningOnMobileView
 } from '@views'
-import ModalWindow from './components/Modal'
+import ModalWindow from './components/layout/Modal'
 import Modal from 'react-modal'
 import { LOCAL_STORAGE_KEY, KEYBOARD_DEFAULT_LAYOUTS } from '@store/constants'
 import styles from './app.module.scss'

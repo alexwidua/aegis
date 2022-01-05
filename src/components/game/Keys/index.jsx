@@ -4,7 +4,7 @@
 
 import useStore from '@store'
 import { useGameState } from '@hooks'
-import styles from './index.module.scss'
+import styles from './keys.module.scss'
 
 const Keys = () => {
 	const { keyPressed, score, gameState, showLabeledKeys } = useStore(

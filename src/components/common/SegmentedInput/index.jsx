@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
-import styles from './segmented-input.module.scss'
+import styles from './index.module.scss'
 
 const ITEM_ID_DATA_ATTRIBUTE_NAME = 'data-segmented-input-item-id'
 
-const SegmentedControls = ({
+const SegmentedInput = ({
 	name,
 	value,
 	options,
@@ -73,4 +73,4 @@ const SegmentedControls = ({
 	)
 }
 
-export default SegmentedControls
+export default SegmentedInput

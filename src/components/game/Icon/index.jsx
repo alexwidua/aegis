@@ -5,7 +5,7 @@
 import useStore from '@store'
 import { useGameState } from '@hooks'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import styles from './index.module.scss'
+import styles from './icon.module.scss'
 
 const IconSingle = () => {
 	const score = useStore((state) => state.score)

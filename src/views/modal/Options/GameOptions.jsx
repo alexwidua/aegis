@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import useStore from '@store'
-import Checkbox from '@components/Checkbox'
+import Checkbox from '@components/common/Checkbox'
 import { WrapSegmentedInputComponent, WrapCheckboxComponent } from './shared'
 import styles from './gameOptions.module.scss'
 

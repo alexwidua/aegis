@@ -1,5 +1,5 @@
 import { roundToTwoDecimals } from '@utils/math'
-import styles from './index.module.scss'
+import styles from './table.module.scss'
 
 const Table = ({ children }) => {
 	return <div className={styles.container}>{children}</div>
