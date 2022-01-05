@@ -3,6 +3,7 @@
 	"version": "0.6.4",
 	"private": true,
 	"dependencies": {
+		"@craco/craco": "^6.4.3",
 		"node-sass": "^7.0.1",
 		"postcss-scss": "^4.0.2",
 		"react": "^17.0.2",
@@ -15,9 +16,8 @@
 		"zustand": "^3.6.8"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"start": "craco start",
+		"build": "craco build",
 		"eject": "react-scripts eject",
 		"fix-css": "stylelint --fix 'src/**/*.scss' 'src/**/*.css'"
 	},
