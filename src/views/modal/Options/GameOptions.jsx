@@ -12,6 +12,9 @@ import IconChinese from '@assets/icons/flags/chinese.png'
 import IconDelhi from '@assets/icons/flags/delhi.png'
 import IconAbbasid from '@assets/icons/flags/abbasid.png'
 
+import SingleIcon from '@assets/icons/ui/single.svg'
+import GridIcon from '@assets/icons/ui/grid.svg'
+
 const GameOptions = () => {
 	/**
 	 * Get all option values and setters from Zustand
@@ -68,27 +71,27 @@ const GameOptions = () => {
 				onValueChange={(value) => handleFilter('group', value)}
 				options={[
 					{
-						children: `<img src="${IconGeneric}" alt="Flag"/>`,
+						icon: IconGeneric,
 						value: 'GENERIC'
 					},
 					{
-						children: `<img src="${IconMongol}" alt="Flag"/>`,
+						icon: IconMongol,
 						value: 'MONGOL'
 					},
 					{
-						children: `<img src="${IconRus}" alt="Flag"/>`,
+						icon: IconRus,
 						value: 'RUS'
 					},
 					{
-						children: `<img src="${IconChinese}" alt="Flag"/>`,
+						icon: IconChinese,
 						value: 'CHINESE'
 					},
 					{
-						children: `<img src="${IconDelhi}" alt="Flag"/>`,
+						icon: IconDelhi,
 						value: 'DELHI'
 					},
 					{
-						children: `<img src="${IconAbbasid}" alt="Flag"/>`,
+						icon: IconAbbasid,
 						value: 'ABBASID'
 					}
 				]}
@@ -135,8 +138,12 @@ const GameOptions = () => {
 				value={iconDisplayStyle}
 				onValueChange={(value) => handleSetIconDisplayStyle(value)}
 				options={[
-					{ children: 'Single icon', value: 'SINGLE' },
-					{ children: 'Spatial grid', value: 'GRID' }
+					{
+						children: 'Single',
+						value: 'SINGLE',
+						icon: SingleIcon
+					},
+					{ children: 'Show grid', value: 'GRID', icon: GridIcon }
 				]}
 			/>
 		</div>

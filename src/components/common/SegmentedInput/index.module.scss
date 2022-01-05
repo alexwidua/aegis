@@ -81,3 +81,13 @@
 .segmented-input:hover .border {
 	border: 1px solid rgba(255, 255, 255, 0.15);
 }
+
+.icon {
+	max-height: 0.875rem;
+
+	&.gap {
+		margin-right: 0.5rem;
+	}
+
+	stroke: #fff !important;
+}

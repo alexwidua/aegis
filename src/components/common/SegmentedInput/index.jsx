@@ -41,7 +41,9 @@ const SegmentedInput = ({
 				{options.map((option, i) => {
 					const children =
 						typeof option.children === 'undefined'
-							? `${option.value}`
+							? option.icon
+								? null
+								: `${option.value}`
 							: option.children
 
 					return (
@@ -60,10 +62,18 @@ const SegmentedInput = ({
 									[ITEM_ID_DATA_ATTRIBUTE_NAME]: `${i}`
 								}}
 							/>
-							<div
-								className={styles.children}
-								dangerouslySetInnerHTML={{ __html: children }}
-							/>
+							<div className={styles.children}>
+								{option.icon && (
+									<img
+										className={`
+										${styles.icon}
+										${children ? styles.gap : null}`}
+										src={option.icon}
+										alt={name}
+									/>
+								)}
+								{children && children}
+							</div>
 						</div>
 					)
 				})}

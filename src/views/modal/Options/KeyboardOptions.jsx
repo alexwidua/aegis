@@ -183,7 +183,7 @@ const KeyboardOptions = () => {
 				</div>
 				<WrapSegmentedInputComponent
 					name={`d`}
-					label={`Show icon overlay`}
+					label={`Show building icons`}
 					value={showKeyboardIconOverlay}
 					onValueChange={(value) => setShowKeyboardIconOverlay(value)}
 					options={[
