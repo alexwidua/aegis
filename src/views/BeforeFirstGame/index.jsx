@@ -40,8 +40,11 @@ const BeforeFirstGame = () => {
 		<div className={styles.container}>
 			<div>
 				<h2>
-					Your keyboard layout is set to <span>{currentLayout}</span>,
-					is that correct?
+					The keyboard layout is set to{' '}
+					<span>
+						{currentLayout === 'NULL' ? 'Custom' : currentLayout}
+					</span>
+					, is that correct?
 				</h2>
 			</div>
 			<GameMenu
