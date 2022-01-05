@@ -2,7 +2,7 @@ import useStore from '@store'
 import buildings from '@assets/buildings'
 
 const useBuilding = (buildingName) => {
-	const currentKeyboardLayout = useStore((state) => state.keyboardMap)
+	const currentKeyboardLayout = useStore((state) => state.keyboardLayout)
 	const matchingBuilding =
 		buildings?.find((el) => buildingName === el.name) || null
 

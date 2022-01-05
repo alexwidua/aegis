@@ -7,20 +7,20 @@ import { useGameState } from '@hooks'
 import styles from './index.module.scss'
 
 const Keys = () => {
-	const { keyPressed, score, gameState, showKeyLabels } = useStore(
+	const { keyPressed, score, gameState, showLabeledKeys } = useStore(
 		(state) => ({
 			keyPressed: state.keyPressed,
 			score: state.score,
 			gameState: state.gameState,
-			showKeyLabels: state.showKeyLabels
+			showLabeledKeys: state.showLabeledKeys
 		})
 	)
 	const { firstKey, secondKey, playerKeyIncorrect } = useGameState()
 	const shortcuts = [firstKey, secondKey]
 	const keyLabels =
-		showKeyLabels === 'SHOW'
+		showLabeledKeys === 'SHOW'
 			? styles.labeled
-			: showKeyLabels === 'FADE_IN'
+			: showLabeledKeys === 'FADE_IN'
 			? 'fade-in'
 			: null
 

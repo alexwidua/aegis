@@ -41,8 +41,8 @@ const IconSingle = () => {
 }
 
 const IconGrid = () => {
-	const { keyboardMap } = useStore((state) => ({
-		keyboardMap: state.keyboardMap
+	const { keyboardLayout } = useStore((state) => ({
+		keyboardLayout: state.keyboardLayout
 	}))
 	const { building, keyPosition, playerSecondKeyCorrect } = useGameState()
 
@@ -57,7 +57,7 @@ const IconGrid = () => {
 				const isAge = parseInt(firstKeyPosition[1]) === age
 				return (
 					<div className={styles.ages} key={age}>
-						{keyboardMap.map((el, row) => {
+						{keyboardLayout.map((el, row) => {
 							return (
 								<div className={styles.row} key={row}>
 									{el.map((el, col) => {

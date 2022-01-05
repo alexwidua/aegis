@@ -25,7 +25,7 @@ const Game = () => {
 	}))
 
 	const {
-		handleSetStartTime,
+		setStartTime,
 		handleFirstKeyCorrect,
 		handleSecondKeyCorrect,
 		handleKeyIncorrect,
@@ -34,7 +34,7 @@ const Game = () => {
 		handleGameEnd,
 		handleKeyPressed
 	} = useStore((state) => ({
-		handleSetStartTime: state.handleSetStartTime,
+		setStartTime: state.setStartTime,
 		handleFirstKeyCorrect: state.handleFirstKeyCorrect,
 		handleSecondKeyCorrect: state.handleSecondKeyCorrect,
 		handleKeyIncorrect: state.handleKeyIncorrect,
@@ -59,7 +59,7 @@ const Game = () => {
 	const _keyPressed = useKeyPress((key) => {
 		if (!isPlaying) return
 		if (!startTime) {
-			handleSetStartTime()
+			setStartTime()
 		}
 
 		if (gameAwaitingInput) {

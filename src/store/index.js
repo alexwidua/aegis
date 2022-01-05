@@ -35,17 +35,19 @@ const useStore = create((set) => ({
 	startTime: 0,
 	promptStartTime: 0,
 	promptTimes: {},
-	handleSetStartTime: () =>
-		set(() => ({ startTime: currentTimeInSeconds() })),
+	setStartTime: () => set(() => ({ startTime: currentTimeInSeconds() })),
 	incorrectInputs: 0,
 
 	/**
 	 * Game options.
 	 * These values are exposed and set via the options modal.
 	 */
+	showBeforeFirstGame: true, // used to show a message asking about the correct keyboard settings, if user plays for the first time
+	setShowBeforeFirstGame: (value) =>
+		set(() => ({ showBeforeFirstGame: value })),
 	updateGameSettingsFromLocalStorage: (value) => set(() => value),
 	scoreLimit: 25,
-	handleSetScoreLimit: (value) => set(() => ({ scoreLimit: value })),
+	setScoreLimit: (value) => set(() => ({ scoreLimit: value })),
 	buildingFilter: {
 		types: {
 			economic: true,
@@ -56,29 +58,28 @@ const useStore = create((set) => ({
 		ages: { I: true, II: false, III: false, IV: false },
 		group: 'GENERIC'
 	},
-	handleSetBuildingFilter: (value) => set(() => ({ buildingFilter: value })),
-	iconStyle: 'SINGLE',
-	handleSetPromptStyle: (value) => set(() => ({ iconStyle: value })),
-	showKeyLabels: 'FADE_IN',
-	handleSetShowKeyLabels: (value) => set(() => ({ showKeyLabels: value })),
-	// Keyboard settings
-	userHasInteractedWithKeyMap: false,
-	keyboardMap: [
+	setBuildingFilter: (value) => set(() => ({ buildingFilter: value })),
+	iconDisplayStyle: 'SINGLE',
+	handleSetIconDisplayStyle: (value) =>
+		set(() => ({ iconDisplayStyle: value })),
+	showLabeledKeys: 'FADE_IN',
+	setShowLabeledKeys: (value) => set(() => ({ showLabeledKeys: value })),
+	keyboardLayout: [
 		['q', 'w', 'e', 'r'],
 		['a', 's', 'd', 'f'],
-		['y', 'x', 'c', 'v']
+		['z', 'x', 'c', 'v']
 	],
-	handleSetIndividualKey: (column, row, value) =>
+	setIndividualKey: (column, row, value) =>
 		set((state) => {
-			const arr = [...state.keyboardMap]
+			const arr = [...state.keyboardLayout]
 			arr[column][row] = value
 			return {
-				keyboardMap: arr
+				keyboardLayout: arr
 			}
 		}),
-	handleSetKeyMapDefault: (layout) =>
+	setEntireKeyboardLayout: (layout) =>
 		set(() => {
-			return { keyboardMap: layout }
+			return { keyboardLayout: layout }
 		}),
 
 	/**

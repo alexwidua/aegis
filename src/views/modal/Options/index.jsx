@@ -6,7 +6,7 @@
 
 import useStore from '@store'
 import { useEffect } from 'react'
-import { useEffectOnce, useLocalStorage } from '@hooks'
+import { useLocalStorage } from '@hooks'
 import GameOptions from './GameOptions'
 import KeyboardOptions from './KeyboardOptions'
 import { LOCAL_STORAGE_KEY } from '@store/constants'
@@ -17,57 +17,53 @@ const OptionsView = () => {
 	 * Let's get all option values and option setters from our useStore hook.
 	 */
 	const {
-		keyboardMap,
+		optionsModalOpen,
+		isPlaying,
+		showBeforeFirstGame,
+		setShowBeforeFirstGame,
+		keyboardLayout,
 		scoreLimit,
-		showKeyLabels,
-		iconStyle,
-		buildingFilter,
-		updateGameSettingsFromLocalStorage
+		showLabeledKeys,
+		iconDisplayStyle,
+		buildingFilter
 	} = useStore((state) => ({
-		keyboardMap: state.keyboardMap,
+		optionsModalOpen: state.optionsModalOpen,
+		showBeforeFirstGame: state.showBeforeFirstGame,
+		setShowBeforeFirstGame: state.setShowBeforeFirstGame,
+		isPlaying: state.isPlaying,
+		keyboardLayout: state.keyboardLayout,
 		scoreLimit: state.scoreLimit,
-		showKeyLabels: state.showKeyLabels,
-		iconStyle: state.iconStyle,
-		buildingFilter: state.buildingFilter,
-		updateGameSettingsFromLocalStorage:
-			state.updateGameSettingsFromLocalStorage
+		showLabeledKeys: state.showLabeledKeys,
+		iconDisplayStyle: state.iconDisplayStyle,
+		buildingFilter: state.buildingFilter
 	}))
 	const { ages, types, group } = buildingFilter
 
 	/**
-	 * Handle local storage.
+	 * Update local storage when options change.
 	 */
-	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		LOCAL_STORAGE_KEY,
-		''
-	)
-
+	// eslint-disable-next-line no-unused-vars
+	const [localStorageOptions, setLocalStorageOptions] =
+		useLocalStorage(LOCAL_STORAGE_KEY)
 	const gameOptions = {
+		showBeforeFirstGame,
 		scoreLimit,
 		buildingFilter,
-		showKeyLabels,
-		keyboardMap,
-		iconStyle
+		showLabeledKeys,
+		keyboardLayout,
+		iconDisplayStyle
 	}
-
-	// First, check if LOCAL_STORAGE_KEY has been set, if not populate it
-	useEffectOnce(() => {
-		if (!localStorageOptions) {
-			setLocalStorageOptions(gameOptions)
-		} else {
-			updateGameSettingsFromLocalStorage(localStorageOptions)
-		}
-	})
 
 	// Update local store when game option changes
 	useEffect(() => {
 		setLocalStorageOptions(gameOptions)
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
-		keyboardMap,
+		keyboardLayout,
 		scoreLimit,
-		showKeyLabels,
-		iconStyle,
+		showLabeledKeys,
+		iconDisplayStyle,
 		group,
 		ages.I,
 		ages.II,
@@ -78,6 +74,20 @@ const OptionsView = () => {
 		types.fortified,
 		types.research
 	])
+
+	/**
+	 * Disable the showBeforeFirstGame message if the user engages with the menu
+	 * before playing their first round.
+	 */
+	useEffect(() => {
+		if (!isPlaying && showBeforeFirstGame) {
+			setShowBeforeFirstGame(false)
+			setLocalStorageOptions({
+				gameOptions
+			})
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [optionsModalOpen])
 
 	return (
 		<div className={styles.container}>

@@ -18,22 +18,22 @@ const GameOptions = () => {
 	 */
 	const {
 		scoreLimit,
-		handleSetScoreLimit,
-		showKeyLabels,
-		handleSetShowKeyLabels,
-		iconStyle,
-		handleSetPromptStyle,
+		setScoreLimit,
+		showLabeledKeys,
+		setShowLabeledKeys,
+		iconDisplayStyle,
+		handleSetIconDisplayStyle,
 		buildingFilter,
-		handleSetBuildingFilter
+		setBuildingFilter
 	} = useStore((state) => ({
 		scoreLimit: state.scoreLimit,
-		handleSetScoreLimit: state.handleSetScoreLimit,
-		showKeyLabels: state.showKeyLabels,
-		handleSetShowKeyLabels: state.handleSetShowKeyLabels,
-		iconStyle: state.iconStyle,
-		handleSetPromptStyle: state.handleSetPromptStyle,
+		setScoreLimit: state.setScoreLimit,
+		showLabeledKeys: state.showLabeledKeys,
+		setShowLabeledKeys: state.setShowLabeledKeys,
+		iconDisplayStyle: state.iconDisplayStyle,
+		handleSetIconDisplayStyle: state.handleSetIconDisplayStyle,
 		buildingFilter: state.buildingFilter,
-		handleSetBuildingFilter: state.handleSetBuildingFilter
+		setBuildingFilter: state.setBuildingFilter
 	}))
 	const { ages, types, group } = buildingFilter
 
@@ -45,9 +45,9 @@ const GameOptions = () => {
 			const obj = buildingFilter
 			if (isCheckbox) obj[category][key] = !obj[category][key]
 			else obj[category] = key
-			handleSetBuildingFilter(obj)
+			setBuildingFilter(obj)
 		},
-		[buildingFilter, handleSetBuildingFilter]
+		[buildingFilter, setBuildingFilter]
 	)
 
 	return (
@@ -58,7 +58,7 @@ const GameOptions = () => {
 				name={`buildings`}
 				label={`Number of buildings each game`}
 				value={scoreLimit}
-				onValueChange={(value) => handleSetScoreLimit(value)}
+				onValueChange={(value) => setScoreLimit(value)}
 				options={[{ value: 25 }, { value: 50 }, { value: 100 }]}
 			/>
 			<WrapSegmentedInputComponent
@@ -121,8 +121,8 @@ const GameOptions = () => {
 			<WrapSegmentedInputComponent
 				name={`showLabels`}
 				label={`Show key labels on buttons`}
-				value={showKeyLabels}
-				onValueChange={(value) => handleSetShowKeyLabels(value)}
+				value={showLabeledKeys}
+				onValueChange={(value) => setShowLabeledKeys(value)}
 				options={[
 					{ children: 'Show', value: 'SHOW' },
 					{ children: 'Fade in after 1s', value: 'FADE_IN' },
@@ -130,10 +130,10 @@ const GameOptions = () => {
 				]}
 			/>
 			<WrapSegmentedInputComponent
-				name={`iconStyle`}
-				label={`Icon style <span class='new'>New</span>`}
-				value={iconStyle}
-				onValueChange={(value) => handleSetPromptStyle(value)}
+				name={`iconDisplayStyle`}
+				label={`Icon style`}
+				value={iconDisplayStyle}
+				onValueChange={(value) => handleSetIconDisplayStyle(value)}
 				options={[
 					{ children: 'Single icon', value: 'SINGLE' },
 					{ children: 'Spatial grid', value: 'GRID' }
