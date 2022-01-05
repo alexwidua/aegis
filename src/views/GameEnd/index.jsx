@@ -3,11 +3,11 @@
  */
 
 import useStore from '@store'
-import useBuilding from '../../hooks/useBuilding'
+import useBuilding from '@hooks/useBuilding'
 import Message from '@components/common/Message'
 import { Table, TableRow, TableItem } from '@components/gameEnd/Table'
 import { GameMenu, GameFooter } from '@views/shared'
-import { MIN_BUILDING_TRESHOLD } from './constants'
+import { MIN_BUILDING_TRESHOLD } from '@store/constants'
 import styles from './index.module.scss'
 
 const GameEnd = () => {

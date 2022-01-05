@@ -9,9 +9,8 @@ import { useEffect } from 'react'
 import { useEffectOnce, useLocalStorage } from '@hooks'
 import GameOptions from './GameOptions'
 import KeyboardOptions from './KeyboardOptions'
+import { LOCAL_STORAGE_KEY } from '@store/constants'
 import styles from './index.module.scss'
-
-const LOCAL_STORAGE_KEY = 'aoe-shortcuts-v060'
 
 const OptionsView = () => {
 	/**
