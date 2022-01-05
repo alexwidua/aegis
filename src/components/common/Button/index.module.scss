@@ -6,6 +6,7 @@
 	border-radius: var(--border-radius);
 	color: var(--color-font-primary);
 	cursor: pointer;
+	font-family: var(--sans-serif-font);
 	font-size: 1.125rem;
 	font-weight: 400;
 
@@ -40,6 +41,7 @@
 
 .row {
 	display: flex;
+	width: 80%;
 
 	& button:first-child {
 		margin-right: var(--horizontal-gap);
