@@ -1,28 +1,37 @@
-import { useState } from 'react'
+/**
+ * @file Returns a KeyboardLayoutMap, if feature is supported by browser.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Keyboard/getLayoutMap
+ */
 
-function useCopyToClipboard() {
-	const [copiedText, setCopiedText] = useState(null)
+import { useState, useEffect } from 'react'
 
-	const copy = async (text) => {
-		if (!navigator?.keyboard) {
-			console.warn('Clipboard not supported')
-			return false
+function useKeyboardLayout() {
+	const [keyboardLayout, setKeyboardLayout] = useState(null)
+
+	useEffect(() => {
+		const detectLayout = async () => {
+			if (!navigator?.keyboard) {
+				console.warn(
+					`Couldn't detect keyboard layout because your browser doesn't support this (experimental) feature.`
+				)
+				return false
+			}
+
+			try {
+				const keyboardLayout = await navigator.keyboard.getLayoutMap()
+				setKeyboardLayout(keyboardLayout)
+				return keyboardLayout
+			} catch (error) {
+				console.warn(`Couldn't get keyboard layout`, error)
+				setKeyboardLayout(null)
+				return false
+			}
 		}
 
-		// Try to save to clipboard then save it in the state if worked
-		try {
-			const keyboardLayout = await navigator.keyboard.getLayoutMap()
-			setCopiedText(keyboardLayout)
-			console.log(keyboardLayout)
-			return keyboardLayout
-		} catch (error) {
-			console.warn('Copy failed', error)
-			setCopiedText(null)
-			return false
-		}
-	}
+		detectLayout()
+	}, [])
 
-	return copy
+	return keyboardLayout
 }
 
-export default useCopyToClipboard
+export default useKeyboardLayout

@@ -2,52 +2,27 @@ import useStore from '@store'
 import { useState, useRef, useCallback } from 'react'
 import { useOnClickOutside, useKeyPress, useEffectOnce } from '@hooks'
 import { WrapSegmentedInputComponent } from './shared'
+import { deriveKeyboardLayout } from '@utils/keyboard'
 import styles from './keyboardOptions.module.scss'
 
 // Assets
 import buildings from '@assets/buildings'
 
-const getKeyboardDefaults = () => ({
-	QWERTY: [
-		['q', 'w', 'e', 'r'],
-		['a', 's', 'd', 'f'],
-		['z', 'x', 'c', 'v']
-	],
-	QWERTZ: [
-		['q', 'w', 'e', 'r'],
-		['a', 's', 'd', 'f'],
-		['y', 'x', 'c', 'v']
-	],
-	AZERTY: [
-		['a', 'z', 'e', 'r'],
-		['q', 's', 'd', 'f'],
-		['w', 'x', 'c', 'v']
-	],
-	DVORAK: [
-		["'", ',', '.', 'p'],
-		['a', 'o', 'e', 'u'],
-		[';', 'q', 'j', 'k']
-	],
-	NULL: [
-		['?', '?', '?', '?'],
-		['?', '?', '?', '?'],
-		['?', '?', '?', '?']
-	]
-})
+import { KEYBOARD_DEFAULT_LAYOUTS } from '@store/constants'
 
 const KeyboardOptions = () => {
 	/**
 	 * Get all option values and setters from Zustand
 	 */
 	const {
-		keyboardMap,
-		handleSetIndividualKey,
-		handleSetKeyMapDefault,
+		keyboardLayout,
+		setIndividualKey,
+		setEntireKeyboardLayout,
 		buildingFilter
 	} = useStore((state) => ({
-		keyboardMap: state.keyboardMap,
-		handleSetIndividualKey: state.handleSetIndividualKey,
-		handleSetKeyMapDefault: state.handleSetKeyMapDefault,
+		keyboardLayout: state.keyboardLayout,
+		setIndividualKey: state.setIndividualKey,
+		setEntireKeyboardLayout: state.setEntireKeyboardLayout,
 		buildingFilter: state.buildingFilter
 	}))
 
@@ -72,39 +47,33 @@ const KeyboardOptions = () => {
 
 		// If the new key is already mapped, re-move the mapping from the other occurence
 		let isDuplicate
-		keyboardMap.forEach((row, i) => {
+		keyboardLayout.forEach((row, i) => {
 			const duplicate = row.indexOf(key)
 			if (duplicate > -1) {
 				isDuplicate = [i, duplicate]
 			}
 		})
 		if (isDuplicate) {
-			handleSetIndividualKey(isDuplicate[0], isDuplicate[1], '?')
+			setIndividualKey(isDuplicate[0], isDuplicate[1], '?')
 		}
-		handleSetIndividualKey(row, col, key)
+		setIndividualKey(row, col, key)
 		setKeyCanBeMapped('')
 	})
 
 	/**
 	 * Handle keyboard defaul layout menu
 	 */
-	// Check if one of the current layouts matches one of the default profiles
-	const deriveKeyboardLayoutFromMapping = useCallback(() => {
-		const defaultLayouts = getKeyboardDefaults()
-		return Object.keys(defaultLayouts).find(
-			(key) =>
-				JSON.stringify(defaultLayouts[key]) ===
-				JSON.stringify(keyboardMap)
-		)
-	}, [keyboardMap])
-
-	const handleKeyboardLayoutChange = (layout) => {
-		const defaultLayouts = getKeyboardDefaults()
-		// If the user clicks the Custom button, reset all key mappings
-		if (layout === 'CUSTOM') {
-			handleSetKeyMapDefault(defaultLayouts.undefined)
-		} else handleSetKeyMapDefault(defaultLayouts[layout])
-	}
+	const handleKeyboardLayoutChange = useCallback(
+		(layout) => {
+			const defaultLayouts = KEYBOARD_DEFAULT_LAYOUTS()
+			// If the user clicks the Custom button, reset all key mappings
+			if (layout === 'CUSTOM') {
+				setEntireKeyboardLayout(defaultLayouts.undefined)
+			} else setEntireKeyboardLayout(defaultLayouts[layout])
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
 
 	/**
 	 * Misc settings
@@ -137,18 +106,23 @@ const KeyboardOptions = () => {
 				<h3 style={{ alignSelf: 'flex-start' }}>Current layout</h3>
 				<WrapSegmentedInputComponent
 					name={`keymapOverlay`}
-					value={deriveKeyboardLayoutFromMapping() || 'NULL'}
+					value={
+						deriveKeyboardLayout(
+							KEYBOARD_DEFAULT_LAYOUTS(),
+							keyboardLayout
+						) || 'NULL'
+					}
 					onValueChange={(value) => handleKeyboardLayoutChange(value)}
 					options={[
 						{ children: 'QWERTY', value: 'QWERTY' },
-						{ children: 'QWERTY', value: 'QWERTZ' },
+						{ children: 'QWERTZ', value: 'QWERTZ' },
 						{ children: 'AZERTY', value: 'AZERTY' },
 						{ children: 'Dvorak', value: 'DVORAK' },
 						{ children: 'Custom', value: 'NULL' }
 					]}
 				/>
 				<div className={styles.grid} ref={gridRef}>
-					{keyboardMap.map((el, row) => {
+					{keyboardLayout.map((el, row) => {
 						return (
 							<div className={styles.row} key={row}>
 								{el.map((el, col) => {

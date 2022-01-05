@@ -6,17 +6,24 @@
 
 import game from '@game/'
 import useStore from '@store/'
-import { useGameState, useEffectOnce, useLocalStorage } from '@hooks/'
+import { useEffect } from 'react'
 import {
-	BeforeGameStart,
-	Game,
-	GameEnd,
-	Options,
-	ShowWarningOnMobile
+	useGameState,
+	useEffectOnce,
+	useLocalStorage,
+	useKeyboardLayout
+} from '@hooks/'
+import {
+	TitleScreenView,
+	BeforeFirstGame,
+	GameView,
+	GameEndView,
+	OptionsView,
+	ShowWarningOnMobileView
 } from '@views'
 import ModalWindow from './components/Modal'
 import Modal from 'react-modal'
-import { LOCAL_STORAGE_KEY } from '@store/constants'
+import { LOCAL_STORAGE_KEY, KEYBOARD_DEFAULT_LAYOUTS } from '@store/constants'
 import styles from './app.module.scss'
 
 Modal.setAppElement('#root')
@@ -31,22 +38,26 @@ const App = () => {
 		setOptionsModalOpen,
 		isPlaying,
 		endResult,
+		showBeforeFirstGame,
 		defaultGameOptions,
-		updateGameSettingsFromLocalStorage
+		updateGameSettingsFromLocalStorage,
+		setEntireKeyboardLayout
 	} = useStore((state) => ({
 		optionsModalOpen: state.optionsModalOpen,
 		setOptionsModalOpen: state.setOptionsModalOpen,
 		isPlaying: state.isPlaying,
 		endResult: state.endResult,
+		showBeforeFirstGame: state.showBeforeFirstGame,
 		defaultGameOptions: {
 			scoreLimit: state.scoreLimit,
 			buildingFilter: state.buildingFilter,
-			showKeyLabels: state.showKeyLabels,
-			keyboardMap: state.keyboardMap,
-			iconStyle: state.iconStyle
+			showLabeledKeys: state.showLabeledKeys,
+			keyboardLayout: state.keyboardLayout,
+			iconDisplayStyle: state.iconDisplayStyle
 		},
 		updateGameSettingsFromLocalStorage:
-			state.updateGameSettingsFromLocalStorage
+			state.updateGameSettingsFromLocalStorage,
+		setEntireKeyboardLayout: state.setEntireKeyboardLayout
 	}))
 	const { gameEnded } = useGameState()
 
@@ -67,17 +78,56 @@ const App = () => {
 		}
 	})
 
+	/**
+	 * Automatically detect and set keyboard layout, if function is supported
+	 */
+	const detectedKeyboardLayout = useKeyboardLayout()
+	useEffect(() => {
+		if (showBeforeFirstGame && detectedKeyboardLayout) {
+			// Naively check current keyboard layout
+			const isQWERT = ['q', 'w', 'e', 'r', 't']
+			const isAZERT = ['a', 'z', 'e', 'r', 't']
+
+			const keys = [
+				detectedKeyboardLayout.get('KeyQ'),
+				detectedKeyboardLayout.get('KeyW'),
+				detectedKeyboardLayout.get('KeyE'),
+				detectedKeyboardLayout.get('KeyR'),
+				detectedKeyboardLayout.get('KeyT')
+			]
+			const keyZ = detectedKeyboardLayout.get('KeyZ')
+
+			if (keys.every((key, i) => key === isQWERT[i])) {
+				if (keyZ === 'z') {
+					setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().QWERTY)
+				} else {
+					setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().QWERTZ)
+				}
+			} else if (
+				keys.every((key, i) => key === isAZERT[i]) &&
+				keyZ === 'y'
+			) {
+				setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().AZERTY)
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [detectedKeyboardLayout])
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				{isPlaying && !gameEnded ? (
-					<Game />
+					showBeforeFirstGame ? (
+						<BeforeFirstGame />
+					) : (
+						<GameView />
+					)
 				) : !isPlaying && gameEnded ? (
-					<GameEnd />
+					<GameEndView />
 				) : endResult ? (
-					<GameEnd />
+					<GameEndView />
 				) : (
-					<BeforeGameStart />
+					<TitleScreenView />
 				)}
 			</div>
 
@@ -85,9 +135,9 @@ const App = () => {
 			<ModalWindow
 				isOpen={optionsModalOpen}
 				onRequestClose={() => setOptionsModalOpen(false)}>
-				<Options />
+				<OptionsView />
 			</ModalWindow>
-			<ShowWarningOnMobile />
+			<ShowWarningOnMobileView />
 		</div>
 	)
 }
