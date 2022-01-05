@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.7.1
+
+-   `style:` Add keyboard to initial keyboard layout prompt
+
 ## 0.7.0
 
 -   `feat:` Try to detect keyboard layout upon first launch, if supported by browser
