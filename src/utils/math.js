@@ -1,3 +1,5 @@
+const roundToTwoDecimals = (value) => Math.round(value * 100) / 100
+
 const calcActionsPerMinute = (seconds, actions) => {
 	const aps = (actions + 1) / seconds
 	return aps * 60
@@ -32,6 +34,7 @@ const randArrayFrom = (arr, length) => {
 }
 
 export {
+	roundToTwoDecimals,
 	calcActionsPerMinute,
 	calcPercentage,
 	calcPercentageRemainder,

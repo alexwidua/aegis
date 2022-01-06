@@ -1,0 +1,12 @@
+.message {
+	width: 100%;
+
+	margin-bottom: var(--horizontal-gap);
+	background: var(--color-lavender);
+	border-radius: var(--border-radius-lg);
+	font-weight: 600;
+}
+
+.inner {
+	padding: 1rem;
+}

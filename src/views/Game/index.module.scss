@@ -1,0 +1,64 @@
+.container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.game {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	height: 12.5rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	transform: translate3d(-50%, -50%, 0);
+
+	// Push down a bit if grid to better reflect grid position in-game
+	&.grid {
+		top: 60% !important;
+	}
+
+	.debug & {
+		border: 1px solid blue;
+	}
+}
+
+.bottom {
+	position: absolute;
+	bottom: 6rem;
+	left: 50%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	transform: translate3d(-50%, 0, 0);
+
+	& span:first-child {
+		margin-bottom: var(--vertical-gap);
+	}
+}
+
+// Catch error if user hasn't selected any building
+// by selecting neither any age nor type.
+.error {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	& h3 {
+		margin: 0 0 1rem 0;
+	}
+	& p {
+		margin: 0;
+		color: var(--color-font-tertiary);
+	}
+}

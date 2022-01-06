@@ -1,23 +1,21 @@
 /**
  * @file Hook to better access common game states
  */
-import useStore from '../store/store'
+import useStore from '../store'
 
 const useGameState = () => {
-	const { score, scoreLimit, building, gameState, keyMap } = useStore(
-		(state) => ({
-			score: state.score,
-			scoreLimit: state.scoreLimit,
-			gameState: state.gameState,
-			building: {
-				preemptive: state.recipe
-					? state.recipe[state.tickPreemptive]
-					: null,
-				current: state.recipe ? state.recipe[state.tick] : null
-			},
-			keyMap: state.keyMap
-		})
-	)
+	const { building, gameState, keyboardLayout } = useStore((state) => ({
+		score: state.score,
+		scoreLimit: state.scoreLimit,
+		gameState: state.gameState,
+		building: {
+			preemptive: state.recipe
+				? state.recipe[state.tickPreemptive]
+				: null,
+			current: state.recipe ? state.recipe[state.tick] : null
+		},
+		keyboardLayout: state.keyboardLayout
+	}))
 
 	/**
 	 * current vs. preemptive value
@@ -50,12 +48,12 @@ const useGameState = () => {
 	}
 
 	const firstKey = keyPosition.current.firstKey
-		? keyMap[keyPosition.current.firstKey[0]][
+		? keyboardLayout[keyPosition.current.firstKey[0]][
 				keyPosition.current.firstKey[1]
 		  ]
 		: null
 	const secondKey = keyPosition.current.secondKey
-		? keyMap[keyPosition.current.secondKey[0]][
+		? keyboardLayout[keyPosition.current.secondKey[0]][
 				keyPosition.current.secondKey[1]
 		  ]
 		: null

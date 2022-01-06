@@ -1,194 +1,143 @@
 /**
- * @file App, collects all views
+ * @file Main app file that collects all views.
+ *
+ * This app consist of multiple views, each of which corresponds to the current game view. Conceptually, the views are similar to routes.
  */
-import { useState, useEffect } from 'react'
-import styles from './app.module.scss'
 
-import useStore from './store/store'
-import useGameLogic from './game/useGameLogic'
+import game from '@game/'
+import useStore from '@store/'
+import { useEffect } from 'react'
 import {
 	useGameState,
+	useEffectOnce,
 	useLocalStorage,
-	useWindowSize,
-	useEffectOnce
-} from './hooks/'
-
-import { InitialView, GameView, ResultView, OptionsView } from './views'
+	useKeyboardLayout
+} from '@hooks/'
+import {
+	TitleScreenView,
+	BeforeFirstGame,
+	GameView,
+	GameEndView,
+	OptionsView,
+	ShowWarningOnMobileView
+} from '@views'
+import ModalWindow from './components/layout/Modal'
 import Modal from 'react-modal'
-import ModalWindow from './components/Modal'
-import Button from './components/ui/Button'
+import { LOCAL_STORAGE_KEY, KEYBOARD_DEFAULT_LAYOUTS } from '@store/constants'
+import styles from './app.module.scss'
 
-import HRE from './assets/icons/flags/hre.png'
-import Wood from './assets/icons/misc/wood.png'
-import Gold from './assets/icons/misc/gold.png'
-
-const MOBILE_WIDTH = 769
 Modal.setAppElement('#root')
 
 const App = () => {
 	/**
-	 * Game-related states
+	 * 1. Set up game and get game states to delegate views.
 	 */
-	useGameLogic()
-	const { isPlaying, endResult, handleGameStart } = useStore((state) => ({
+	game()
+	const {
+		optionsModalOpen,
+		setOptionsModalOpen,
+		isPlaying,
+		endResult,
+		showBeforeFirstGame,
+		defaultGameOptions,
+		updateGameSettingsFromLocalStorage,
+		setEntireKeyboardLayout
+	} = useStore((state) => ({
+		optionsModalOpen: state.optionsModalOpen,
+		setOptionsModalOpen: state.setOptionsModalOpen,
 		isPlaying: state.isPlaying,
 		endResult: state.endResult,
-		handleGameStart: state.handleGameStart
-	}))
-	const { gameEnded, playerSecondKeyCorrect } = useGameState()
-
-	/**
-	 * UI states
-	 */
-	const [optionsModal, setOptionsModal] = useState(false)
-	const [showMobileOnlyMsg, setShowMobileOnlyMsg] = useState(false)
-	const { width } = useWindowSize()
-
-	/**
-	 * Local storage
-	 */
-	const {
-		updateGameSettingsFromLocalStorage,
-		scoreLimit,
-		buildingFilter,
-		showKeyLabels,
-		keyMap,
-		promptStyle
-	} = useStore((state) => ({
+		showBeforeFirstGame: state.showBeforeFirstGame,
+		defaultGameOptions: {
+			scoreLimit: state.scoreLimit,
+			buildingFilter: state.buildingFilter,
+			showLabeledKeys: state.showLabeledKeys,
+			keyboardLayout: state.keyboardLayout,
+			iconDisplayStyle: state.iconDisplayStyle
+		},
 		updateGameSettingsFromLocalStorage:
 			state.updateGameSettingsFromLocalStorage,
-		scoreLimit: state.scoreLimit,
-		buildingFilter: state.buildingFilter,
-		showKeyLabels: state.showKeyLabels,
-		keyMap: state.keyMap,
-		promptStyle: state.promptStyle
+		setEntireKeyboardLayout: state.setEntireKeyboardLayout
 	}))
+	const { gameEnded } = useGameState()
+
+	/**
+	 * 2. Check if local storage has been set.
+	 *    If yes, update game settings from local storage.
+	 *    If not, populate local storage with default game options.
+	 */
 	const [localStorageOptions, setLocalStorageOptions] = useLocalStorage(
-		'aoe-shortcuts-v060',
+		LOCAL_STORAGE_KEY,
 		''
 	)
-	const gameOptions = {
-		scoreLimit,
-		buildingFilter,
-		showKeyLabels,
-		keyMap,
-		promptStyle
-	}
 	useEffectOnce(() => {
 		if (!localStorageOptions) {
-			setLocalStorageOptions(gameOptions)
+			setLocalStorageOptions(defaultGameOptions)
 		} else {
 			updateGameSettingsFromLocalStorage(localStorageOptions)
 		}
 	})
 
-	useEffectOnce(() => {
-		if (width < MOBILE_WIDTH) setShowMobileOnlyMsg(true)
-	})
-
-	// Sync data to local storage on modal close
+	/**
+	 * Automatically detect and set keyboard layout, if function is supported
+	 */
+	const detectedKeyboardLayout = useKeyboardLayout()
 	useEffect(() => {
-		if (!optionsModal) setLocalStorageOptions(gameOptions)
+		if (showBeforeFirstGame && detectedKeyboardLayout) {
+			// Naively check current keyboard layout
+			const isQWERT = ['q', 'w', 'e', 'r', 't']
+			const isAZERT = ['a', 'z', 'e', 'r', 't']
+
+			const keys = [
+				detectedKeyboardLayout.get('KeyQ'),
+				detectedKeyboardLayout.get('KeyW'),
+				detectedKeyboardLayout.get('KeyE'),
+				detectedKeyboardLayout.get('KeyR'),
+				detectedKeyboardLayout.get('KeyT')
+			]
+			const keyZ = detectedKeyboardLayout.get('KeyZ')
+
+			if (keys.every((key, i) => key === isQWERT[i])) {
+				if (keyZ === 'z') {
+					setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().QWERTY)
+				} else {
+					setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().QWERTZ)
+				}
+			} else if (
+				keys.every((key, i) => key === isAZERT[i]) &&
+				keyZ === 'y'
+			) {
+				setEntireKeyboardLayout(KEYBOARD_DEFAULT_LAYOUTS().AZERTY)
+			}
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [optionsModal])
+	}, [detectedKeyboardLayout])
 
 	return (
-		<div
-			className={`${styles.wrapper} ${
-				playerSecondKeyCorrect ? styles.scored : null
-			}`}>
+		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				{isPlaying && !gameEnded ? (
-					<GameView />
+					showBeforeFirstGame ? (
+						<BeforeFirstGame />
+					) : (
+						<GameView />
+					)
 				) : !isPlaying && gameEnded ? (
-					<ResultView />
+					<GameEndView />
 				) : endResult ? (
-					<ResultView />
+					<GameEndView />
 				) : (
-					<InitialView />
-				)}
-				{!isPlaying && (
-					<div className={styles['button-row']}>
-						<Button
-							onClick={handleGameStart}
-							style={{ minWidth: '12rem' }}
-							primary>
-							{endResult ? 'Play again' : `Start typin'`}
-						</Button>
-						<Button
-							onClick={() => setOptionsModal(true)}
-							style={{ position: 'relative' }}>
-							Options
-							{!endResult && (
-								<span
-									className={`new`}
-									style={{
-										position: 'absolute',
-										top: '-25%',
-										fontWeight: 600
-									}}>
-									New
-								</span>
-							)}
-						</Button>
-					</div>
+					<TitleScreenView />
 				)}
 			</div>
-			{!isPlaying && <Footer />}
+
+			{/* Conditional modal windows that are detached from page */}
 			<ModalWindow
-				isOpen={optionsModal}
-				onRequestClose={() => setOptionsModal(false)}>
+				isOpen={optionsModalOpen}
+				onRequestClose={() => setOptionsModalOpen(false)}>
 				<OptionsView />
 			</ModalWindow>
-			{showMobileOnlyMsg && (
-				<DisplayMessageOnMobileOnly
-					onDiscardMessage={() => setShowMobileOnlyMsg(false)}
-				/>
-			)}
-		</div>
-	)
-}
-
-const Footer = () => {
-	return (
-		<footer className={`footer`}>
-			<ul>
-				<li>
-					Created with <img src={Wood} alt={`Wood`} /> in{' '}
-					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
-				</li>
-				<li>
-					<a href="https://github.com/alexwidua/aegis">
-						View on GitHub
-					</a>
-				</li>
-				<li>
-					<a href="https://ko-fi.com/alexwidua">Send tribute</a>
-					<img src={Gold} alt={`Gold`} />
-				</li>
-			</ul>
-		</footer>
-	)
-}
-
-/**
- * Show mobile users a message.
- */
-const MAIL_SUBJECT = '[Reminder] Aegis, tiny game for AoE shortcuts'
-const MAIL_BODY = 'https://www.aegis.lol/'
-const DisplayMessageOnMobileOnly = ({ onDiscardMessage }) => {
-	return (
-		<div className={styles['mobile-only']}>
-			<h2>
-				Aegis is a typing game that requires keyboard input and doesn't
-				work on mobile devices.
-			</h2>
-			<div>
-				<a href={`mailto:?subject=${MAIL_SUBJECT}&body=${MAIL_BODY}`}>
-					📧 Email yourself this link for later
-				</a>
-				<button onClick={onDiscardMessage}>Show game anyway</button>
-			</div>
+			<ShowWarningOnMobileView />
 		</div>
 	)
 }

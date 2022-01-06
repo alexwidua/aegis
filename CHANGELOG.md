@@ -1,5 +1,16 @@
 # Changelog
 
+### 0.7.1
+
+-   `style:` Add keyboard to initial keyboard layout prompt
+
+## 0.7.0
+
+-   `feat:` Try to detect keyboard layout upon first launch, if supported by browser
+-   `feat:` Change keyboard options menu to better reflect the current selected layout
+-   `style:` Update keyboard options menu style and animation
+-   `refactor:` Separate views into re-usable components for easier maintainability in the future
+
 ### 0.6.4
 
 -   `feat:` Add Dvorak keyboard layout

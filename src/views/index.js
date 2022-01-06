@@ -1,6 +1,15 @@
-import InitialView from './InitialView'
-import GameView from './GameView'
-import ResultView from './ResultView'
-import OptionsView from './OptionsView'
+import TitleScreenView from './TitleScreen'
+import BeforeFirstGame from './BeforeFirstGame'
+import GameView from './Game'
+import GameEndView from './GameEnd'
+import OptionsView from './modal/Options'
+import ShowWarningOnMobileView from './modal/ShowWarningOnMobile'
 
-export { InitialView, GameView, ResultView, OptionsView }
+export {
+	TitleScreenView,
+	BeforeFirstGame,
+	GameView,
+	GameEndView,
+	OptionsView,
+	ShowWarningOnMobileView
+}

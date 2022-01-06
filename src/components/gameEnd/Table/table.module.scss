@@ -1,0 +1,107 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: calc(var(--vertical-gap) * 2);
+	text-align: center;
+}
+
+.row {
+	display: flex;
+	width: 100%;
+	margin-bottom: var(--horizontal-gap);
+
+	& div:not(:last-child) {
+		margin-right: var(--horizontal-gap);
+	}
+}
+
+.item {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 3rem;
+	background: var(--color-background);
+	border-radius: var(--border-radius-lg);
+
+	& h2 {
+		margin: 0 !important;
+		margin-bottom: 1rem !important;
+		color: var(--color-primary);
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	& span {
+		font-size: var(--size-font-sm);
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		opacity: 0.4;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	&.disabled {
+		opacity: 0.4;
+	}
+
+	& .stats {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		align-items: center;
+		justify-content: center;
+	}
+
+	& .unit {
+		margin-left: 0.5em;
+	}
+
+	&:first-child h2 {
+		color: var(--color-font-tertiary);
+	}
+}
+
+// Divides the layout into a flex-row layout to
+// display a building icon and some building information
+.building {
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 2rem 2rem;
+
+	& .icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		& img {
+			width: 4rem;
+			height: 4rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	& .keys {
+		& span {
+			padding: 0.25rem 0.5rem;
+			background: var(--color-foreground);
+			border-radius: var(--border-radius-sm);
+			font-size: 0.75rem;
+			font-weight: 400;
+			&:first-child {
+				margin-right: 0.25rem;
+			}
+		}
+	}
+
+	&:first-child h2 {
+		color: var(--color-primary);
+	}
+	&:last-child h2 {
+		color: var(--color-font-secondary);
+	}
+}

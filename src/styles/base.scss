@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 
 .aegis {
+	--font-size: 14px;
+
 	background: var(--color-body);
 	color: var(--color-font-primary);
 	font-family: var(--sans-serif-font);
@@ -9,8 +11,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	--font-size: 14px;
-	font-size: var(--font-size);
 	/*
 	 * Typo
 	 */
@@ -25,7 +25,7 @@
 	 */
 	--color-font-primary: rgb(238, 245, 255);
 	--color-font-secondary: rgba(238, 245, 255, 0.6);
-	--color-font-tertiary: rgba(238, 245, 255, 0.2);
+	--color-font-tertiary: rgba(238, 245, 255, 0.25);
 
 	--color-font-link: rgba(238, 245, 255, 0.3);
 	--color-font-link-hover: rgba(238, 245, 255, 0.8);
@@ -39,6 +39,7 @@
 	--color-lightgreen: rgb(141, 221, 122);
 	--color-lavender: rgb(136, 107, 214);
 	--color-red: rgb(185, 66, 66);
+	--color-orange: rgb(231, 172, 62);
 
 	// Building icons
 	--color-building-economic: radial-gradient(
@@ -70,75 +71,6 @@
 	--border-radius: 0.5rem;
 	--border-radius-sm: 0.25rem;
 	--border-radius-lg: 0.75rem;
-}
-
-
-// TODO: Refactor this file and create some hierarchy
-
-.aegis footer {
-	font-size: var(--size-font-sm);
-
-	& img {
-		display: inline-block;
-		height: 0.75rem;
-		margin: 0 0.25rem -0.125rem 0.25rem;
-	}
-}
-
-.aegis .footer {
-	position: fixed;
-	bottom: 4rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	& span:first-child {
-		margin-bottom: calc(var(--vertical-gap) / 1.5);
-	}
-}
-
-.aegis button {
-	font-family: var(--sans-serif-font);
-}
-
-.aegis a {
-	color: var(--color-font-link);
-	text-decoration: none;
-
-	&:hover {
-		color: var(--color-font-link-hover);
-	}
-}
-
-.aegis ul {
-	display: flex;
-	list-style: none;
-
-	& li:not(:last-child) {
-		margin-right: calc(var(--horizontal-gap) / 2);
-
-		&::after {
-			margin-left: calc(var(--horizontal-gap) / 2);
-			content: '•';
-			font-size: 0.75rem;
-			opacity: 0.25;
-		}
-	}
-
-	& a ~ img {
-		margin-left: 0.5rem;
-	}
-}
-
-// Temporary
-.aegis .new {
-	padding: 0.25rem 0.5rem;
-	margin-left: 0.25rem;
-	background: var(--color-lavender);
-	border-radius: var(--border-radius-sm);
-	font-size: 0.75rem;
-	vertical-align: middle;
 }
 
 @media (min-width: 769px) {
