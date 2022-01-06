@@ -54,7 +54,9 @@
 		border-radius: 100%;
 		color: var(--color-font-secondary);
 		cursor: pointer;
+		font-family: var(--sans-serif-font);
 		font-size: 1.5rem;
+		line-height: 2rem;
 
 		&:hover {
 			color: var(--color-font-primary);
