@@ -445,10 +445,10 @@ const buildings = [
 	},
 	{
 		name: 'Village',
-		shortcut: ['0:1', '1:2'],
+		shortcut: ['0:0', '1:3'],
 		icon: village,
 		type: 'economic',
-		age: 'II',
+		age: 'I',
 		group: 'CHINESE'
 	},
 	{
@@ -485,10 +485,10 @@ const buildings = [
 	},
 	{
 		name: 'Granary',
-		shortcut: ['0:2', '0:1'],
+		shortcut: ['0:1', '1:2'],
 		icon: granary,
 		type: 'economic',
-		age: 'III',
+		age: 'II',
 		group: 'CHINESE'
 	},
 	{
@@ -509,10 +509,10 @@ const buildings = [
 	},
 	{
 		name: 'Pagoda',
-		shortcut: ['0:3', '1:0'],
+		shortcut: ['0:2', '1:1'],
 		icon: pagoda,
 		type: 'economic',
-		age: 'IV',
+		age: 'III',
 		group: 'CHINESE'
 	},
 	/**
