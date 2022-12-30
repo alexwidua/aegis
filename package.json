@@ -3,7 +3,7 @@
 	"version": "0.7.1",
 	"private": true,
 	"dependencies": {
-		"@craco/craco": "^6.4.3",
+		"@craco/craco": "7.0.0-alpha.0",
 		"node-sass": "^7.0.1",
 		"postcss-scss": "^4.0.2",
 		"react": "^17.0.2",
