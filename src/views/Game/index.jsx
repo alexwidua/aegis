@@ -3,7 +3,7 @@
  */
 
 import useStore from '@store'
-import { IconSingle, IconGrid, Keys, Score } from '@components/game/'
+import { IconSingle, IconGrid, IconName, Keys, Score } from '@components/game/'
 import { Button } from '@components/common/Button'
 import styles from './index.module.scss'
 
@@ -25,7 +25,7 @@ const GameView = () => {
 				className={`
 					${styles.game}
 					${useGrid ? styles.grid : null}`}>
-				{useGrid ? <IconGrid /> : <IconSingle />}
+				{useGrid ? <IconGrid /> : iconDisplayStyle === 'NAME' ? <IconName /> : <IconSingle />}
 				<Keys />
 			</div>
 			<div className={styles.bottom}>

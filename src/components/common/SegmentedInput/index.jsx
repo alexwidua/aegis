@@ -63,7 +63,7 @@ const SegmentedInput = ({
 								}}
 							/>
 							<div className={styles.children}>
-								{option.icon && (
+								{option.icon && option.icon !== 'Name' && (
 									<img
 										className={`
 										${styles.icon}
@@ -71,6 +71,9 @@ const SegmentedInput = ({
 										src={option.icon}
 										alt={name}
 									/>
+								)}
+								{option.icon === 'Name' && (
+									<span className={styles.nameIcon}>A</span>
 								)}
 								{children && children}
 							</div>

@@ -139,11 +139,12 @@ const GameOptions = () => {
 				onValueChange={(value) => handleSetIconDisplayStyle(value)}
 				options={[
 					{
-						children: 'Single',
+						children: 'Single Icon',
 						value: 'SINGLE',
 						icon: SingleIcon
 					},
-					{ children: 'Show grid', value: 'GRID', icon: GridIcon }
+					{ children: 'Show grid', value: 'GRID', icon: GridIcon },
+					{ children: 'Show Name', value: 'NAME', icon: 'Name' }
 				]}
 			/>
 		</div>
