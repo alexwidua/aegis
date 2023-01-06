@@ -103,7 +103,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Palisade',
+		name: 'Palisade Wall',
 		shortcut: ['0:0', '2:1'],
 		icon: palisade,
 		type: 'fortified',
@@ -193,7 +193,7 @@ const buildings = [
 		group: 'GENERIC'
 	},
 	{
-		name: 'Siege',
+		name: 'Siege Workshop',
 		shortcut: ['0:2', '1:0'],
 		icon: siege,
 		type: 'military',
@@ -281,7 +281,7 @@ const buildings = [
 		group: 'RUS'
 	},
 	{
-		name: 'Cabin',
+		name: 'Hunting Cabin',
 		shortcut: ['0:0', '0:1'],
 		icon: hc,
 		type: 'economic',
@@ -321,7 +321,7 @@ const buildings = [
 		group: 'RUS'
 	},
 	{
-		name: 'Palisade',
+		name: 'Palisade Wall',
 		shortcut: ['0:0', '2:1'],
 		icon: palisade,
 		type: 'fortified',
@@ -420,7 +420,7 @@ const buildings = [
 		group: 'CHINESE'
 	},
 	{
-		name: 'Palisade',
+		name: 'Palisade Wall',
 		shortcut: ['0:0', '2:1'],
 		icon: palisade,
 		type: 'fortified',
@@ -575,7 +575,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Palisade',
+		name: 'Palisade Wall',
 		shortcut: ['0:0', '2:1'],
 		icon: palisade,
 		type: 'fortified',
@@ -623,7 +623,7 @@ const buildings = [
 		group: 'ABBASID'
 	},
 	{
-		name: 'Tent',
+		name: 'Prayer Tent',
 		shortcut: ['0:2', '0:0'],
 		icon: mosque,
 		type: 'economic',
@@ -706,7 +706,7 @@ const buildings = [
 		group: 'DELHI'
 	},
 	{
-		name: 'Palisade',
+		name: 'Palisade Wall',
 		shortcut: ['0:0', '2:1'],
 		icon: palisade,
 		type: 'fortified',
