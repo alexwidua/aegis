@@ -11,6 +11,8 @@ import IconRus from '@assets/icons/flags/rus.png'
 import IconChinese from '@assets/icons/flags/chinese.png'
 import IconDelhi from '@assets/icons/flags/delhi.png'
 import IconAbbasid from '@assets/icons/flags/abbasid.png'
+import IconMalians from '@assets/icons/flags/malians.png'
+import IconOttomans from '@assets/icons/flags/ottomans.png'
 
 import SingleIcon from '@assets/icons/ui/single.svg'
 import GridIcon from '@assets/icons/ui/grid.svg'
@@ -93,6 +95,14 @@ const GameOptions = () => {
 					{
 						icon: IconAbbasid,
 						value: 'ABBASID'
+					},
+					{
+						icon: IconMalians,
+						value: 'MALIANS'
+					},
+					{
+						icon: IconOttomans,
+						value: 'OTTOMANS'
 					}
 				]}
 			/>

@@ -35,6 +35,10 @@ import university from '../icons/buildings/university.png'
 import village from '../icons/buildings/village.png'
 import wall from '../icons/buildings/wall.png'
 import woodenFortress from '../icons/buildings/wooden-fortress.png'
+import pitMine from '../icons/buildings/pit.png'
+import tollOutpost from '../icons/buildings/toll-outpost.png'
+import cattleRanch from '../icons/buildings/cattle-ranch.png'
+import militarySchool from '../icons/buildings/military-school.png'
 
 const buildings = [
 	// Age I
@@ -768,6 +772,276 @@ const buildings = [
 		type: 'research',
 		age: 'IV',
 		group: 'DELHI'
+	},
+	/**
+	 * Malian-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: house,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: mill,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: lc,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: mc,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: farm,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Pit Mine',
+		shortcut: ['0:0', '1:3'],
+		icon: pitMine,
+		type: 'economic',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Toll Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: tollOutpost,
+		type: 'fortified',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Palisade Wall',
+		shortcut: ['0:0', '2:1'],
+		icon: palisade,
+		type: 'fortified',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Palisade Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: palisadeGate,
+		type: 'fortified',
+		age: 'I',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: stable,
+		type: 'military',
+		age: 'II',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Cattle Ranch',
+		shortcut: ['0:1', '1:2'],
+		icon: cattleRanch,
+		type: 'economic',
+		age: 'II',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Stone Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: tower,
+		type: 'fortified',
+		age: 'II',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Stone Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: wall,
+		type: 'fortified',
+		age: 'II',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Stone Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: stoneGate,
+		type: 'fortified',
+		age: 'II',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Mosque',
+		shortcut: ['0:1', '0:0'],
+		icon: mosque,
+		type: 'economic',
+		age: 'III',
+		group: 'MALIANS'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: keep,
+		type: 'fortified',
+		age: 'III',
+		group: 'MALIANS'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: university,
+		type: 'research',
+		age: 'IV',
+		group: 'MALIANS'
+	},
+	/**
+	 * Ottoman-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: house,
+		type: 'economic',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: mill,
+		type: 'economic',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: lc,
+		type: 'economic',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: mc,
+		type: 'economic',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: farm,
+		type: 'economic',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Military School',
+		shortcut: ['0:0', '1:3'],
+		icon: militarySchool,
+		type: 'military',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: outpost,
+		type: 'fortified',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Palisade Wall',
+		shortcut: ['0:0', '2:1'],
+		icon: palisade,
+		type: 'fortified',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Palisade Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: palisadeGate,
+		type: 'fortified',
+		age: 'I',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: stable,
+		type: 'military',
+		age: 'II',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Stone Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: tower,
+		type: 'fortified',
+		age: 'II',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Stone Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: wall,
+		type: 'fortified',
+		age: 'II',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Stone Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: stoneGate,
+		type: 'fortified',
+		age: 'II',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Mosque',
+		shortcut: ['0:1', '0:0'],
+		icon: mosque,
+		type: 'economic',
+		age: 'III',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: keep,
+		type: 'fortified',
+		age: 'III',
+		group: 'OTTOMANS'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: university,
+		type: 'research',
+		age: 'IV',
+		group: 'OTTOMANS'
 	}
 ]
 
