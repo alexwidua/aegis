@@ -93,7 +93,7 @@ const KeyboardOptions = () => {
 	})
 
 	// Show or hide building icon overlay
-	const [showKeyboardIconOverlay, setShowKeyboardIconOverlay] = useState(null)
+	const [showKeyboardIconOverlay, setShowKeyboardIconOverlay] = useState('I')
 
 	return (
 		<div className={styles.container}>
@@ -183,11 +183,11 @@ const KeyboardOptions = () => {
 				</div>
 				<WrapSegmentedInputComponent
 					name={`d`}
-					label={`Show building icons`}
+					label={``}
 					value={showKeyboardIconOverlay}
 					onValueChange={(value) => setShowKeyboardIconOverlay(value)}
 					options={[
-						{ children: 'Hide', value: null },
+						//{ children: 'Hide', value: null },
 						{ children: 'Age I', value: 'I' },
 						{ children: 'Age II', value: 'II' },
 						{ children: 'Age III', value: 'III' },

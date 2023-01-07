@@ -58,7 +58,7 @@ const GameOptions = () => {
 	return (
 		<div className={styles.container}>
 			<h2>Options</h2>
-			<h3>Buildings</h3>
+			<h3>Building options</h3>
 			<WrapSegmentedInputComponent
 				name={`buildings`}
 				label={`Number of buildings each game`}
@@ -106,18 +106,24 @@ const GameOptions = () => {
 					}
 				]}
 			/>
-			<WrapCheckboxComponent label={`Restrict to age`}>
+			<WrapCheckboxComponent label={`Building ages`} id='ages'>
 				{Object.keys(ages).map((el, i) => (
 					<Checkbox
 						value={ages[el]}
 						onChange={() => handleFilter('ages', el, true)}
-						key={i}
-						style={{ textTransform: 'uppercase' }}>
-						{el}
+						key={i}>
+						Age
+						<span
+							style={{
+								textTransform: 'uppercase',
+								marginLeft: '0.25em'
+							}}>
+							{el}
+						</span>
 					</Checkbox>
 				))}
 			</WrapCheckboxComponent>
-			<WrapCheckboxComponent label={`Restrict to type`}>
+			<WrapCheckboxComponent label={`Building types`}>
 				{Object.keys(types).map((el, i) => (
 					<Checkbox
 						value={types[el]}
@@ -130,16 +136,36 @@ const GameOptions = () => {
 			{/*
 			 * Display
 			 */}
-			<h3>Display</h3>
+			<h3>Display options</h3>
 			<WrapSegmentedInputComponent
 				name={`showLabels`}
-				label={`Show key labels on buttons`}
+				label={`Show labelled or blank key caps`}
 				value={showLabeledKeys}
 				onValueChange={(value) => setShowLabeledKeys(value)}
 				options={[
-					{ children: 'Show', value: 'SHOW' },
-					{ children: 'Fade in after 1s', value: 'FADE_IN' },
-					{ children: 'Hide', value: 'HIDE' }
+					{
+						children: 'Labelled keys',
+						value: 'SHOW',
+						icon: <span className={styles.iconKey}>Q</span>
+					},
+					{
+						children: 'Slowly fade in labels',
+						value: 'FADE_IN',
+						icon: (
+							<span className={styles.iconKey}>
+								<span className={styles.fade}>Q</span>
+							</span>
+						)
+					},
+					{
+						children: 'Blank keys',
+						value: 'HIDE',
+						icon: (
+							<span className={styles.iconKey}>
+								<span className={styles.blank}>Q</span>
+							</span>
+						)
+					}
 				]}
 			/>
 			<WrapSegmentedInputComponent
@@ -149,12 +175,16 @@ const GameOptions = () => {
 				onValueChange={(value) => handleSetIconDisplayStyle(value)}
 				options={[
 					{
-						children: 'Single Icon',
+						children: 'Icon + Name',
 						value: 'SINGLE',
 						icon: SingleIcon
 					},
-					{ children: 'Show grid', value: 'GRID', icon: GridIcon },
-					{ children: 'Show Name', value: 'NAME', icon: 'Name' }
+					{ children: 'Icon in grid', value: 'GRID', icon: GridIcon },
+					{
+						children: 'Name only',
+						value: 'NAME',
+						icon: <span className={styles.iconName}>House</span>
+					}
 				]}
 			/>
 		</div>
