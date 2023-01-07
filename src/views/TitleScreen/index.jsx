@@ -10,8 +10,11 @@ import styles from './index.module.scss'
 const TitleScreenView = () => {
 	return (
 		<div className={styles.container}>
-			<h1>Aegis.</h1>
-			<h2>A tiny game to practice AoE building shortcuts.</h2>
+			<h1>Aegis</h1>
+			<h2>
+				A tiny game to practice
+				<br /> Age of Empires IV building shortcuts.
+			</h2>
 			<GameMenu />
 			<GameFooter />
 		</div>
