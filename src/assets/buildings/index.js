@@ -357,6 +357,30 @@ const buildings = [
 		group: 'RUS'
 	},
 	{
+		name: 'Stone Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: tower,
+		type: 'fortified',
+		age: 'II',
+		group: 'RUS'
+	},
+	{
+		name: 'Stone Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: wall,
+		type: 'fortified',
+		age: 'II',
+		group: 'RUS'
+	},
+	{
+		name: 'Stone Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: stoneGate,
+		type: 'fortified',
+		age: 'II',
+		group: 'RUS'
+	},
+	{
 		name: 'Keep',
 		shortcut: ['0:2', '2:0'],
 		icon: keep,
