@@ -103,4 +103,16 @@ const IconGrid = () => {
 	)
 }
 
-export { IconSingle, IconGrid }
+const IconName = () => {
+	const score = useStore((state) => state.score)
+	const { building } = useGameState()
+	const { name } = building?.preemptive || {}
+
+	return (
+		<>
+			<div className={styles.name}>{name}</div>
+		</>
+	)
+}
+
+export { IconSingle, IconGrid, IconName }
