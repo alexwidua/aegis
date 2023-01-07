@@ -8,7 +8,7 @@ import Wood from '@assets/icons/misc/wood.png'
 import Gold from '@assets/icons/misc/gold.png'
 
 const GameMenu = ({
-	play = "Start typin'",
+	play = 'Start typing',
 	playAgain = 'Play again',
 	onPlay,
 	options = 'Options'
@@ -46,12 +46,12 @@ const GameFooter = () => {
 					<img src={HRE} alt={`Holy Roman Empire`} />{' '}
 				</li>
 				<li>
-					<a href="https://github.com/alexwidua/aegis">
+					<a href='https://github.com/alexwidua/aegis'>
 						View on GitHub
 					</a>
 				</li>
 				<li>
-					<a href="https://ko-fi.com/alexwidua">Send tribute</a>
+					<a href='https://ko-fi.com/alexwidua'>Send tribute</a>
 					<img src={Gold} alt={`Gold`} />
 				</li>
 			</ul>
