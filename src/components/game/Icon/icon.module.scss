@@ -96,3 +96,17 @@
 		box-shadow: 0 0 2rem var(--color-green) inset;
 	}
 }
+
+/*
+ * Name only style
+ */
+.nameOnly {
+	position: absolute;
+	top: 2.5rem;
+	left: 50%;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 1.75rem;
+	font-weight: 400;
+	transform: translateX(-50%);
+	white-space: nowrap;
+}

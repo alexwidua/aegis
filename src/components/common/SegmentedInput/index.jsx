@@ -56,25 +56,25 @@ const SegmentedInput = ({
 								onChange={handleChange}
 								onKeyDown={handleKeyDown}
 								tabIndex={0}
-								type="radio"
+								type='radio'
 								value={`${option.value}`}
 								{...{
 									[ITEM_ID_DATA_ATTRIBUTE_NAME]: `${i}`
 								}}
 							/>
 							<div className={styles.children}>
-								{option.icon && option.icon !== 'Name' && (
-									<img
-										className={`
+								{option.icon &&
+									(React.isValidElement(option.icon) ? (
+										option.icon
+									) : (
+										<img
+											className={`
 										${styles.icon}
 										${children ? styles.gap : null}`}
-										src={option.icon}
-										alt={name}
-									/>
-								)}
-								{option.icon === 'Name' && (
-									<span className={styles.nameIcon}>A</span>
-								)}
+											src={option.icon}
+											alt={name}
+										/>
+									))}
 								{children && children}
 							</div>
 						</div>

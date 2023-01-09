@@ -15,7 +15,7 @@ const IconSingle = () => {
 	return (
 		<>
 			<TransitionGroup>
-				<CSSTransition key={score} timeout={300} classNames="slide">
+				<CSSTransition key={score} timeout={300} classNames='slide'>
 					<div
 						className={`
                  ${styles['icon-container']}
@@ -32,7 +32,7 @@ const IconSingle = () => {
 				</CSSTransition>
 			</TransitionGroup>
 			<TransitionGroup>
-				<CSSTransition key={score} timeout={300} classNames="fade">
+				<CSSTransition key={score} timeout={300} classNames='fade'>
 					<div className={styles.name}>{name}</div>
 				</CSSTransition>
 			</TransitionGroup>
@@ -104,15 +104,10 @@ const IconGrid = () => {
 }
 
 const IconName = () => {
-	const score = useStore((state) => state.score)
 	const { building } = useGameState()
 	const { name } = building?.preemptive || {}
 
-	return (
-		<>
-			<div className={styles.name}>{name}</div>
-		</>
-	)
+	return <div className={styles.nameOnly}>{name}</div>
 }
 
 export { IconSingle, IconGrid, IconName }

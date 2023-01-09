@@ -1,5 +1,12 @@
 # Changelog
 
+### 8.0.0
+
+-   `feat:` Add name-only display option
+-   `feat:` Add Malian and Ottoman civs
+-   `fix:` Add missing stone fortifications to Rus
+-   `misc:` Update game option descriptions & icons for more clarity
+
 ### 0.7.1
 
 -   `style:` Add keyboard to initial keyboard layout prompt
