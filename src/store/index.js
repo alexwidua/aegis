@@ -147,11 +147,11 @@ const useStore = create((set) => ({
 			const apm = Math.round(
 				calcActionsPerMinute(
 					finishTime - state.startTime,
-					state.scoreLimit
+					numBuildings
 				)
 			)
 
-			const correctInputs = state.scoreLimit * 2 // scoreLimit === num of buildings á 2 keys
+			const correctInputs = numBuildings * 2 // scoreLimit === num of buildings á 2 keys
 			const accuracy = calcPercentageRemainder(
 				state.incorrectInputs,
 				correctInputs
@@ -170,7 +170,7 @@ const useStore = create((set) => ({
 			const endResult = [
 				{ type: 'buildings', value: numBuildings },
 				{ type: 'actions per minute', value: apm },
-				{ type: 'accuracy', value: accuracy },
+				{ type: 'accuracy', value: Math.round(accuracy) },
 				{ type: 'fastest building', value: fastestBuilding },
 				{ type: 'slowest building', value: slowestBuilding }
 			]
