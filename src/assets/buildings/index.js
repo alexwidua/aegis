@@ -921,7 +921,7 @@ const buildings = [
 	},
 	{
 		name: 'Mosque',
-		shortcut: ['0:1', '0:0'],
+		shortcut: ['0:2', '0:0'],
 		icon: mosque,
 		type: 'economic',
 		age: 'III',
@@ -1052,7 +1052,7 @@ const buildings = [
 	},
 	{
 		name: 'Mosque',
-		shortcut: ['0:1', '0:0'],
+		shortcut: ['0:2', '0:0'],
 		icon: mosque,
 		type: 'economic',
 		age: 'III',
