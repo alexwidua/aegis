@@ -13,6 +13,8 @@ import IconDelhi from '@assets/icons/flags/delhi.png'
 import IconAbbasid from '@assets/icons/flags/abbasid.png'
 import IconMalians from '@assets/icons/flags/malians.png'
 import IconOttomans from '@assets/icons/flags/ottomans.png'
+import IconByzantines from '@assets/icons/flags/byzantines.png'
+import IconJapanese from '@assets/icons/flags/japanese.png'
 
 import SingleIcon from '@assets/icons/ui/single.svg'
 import GridIcon from '@assets/icons/ui/grid.svg'
@@ -77,6 +79,14 @@ const GameOptions = () => {
 						value: 'GENERIC'
 					},
 					{
+						icon: IconAbbasid,
+						value: 'ABBASID'
+					},
+					{
+						icon: IconChinese,
+						value: 'CHINESE'
+					},
+					{
 						icon: IconMongol,
 						value: 'MONGOL'
 					},
@@ -85,16 +95,8 @@ const GameOptions = () => {
 						value: 'RUS'
 					},
 					{
-						icon: IconChinese,
-						value: 'CHINESE'
-					},
-					{
 						icon: IconDelhi,
 						value: 'DELHI'
-					},
-					{
-						icon: IconAbbasid,
-						value: 'ABBASID'
 					},
 					{
 						icon: IconMalians,
@@ -103,6 +105,14 @@ const GameOptions = () => {
 					{
 						icon: IconOttomans,
 						value: 'OTTOMANS'
+					},
+					{
+						icon: IconJapanese,
+						value: 'JAPANESE'
+					},
+					{
+						icon: IconByzantines,
+						value: 'BYZANTINES'
 					}
 				]}
 			/>
