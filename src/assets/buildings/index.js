@@ -39,6 +39,13 @@ import pitMine from '../icons/buildings/pit.png'
 import tollOutpost from '../icons/buildings/toll-outpost.png'
 import cattleRanch from '../icons/buildings/cattle-ranch.png'
 import militarySchool from '../icons/buildings/military-school.png'
+import farmhouse from '../icons/buildings/farmhouse.png'
+import forge from '../icons/buildings/forge.png'
+import shintoShrine from '../icons/buildings/shinto-shrine.png'
+import oliveGrove from '../icons/buildings/olive-grove.png'
+import cistern from '../icons/buildings/cistern.png'
+import aqueduct from '../icons/buildings/aqueduct.png'
+import mercenaryHouse from '../icons/buildings/mercenary-house.png'
 
 const buildings = [
 	// Age I
@@ -914,7 +921,7 @@ const buildings = [
 	},
 	{
 		name: 'Mosque',
-		shortcut: ['0:1', '0:0'],
+		shortcut: ['0:2', '0:0'],
 		icon: mosque,
 		type: 'economic',
 		age: 'III',
@@ -1045,7 +1052,7 @@ const buildings = [
 	},
 	{
 		name: 'Mosque',
-		shortcut: ['0:1', '0:0'],
+		shortcut: ['0:2', '0:0'],
 		icon: mosque,
 		type: 'economic',
 		age: 'III',
@@ -1066,7 +1073,269 @@ const buildings = [
 		type: 'research',
 		age: 'IV',
 		group: 'OTTOMANS'
-	}
+	},
+	/**
+	 * Japanese-specific
+	 */
+	{
+		name: 'Farmhouse',
+		shortcut: ['0:0', '0:0'],
+		icon: farmhouse,
+		type: 'economic',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: lc,
+		type: 'economic',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Forge',
+		shortcut: ['0:0', '0:3'],
+		icon: forge,
+		type: 'economic',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Farm',
+		shortcut: ['0:0', '1:0'],
+		icon: farm,
+		type: 'economic',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: outpost,
+		type: 'fortified',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Palisade Wall',
+		shortcut: ['0:0', '2:1'],
+		icon: palisade,
+		type: 'fortified',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Palisade Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: palisadeGate,
+		type: 'fortified',
+		age: 'I',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: stable,
+		type: 'military',
+		age: 'II',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Stone Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: tower,
+		type: 'fortified',
+		age: 'II',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Stone Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: wall,
+		type: 'fortified',
+		age: 'II',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Stone Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: stoneGate,
+		type: 'fortified',
+		age: 'II',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Shinto Shrine / Buddhist Temple',
+		shortcut: ['0:2', '0:0'],
+		icon: shintoShrine,
+		type: 'economic',
+		age: 'III',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: university,
+		type: 'research',
+		age: 'IV',
+		group: 'JAPANESE'
+	},
+	{
+		name: 'Castle',
+		shortcut: ['0:3', '1:0'],
+		icon: keep,
+		type: 'fortified',
+		age: 'IV',
+		group: 'JAPANESE'
+	},
+	/**
+	 * Byzantine-specific
+	 */
+	{
+		name: 'House',
+		shortcut: ['0:0', '0:0'],
+		icon: house,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Mill',
+		shortcut: ['0:0', '0:1'],
+		icon: mill,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Lumber Camp',
+		shortcut: ['0:0', '0:2'],
+		icon: lc,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Mining Camp',
+		shortcut: ['0:0', '0:3'],
+		icon: mc,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Olive Grove',
+		shortcut: ['0:0', '1:0'],
+		icon: oliveGrove,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Cistern',
+		shortcut: ['0:0', '1:3'],
+		icon: cistern,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Outpost',
+		shortcut: ['0:0', '2:0'],
+		icon: outpost,
+		type: 'fortified',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Palisade Wall',
+		shortcut: ['0:0', '2:1'],
+		icon: palisade,
+		type: 'fortified',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Palisade Gate',
+		shortcut: ['0:0', '2:2'],
+		icon: palisadeGate,
+		type: 'fortified',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Aqueduct',
+		shortcut: ['0:0', '2:3'],
+		icon: aqueduct,
+		type: 'economic',
+		age: 'I',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Stable',
+		shortcut: ['0:1', '1:1'],
+		icon: stable,
+		type: 'military',
+		age: 'II',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Mercenary House',
+		shortcut: ['0:1', '1:2'],
+		icon: mercenaryHouse,
+		type: 'military',
+		age: 'II',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Stone Tower',
+		shortcut: ['0:1', '2:0'],
+		icon: tower,
+		type: 'fortified',
+		age: 'II',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Stone Wall',
+		shortcut: ['0:1', '2:1'],
+		icon: wall,
+		type: 'fortified',
+		age: 'II',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Stone Gate',
+		shortcut: ['0:1', '2:2'],
+		icon: stoneGate,
+		type: 'fortified',
+		age: 'II',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Monastery',
+		shortcut: ['0:2', '0:0'],
+		icon: monastery,
+		type: 'economic',
+		age: 'III',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'Keep',
+		shortcut: ['0:2', '2:0'],
+		icon: keep,
+		type: 'fortified',
+		age: 'III',
+		group: 'BYZANTINES'
+	},
+	{
+		name: 'University',
+		shortcut: ['0:3', '0:0'],
+		icon: university,
+		type: 'research',
+		age: 'IV',
+		group: 'BYZANTINES'
+	},
 ]
 
 export default buildings
